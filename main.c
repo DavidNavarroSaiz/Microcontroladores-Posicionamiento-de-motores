@@ -55,13 +55,18 @@ int xtrue = 1;
 char digitos [3];
 int enter;
 int tama;
+int tama1;
+int tama2;
 char salida [25];
-
+char entrada[25];
+int i;
+int lleg;
+char *ptr_llegada;
 
 void ledestado(int tiempoled);
 void enviarTrama(char *datos);
 void paso_Der();
-int stringtoint(char string[20]);
+int stringtoint(char string[20], int tamanio);
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -86,20 +91,35 @@ void main(void) {
         }
 
         if (enter == 1) {
-            if (tama == 9) {
-                NOP();
-                for (r = 0; r <= 5; r++) {
-                    tam[r] = comando[r];
-                }
-                xtrue = strcmp(tam, moverx);
-                digitos[0] = comando[6];
-                digitos[1] = comando[7];
-                digitos[2] = comando[8];
-                steps = stringtoint(digitos);
-
-            } else {
-                enviarTrama(comandonoreconocido);
+            //            if (tama == 9) {
+            //                NOP();
+            for (r = 0; r <= 5; r++) {
+                tam[r] = comando[r];
             }
+            xtrue = strcmp(tam, moverx);
+
+            ptr_llegada = &comando[6];
+            if (*ptr_llegada == '-') {
+                ptr_llegada = &comando[7];
+
+                while (*ptr_llegada != 0) {
+                    entrada[lleg] = *ptr_llegada;
+                    ptr_llegada++;
+                    lleg++;
+                }
+                tama1 = tama - 7;
+                steps = stringtoint(entrada, tama1);
+                steps = (-1) * steps;
+            } else {
+                while (*ptr_llegada != 0) {
+                    entrada[lleg] = *ptr_llegada;
+                    ptr_llegada++;
+                    lleg++;
+                }
+                tama2 = tama - 6;
+                steps = stringtoint(entrada, tama2);
+            }
+
             enter = 0;
             tama = 0;
         }
@@ -119,7 +139,7 @@ void main(void) {
                     switch (actualstep) {
                         case 0:
                             LATA = 0b0001;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             NOP();
                             stepcont++;
                             NOP();
@@ -127,51 +147,50 @@ void main(void) {
                             break;
                         case 1:
                             LATA = 0b0011;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont++;
                             actualstep++;
                             break;
                         case 2:
                             LATA = 0b0010;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont++;
                             actualstep++;
                             break;
                         case 3:
                             LATA = 0b0110;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont++;
                             actualstep++;
                             break;
                         case 4:
                             LATA = 0b0100;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont++;
                             actualstep++;
                             break;
                         case 5:
                             LATA = 0b1100;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont++;
                             actualstep++;
                             break;
 
                         case 6:
                             LATA = 0b1000;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont++;
                             actualstep++;
                             break;
                         case 7:
                             LATA = 0b1001;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont++;
                             actualstep++;
                             break;
                     }
 
                 }
-                
 
             } else if (steps < 0) {
 
@@ -182,49 +201,49 @@ void main(void) {
                     switch (actualstep) {
                         case 0:
                             LATA = 0b1001;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont--;
                             actualstep--;
                             break;
                         case 1:
                             LATA = 0b1000;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont--;
                             actualstep--;
                             break;
                         case 2:
                             LATA = 0b1100;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont--;
                             actualstep--;
                             break;
                         case 3:
                             LATA = 0b0100;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont--;
                             actualstep--;
                             break;
                         case 4:
                             LATA = 0b0110;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont--;
                             actualstep--;
                             break;
                         case 5:
                             LATA = 0b0010;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont--;
                             break;
                             actualstep--;
                         case 6:
                             LATA = 0b0011;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont--;
                             actualstep--;
                             break;
                         case 7:
                             LATA = 0b0001;
-                            for (int i = 0; i <= vel; i++);
+                            for (i = 0; i <= vel; i++);
                             stepcont--;
                             actualstep--;
                             break;
@@ -263,10 +282,10 @@ void ledestado(int tiempoled) {
     led = 0;
 }
 
-int stringtoint(char string[20]) {
+int stringtoint(char string, int tamanio) {
     n = 0;
     o = 1;
-    p = 2; //sizeof (string) - 1; //2
+    p = tamanio - 1; //sizeof (string) - 1; //2
 
     while (p >= 0) {
         help = string [p] - '0';
@@ -277,6 +296,9 @@ int stringtoint(char string[20]) {
     }
     return n;
 }
+
+
+
 
 //void paso_Der() {
 //    LATA = 0b0001;
