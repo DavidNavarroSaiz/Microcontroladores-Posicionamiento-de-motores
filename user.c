@@ -31,7 +31,7 @@ void InitApp(void)
     PORTB = 0 ;
     PORTC = 0 ;
     
-    TRISAbits= 0 ; 
+    TRISA = 0 ; 
     //TIMER 1 led estado
       TRISBbits.RB7 = 0; //LED DE ESTADO//
     T1CONbits.RD16 = 1; //read /write 16 bits
