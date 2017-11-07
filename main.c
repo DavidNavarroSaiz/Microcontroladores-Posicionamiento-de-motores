@@ -30,34 +30,39 @@
 
 int cont_led;
 int c;
-int stepcont = 1;
+int stepcont = 0;
 int stepsPerRev = 4076; /*El 28BYJ-48 tiene un paso de 5.625 grados (64 pasos por vuelta).
                         *  El reductor interno tiene una relación de 1/64.
                         *  Combinados, la precisión total es de 4096 pasos por vuelta, equivalente a un paso de 0.088º , pere la relcion del reductor nos da 4076 pasos por vuelta*/
 
-char comando [25] ;
-int vel = 150; /*velocidad del motor El 28BYJ-48 tiene un par máximo tras el reductor de 3N?cm (0.3Kgf?cm).
+char comando [25];
+int vel = 1000; /*velocidad del motor El 28BYJ-48 tiene un par máximo tras el reductor de 3N?cm (0.3Kgf?cm).
 La frecuencia máxima es de 100Hz, lo que supone unos 40 segundos por vuelta, o equivalentemente una velocidad de giro máxima en torno a 1.5 rpm.*/
 
-const char saludo [] = "bienvenido a posicionamiento de camara";
+const char saludo[] = "bienvenido";
+const char comandonoreconocido[] = "Comando no Reconocido";
 int numSteps = 8; //secuencia half step tiene 8 pasos
 //int stepsLookup[8] = {0b1000, 0b1100, 0b0100, 0b0110, 0b0010, 0b0011, 0b0001, 0b1001};
-const char moverx [] = "MOVERX";
+const char moverx[] = "MOVERX";
 int steps; // numero entre cero y 4076
-int actualstep = 0b0001;
+int actualstep = 0;
 int n, o, p, help;
 //char charstep;
-void ledestado(int tiempoled);
-void enviarTrama(char *datos);
-void paso_Der();
-int stringtoint(char string[20]); 
 char tam[20];
 int led;
 int r; //para escribir la palabra
-int xtrue;
+int xtrue = 1;
 char digitos [3];
-int enter ;
-int tama ;
+int enter;
+int tama;
+char salida [25];
+
+
+void ledestado(int tiempoled);
+void enviarTrama(char *datos);
+void paso_Der();
+int stringtoint(char string[20]);
+
 /******************************************************************************/
 /* Main Program                                                               */
 
@@ -73,13 +78,16 @@ void main(void) {
     /* TODO <INSERT USER APPLICATION CODE HERE> */
 
     enviarTrama(saludo);
+
     while (1) {
         if (led == 1) {
-            ledestado(10);
+            NOP();
+            ledestado(4);
         }
 
         if (enter == 1) {
             if (tama == 9) {
+                NOP();
                 for (r = 0; r <= 5; r++) {
                     tam[r] = comando[r];
                 }
@@ -87,23 +95,34 @@ void main(void) {
                 digitos[0] = comando[6];
                 digitos[1] = comando[7];
                 digitos[2] = comando[8];
-                steps = stringtoint(digitos);            
-               
-                enter = 0;
+                steps = stringtoint(digitos);
+
+            } else {
+                enviarTrama(comandonoreconocido);
             }
+            enter = 0;
+            tama = 0;
         }
         if (xtrue == 0) {
+
             if (steps > 0) {
+                NOP();
                 while (stepcont <= steps) {
 
                     if (actualstep > 7) {
                         actualstep = 0;
                     }
+                    sprintf(salida, "actualstep %d ", actualstep);
+                    enviarTrama(salida);
+                    sprintf(salida, "stepcont %d ", stepcont);
+                    enviarTrama(salida);
                     switch (actualstep) {
                         case 0:
                             LATA = 0b0001;
                             for (int i = 0; i <= vel; i++);
+                            NOP();
                             stepcont++;
+                            NOP();
                             actualstep++;
                             break;
                         case 1:
@@ -152,7 +171,7 @@ void main(void) {
                     }
 
                 }
-                stepcont = 0;
+                
 
             } else if (steps < 0) {
 
@@ -247,7 +266,7 @@ void ledestado(int tiempoled) {
 int stringtoint(char string[20]) {
     n = 0;
     o = 1;
-    p = 2 ;//sizeof (string) - 1; //2
+    p = 2; //sizeof (string) - 1; //2
 
     while (p >= 0) {
         help = string [p] - '0';
@@ -256,7 +275,7 @@ int stringtoint(char string[20]) {
         p = p - 1;
         o = o * 10;
     }
-    return n ;
+    return n;
 }
 
 //void paso_Der() {

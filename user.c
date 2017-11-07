@@ -32,6 +32,7 @@ void InitApp(void)
     PORTC = 0 ;
     
     TRISA = 0 ; 
+    
     //TIMER 1 led estado
       TRISBbits.RB7 = 0; //LED DE ESTADO//
     T1CONbits.RD16 = 1; //read /write 16 bits
@@ -42,6 +43,8 @@ void InitApp(void)
     PIE1bits.TMR1IE = 1; //activar interrupciones de overflow
     IPR1bits.TMR1IP = 1; //alta prioridad 
     TMR1 = 3036; //100 ms
+    INTCONbits.GIE = 1; //ACTIVAR INTERRUPCIONES GLOBALES//
+    INTCONbits.PEIE = 1; //ACTIVAR INTERRUPCIONES PERIFERICAS//
     
     
   
@@ -55,6 +58,8 @@ void InitApp(void)
     RCSTAbits.CREN = 1;
     PIE1bits.RCIE = 1; //Habilitamos interrupciones recepcion UART//
     IPR1bits.RCIP = 1; //ALTA PRIORIDAD//
+    
+    
    
 }
 
