@@ -4,23 +4,27 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ConfigureOscillator `(v ~T0 @X0 0 ef ]
 "13 user.h
 [v _InitApp `(v ~T0 @X0 0 ef ]
-"67 main.c
+"69 main.c
 [v _enviarTrama `(v ~T0 @X0 0 ef1`*uc ]
 "43 /opt/microchip/xc8/v1.38/include/pic18.h
 [v ___nop `(v ~T0 @X0 0 ef ]
 [p i ___nop ]
-"66 main.c
+"68 main.c
 [v _ledestado `(v ~T0 @X0 0 ef1`i ]
 "43 /opt/microchip/xc8/v1.38/include/string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
-"69 main.c
+"71 main.c
 [v _stringtoint `(i ~T0 @X0 0 ef2`*uc`i ]
 "194 /opt/microchip/xc8/v1.38/include/stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "486 /opt/microchip/xc8/v1.38/include/pic18f252.h
 [v _LATA `Vuc ~T0 @X0 0 e@3977 ]
-"70 main.c
-[v _apagar `(v ~T0 @X0 0 ef ]
+"72 main.c
+[v _apagarM1 `(v ~T0 @X0 0 ef ]
+"603 /opt/microchip/xc8/v1.38/include/pic18f252.h
+[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
+"73 main.c
+[v _apagarM2 `(v ~T0 @X0 0 ef ]
 "2497 /opt/microchip/xc8/v1.38/include/pic18f252.h
 [v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
 "2207
@@ -2453,9 +2457,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "39
 [v _vel `i ~T0 @X0 1 e ]
 [i _vel
--> 1500 `i
+-> 50 `i
 ]
-[; ;main.c: 39: int vel = 1500;
+[; ;main.c: 39: int vel = 50;
 "42
 [v _saludo `Cuc ~T0 @X0 -> 0 `x e ]
 [i _saludo
@@ -2524,547 +2528,502 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;main.c: 46: const char moverx[] = "MOVERX";
 "47
-[v _steps `i ~T0 @X0 1 e ]
-[; ;main.c: 47: int steps;
+[v _movery `Cuc ~T0 @X0 -> 0 `x e ]
+[i _movery
+:U ..
+-> 77 `c
+-> 79 `c
+-> 86 `c
+-> 69 `c
+-> 82 `c
+-> 89 `c
+-> 0 `c
+..
+]
+[; ;main.c: 47: const char movery[] = "MOVERY";
 "48
+[v _steps `i ~T0 @X0 1 e ]
+[; ;main.c: 48: int steps;
+"49
 [v _actualstep `i ~T0 @X0 1 e ]
 [i _actualstep
 -> 0 `i
 ]
-[; ;main.c: 48: int actualstep = 0;
-"49
+[; ;main.c: 49: int actualstep = 0;
+"50
 [v _h `i ~T0 @X0 1 e ]
 [v _o `i ~T0 @X0 1 e ]
 [v _p `i ~T0 @X0 1 e ]
 [v _help `i ~T0 @X0 1 e ]
-[; ;main.c: 49: int h, o, p, help;
-"51
-[v _tam `uc ~T0 @X0 -> 20 `i e ]
-[; ;main.c: 51: char tam[20];
+[; ;main.c: 50: int h, o, p, help;
 "52
-[v _led `i ~T0 @X0 1 e ]
-[; ;main.c: 52: int led;
+[v _tam `uc ~T0 @X0 -> 20 `i e ]
+[; ;main.c: 52: char tam[20];
 "53
-[v _r `i ~T0 @X0 1 e ]
-[; ;main.c: 53: int r;
+[v _led `i ~T0 @X0 1 e ]
+[; ;main.c: 53: int led;
 "54
+[v _r `i ~T0 @X0 1 e ]
+[; ;main.c: 54: int r;
+"55
 [v _xtrue `i ~T0 @X0 1 e ]
 [i _xtrue
 -> 1 `i
 ]
-[; ;main.c: 54: int xtrue = 1;
-"55
-[v _digitos `uc ~T0 @X0 -> 3 `i e ]
-[; ;main.c: 55: char digitos [3];
+[; ;main.c: 55: int xtrue = 1;
 "56
-[v _enter `i ~T0 @X0 1 e ]
-[; ;main.c: 56: int enter;
-"57
-[v _tama `i ~T0 @X0 1 e ]
-[; ;main.c: 57: int tama;
-"58
-[v _tama1 `i ~T0 @X0 1 e ]
-[; ;main.c: 58: int tama1;
-"59
-[v _tama2 `i ~T0 @X0 1 e ]
-[; ;main.c: 59: int tama2;
-"60
-[v _salida `uc ~T0 @X0 -> 25 `i e ]
-[; ;main.c: 60: char salida [25];
-"61
-[v _entrada `uc ~T0 @X0 -> 25 `i e ]
-[; ;main.c: 61: char entrada[25];
-"62
-[v _i `i ~T0 @X0 1 e ]
-[; ;main.c: 62: int i;
-"63
-[v _lleg `i ~T0 @X0 1 e ]
-[; ;main.c: 63: int lleg;
-"64
-[v _ptr_llegada `*uc ~T0 @X0 1 e ]
-[; ;main.c: 64: char *ptr_llegada;
-"65
-[v _prueba `Cuc ~T0 @X0 -> 0 `x e ]
-[i _prueba
-:U ..
--> 80 `c
--> 85 `c
--> 69 `c
--> 66 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 65 `c
--> 0 `c
-..
+[v _ytrue `i ~T0 @X0 1 e ]
+[i _ytrue
+-> 1 `i
 ]
-[; ;main.c: 65: const char prueba[] = "PUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-[; ;main.c: 66: void ledestado(int tiempoled);
-[; ;main.c: 67: void enviarTrama(char *datos);
-[; ;main.c: 68: void paso_Der();
-[; ;main.c: 69: int stringtoint(char string[], int tamanio);
-[; ;main.c: 70: void apagar();
-"77
+[; ;main.c: 56: int ytrue = 1;
+"57
+[v _digitos `uc ~T0 @X0 -> 3 `i e ]
+[; ;main.c: 57: char digitos [3];
+"58
+[v _enter `i ~T0 @X0 1 e ]
+[; ;main.c: 58: int enter;
+"59
+[v _tama `i ~T0 @X0 1 e ]
+[; ;main.c: 59: int tama;
+"60
+[v _tama1 `i ~T0 @X0 1 e ]
+[; ;main.c: 60: int tama1;
+"61
+[v _tama2 `i ~T0 @X0 1 e ]
+[; ;main.c: 61: int tama2;
+"62
+[v _salida `uc ~T0 @X0 -> 25 `i e ]
+[; ;main.c: 62: char salida [25];
+"63
+[v _entrada `uc ~T0 @X0 -> 25 `i e ]
+[; ;main.c: 63: char entrada[25];
+"64
+[v _i `i ~T0 @X0 1 e ]
+[; ;main.c: 64: int i;
+"65
+[v _lleg `i ~T0 @X0 1 e ]
+[; ;main.c: 65: int lleg;
+"66
+[v _ptr_llegada `*uc ~T0 @X0 1 e ]
+[; ;main.c: 66: char *ptr_llegada;
+[; ;main.c: 68: void ledestado(int tiempoled);
+[; ;main.c: 69: void enviarTrama(char *datos);
+[; ;main.c: 70: void paso_Der();
+[; ;main.c: 71: int stringtoint(char string[], int tamanio);
+[; ;main.c: 72: void apagarM1();
+[; ;main.c: 73: void apagarM2();
+"80
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 77: void main(void) {
+[; ;main.c: 80: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 79: ConfigureOscillator();
-"79
-[e ( _ConfigureOscillator ..  ]
-[; ;main.c: 82: InitApp();
+[; ;main.c: 82: ConfigureOscillator();
 "82
+[e ( _ConfigureOscillator ..  ]
+[; ;main.c: 85: InitApp();
+"85
 [e ( _InitApp ..  ]
-[; ;main.c: 86: enviarTrama(saludo);
-"86
+[; ;main.c: 89: enviarTrama(saludo);
+"89
 [e ( _enviarTrama (1 -> &U _saludo `*uc ]
-[; ;main.c: 88: while (1) {
-"88
+[; ;main.c: 91: while (1) {
+"91
 [e :U 257 ]
 {
-[; ;main.c: 89: if (led == 1) {
-"89
+[; ;main.c: 92: if (led == 1) {
+"92
 [e $ ! == _led -> 1 `i 259  ]
 {
-[; ;main.c: 90: __nop();
-"90
+[; ;main.c: 93: __nop();
+"93
 [e ( ___nop ..  ]
-[; ;main.c: 91: ledestado(4);
-"91
+[; ;main.c: 94: ledestado(4);
+"94
 [e ( _ledestado (1 -> 4 `i ]
-"92
+"95
 }
 [e :U 259 ]
-[; ;main.c: 92: }
-[; ;main.c: 94: if (enter == 1) {
-"94
+[; ;main.c: 95: }
+[; ;main.c: 97: if (enter == 1) {
+"97
 [e $ ! == _enter -> 1 `i 260  ]
 {
-[; ;main.c: 96: __nop();
-"96
+[; ;main.c: 99: __nop();
+"99
 [e ( ___nop ..  ]
-[; ;main.c: 97: for (r = 0; r <= 5; r++) {
-"97
+[; ;main.c: 100: for (r = 0; r <= 5; r++) {
+"100
 {
 [e = _r -> 0 `i ]
 [e $ <= _r -> 5 `i 261  ]
 [e $U 262  ]
 [e :U 261 ]
 {
-[; ;main.c: 98: tam[r] = comando[r];
-"98
+[; ;main.c: 101: tam[r] = comando[r];
+"101
 [e = *U + &U _tam * -> -> _r `ui `ux -> -> # *U &U _tam `ui `ux *U + &U _comando * -> -> _r `ui `ux -> -> # *U &U _comando `ui `ux ]
-"99
+"102
 }
-"97
+"100
 [e ++ _r -> 1 `i ]
 [e $ <= _r -> 5 `i 261  ]
 [e :U 262 ]
-"99
-}
-[; ;main.c: 99: }
-[; ;main.c: 100: xtrue = strcmp(tam, moverx);
-"100
-[e = _xtrue ( _strcmp (2 , -> &U _tam `*Cuc &U _moverx ]
-[; ;main.c: 101: enviarTrama(comando);
-"101
-[e ( _enviarTrama (1 &U _comando ]
-[; ;main.c: 102: ptr_llegada = &comando[6];
 "102
-[e = _ptr_llegada &U *U + &U _comando * -> -> -> 6 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
-[; ;main.c: 103: if (*ptr_llegada == '-') {
+}
+[; ;main.c: 102: }
+[; ;main.c: 103: xtrue = strcmp(tam, moverx);
 "103
+[e = _xtrue ( _strcmp (2 , -> &U _tam `*Cuc &U _moverx ]
+[; ;main.c: 104: ytrue = strcmp(tam, movery);
+"104
+[e = _ytrue ( _strcmp (2 , -> &U _tam `*Cuc &U _movery ]
+[; ;main.c: 105: enviarTrama(comando);
+"105
+[e ( _enviarTrama (1 &U _comando ]
+[; ;main.c: 106: ptr_llegada = &comando[6];
+"106
+[e = _ptr_llegada &U *U + &U _comando * -> -> -> 6 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
+[; ;main.c: 107: if (*ptr_llegada == '-') {
+"107
 [e $ ! == -> *U _ptr_llegada `ui -> 45 `ui 264  ]
 {
-[; ;main.c: 104: ptr_llegada = &comando[7];
-"104
+[; ;main.c: 108: ptr_llegada = &comando[7];
+"108
 [e = _ptr_llegada &U *U + &U _comando * -> -> -> 7 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
-[; ;main.c: 105: while (*ptr_llegada != 0) {
-"105
+[; ;main.c: 109: while (*ptr_llegada != 0) {
+"109
 [e $U 265  ]
 [e :U 266 ]
 {
-[; ;main.c: 106: entrada[lleg] = *ptr_llegada;
-"106
+[; ;main.c: 110: entrada[lleg] = *ptr_llegada;
+"110
 [e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
-[; ;main.c: 107: ptr_llegada++;
-"107
+[; ;main.c: 111: ptr_llegada++;
+"111
 [e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
-[; ;main.c: 108: lleg++;
-"108
+[; ;main.c: 112: lleg++;
+"112
 [e ++ _lleg -> 1 `i ]
-"109
+"113
 }
 [e :U 265 ]
-"105
+"109
 [e $ != -> *U _ptr_llegada `i -> 0 `i 266  ]
 [e :U 267 ]
-[; ;main.c: 109: }
-[; ;main.c: 110: lleg = 0;
-"110
-[e = _lleg -> 0 `i ]
-[; ;main.c: 112: tama1 = tama - 7;
-"112
-[e = _tama1 - _tama -> 7 `i ]
-[; ;main.c: 113: steps = stringtoint(entrada, tama1);
-"113
-[e = _steps ( _stringtoint (2 , &U _entrada _tama1 ]
-[; ;main.c: 114: steps = (-1) * steps;
+[; ;main.c: 113: }
+[; ;main.c: 114: lleg = 0;
 "114
-[e = _steps * -U -> 1 `i _steps ]
-[; ;main.c: 115: enter = 0;
-"115
-[e = _enter -> 0 `i ]
-[; ;main.c: 116: tama = 0;
+[e = _lleg -> 0 `i ]
+[; ;main.c: 116: tama1 = tama - 7;
 "116
-[e = _tama -> 0 `i ]
+[e = _tama1 - _tama -> 7 `i ]
+[; ;main.c: 117: steps = stringtoint(entrada, tama1);
+"117
+[e = _steps ( _stringtoint (2 , &U _entrada _tama1 ]
+[; ;main.c: 118: steps = (-1) * steps;
 "118
+[e = _steps * -U -> 1 `i _steps ]
+[; ;main.c: 119: enter = 0;
+"119
+[e = _enter -> 0 `i ]
+[; ;main.c: 120: tama = 0;
+"120
+[e = _tama -> 0 `i ]
+"122
 }
-[; ;main.c: 118: } else {
+[; ;main.c: 122: } else {
 [e $U 268  ]
 [e :U 264 ]
 {
-[; ;main.c: 119: while (*ptr_llegada != 0) {
-"119
+[; ;main.c: 123: while (*ptr_llegada != 0) {
+"123
 [e $U 269  ]
 [e :U 270 ]
 {
-[; ;main.c: 120: entrada[lleg] = *ptr_llegada;
-"120
+[; ;main.c: 124: entrada[lleg] = *ptr_llegada;
+"124
 [e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
-[; ;main.c: 121: ptr_llegada++;
-"121
+[; ;main.c: 125: ptr_llegada++;
+"125
 [e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
-[; ;main.c: 122: lleg++;
-"122
+[; ;main.c: 126: lleg++;
+"126
 [e ++ _lleg -> 1 `i ]
-"123
+"127
 }
 [e :U 269 ]
-"119
+"123
 [e $ != -> *U _ptr_llegada `i -> 0 `i 270  ]
 [e :U 271 ]
-[; ;main.c: 123: }
-[; ;main.c: 124: lleg = 0;
-"124
-[e = _lleg -> 0 `i ]
-[; ;main.c: 125: tama2 = tama - 6;
-"125
-[e = _tama2 - _tama -> 6 `i ]
-[; ;main.c: 126: steps = stringtoint(entrada, tama2);
-"126
-[e = _steps ( _stringtoint (2 , &U _entrada _tama2 ]
-[; ;main.c: 128: enter = 0;
+[; ;main.c: 127: }
+[; ;main.c: 128: lleg = 0;
 "128
-[e = _enter -> 0 `i ]
-[; ;main.c: 129: tama = 0;
+[e = _lleg -> 0 `i ]
+[; ;main.c: 129: tama2 = tama - 6;
 "129
-[e = _tama -> 0 `i ]
-[; ;main.c: 130: __nop();
+[e = _tama2 - _tama -> 6 `i ]
+[; ;main.c: 130: steps = stringtoint(entrada, tama2);
 "130
+[e = _steps ( _stringtoint (2 , &U _entrada _tama2 ]
+[; ;main.c: 132: enter = 0;
+"132
+[e = _enter -> 0 `i ]
+[; ;main.c: 133: tama = 0;
+"133
+[e = _tama -> 0 `i ]
+[; ;main.c: 134: __nop();
+"134
 [e ( ___nop ..  ]
-"131
+"135
 }
 [e :U 268 ]
-[; ;main.c: 131: }
-[; ;main.c: 132: for (i = 0; i < 25; i++) {
-"132
+[; ;main.c: 135: }
+[; ;main.c: 136: for (i = 0; i < 25; i++) {
+"136
 {
 [e = _i -> 0 `i ]
 [e $ < _i -> 25 `i 272  ]
 [e $U 273  ]
 [e :U 272 ]
 {
-[; ;main.c: 133: comando[i] = '\0';
-"133
+[; ;main.c: 137: comando[i] = '\0';
+"137
 [e = *U + &U _comando * -> -> _i `ui `ux -> -> # *U &U _comando `ui `ux -> -> 0 `ui `uc ]
-"134
+"138
 }
-"132
+"136
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 25 `i 272  ]
 [e :U 273 ]
-"134
+"138
 }
-[; ;main.c: 134: }
-[; ;main.c: 135: for (i = 0; i < 25; i++) {
-"135
+[; ;main.c: 138: }
+[; ;main.c: 139: for (i = 0; i < 25; i++) {
+"139
 {
 [e = _i -> 0 `i ]
 [e $ < _i -> 25 `i 275  ]
 [e $U 276  ]
 [e :U 275 ]
 {
-[; ;main.c: 136: entrada[i] = '\0';
-"136
+[; ;main.c: 140: entrada[i] = '\0';
+"140
 [e = *U + &U _entrada * -> -> _i `ui `ux -> -> # *U &U _entrada `ui `ux -> -> 0 `ui `uc ]
-"137
+"141
 }
-"135
+"139
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 25 `i 275  ]
 [e :U 276 ]
-"137
+"141
 }
-"139
+[; ;main.c: 141: }
+[; ;main.c: 142: if (xtrue != 0 && ytrue != 0) {
+"142
+[e $ ! && != _xtrue -> 0 `i != _ytrue -> 0 `i 278  ]
+{
+[; ;main.c: 143: enviarTrama(comandonoreconocido);
+"143
+[e ( _enviarTrama (1 -> &U _comandonoreconocido `*uc ]
+"144
+}
+[e :U 278 ]
+"146
 }
 [e :U 260 ]
-[; ;main.c: 137: }
-[; ;main.c: 139: }
-[; ;main.c: 143: if (xtrue == 0) {
-"143
-[e $ ! == _xtrue -> 0 `i 278  ]
-{
-[; ;main.c: 145: if (steps > 0) {
-"145
-[e $ ! > _steps -> 0 `i 279  ]
-{
-[; ;main.c: 146: __nop();
-"146
-[e ( ___nop ..  ]
-[; ;main.c: 147: while (stepcont <= steps) {
-"147
-[e $U 280  ]
-[e :U 281 ]
-{
-[; ;main.c: 149: if (actualstep > 7) {
-"149
-[e $ ! > _actualstep -> 7 `i 283  ]
-{
-[; ;main.c: 150: actualstep = 0;
+[; ;main.c: 144: }
+[; ;main.c: 146: }
+[; ;main.c: 150: if (xtrue == 0) {
 "150
-[e = _actualstep -> 0 `i ]
-"151
-}
-[e :U 283 ]
-[; ;main.c: 151: }
-[; ;main.c: 152: sprintf(salida, "stepcount : %d ", stepcont);
+[e $ ! == _xtrue -> 0 `i 279  ]
+{
+[; ;main.c: 152: if (steps > 0) {
 "152
-[e ( _sprintf (1 , (. , &U _salida :s 1C _stepcont ]
-[; ;main.c: 153: enviarTrama(salida);
+[e $ ! > _steps -> 0 `i 280  ]
+{
+[; ;main.c: 153: __nop();
 "153
-[e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 155: switch (actualstep) {
-"155
-[e $U 285  ]
+[e ( ___nop ..  ]
+[; ;main.c: 154: while (stepcont <= steps) {
+"154
+[e $U 281  ]
+[e :U 282 ]
 {
-[; ;main.c: 156: case 0:
+[; ;main.c: 156: if (actualstep > 7) {
 "156
-[e :U 286 ]
-[; ;main.c: 157: LATA = 0b0001;
+[e $ ! > _actualstep -> 7 `i 284  ]
+{
+[; ;main.c: 157: actualstep = 0;
 "157
-[e = _LATA -> -> 1 `i `uc ]
-[; ;main.c: 158: for (i = 0; i <= vel; i++);
+[e = _actualstep -> 0 `i ]
 "158
-{
-[e = _i -> 0 `i ]
-[e $U 290  ]
-[e :U 287 ]
-[e ++ _i -> 1 `i ]
-[e :U 290 ]
-[e $ <= _i _vel 287  ]
-[e :U 288 ]
 }
-[; ;main.c: 159: __nop();
+[e :U 284 ]
+[; ;main.c: 158: }
+[; ;main.c: 159: sprintf(salida, "stepcount : %d ", stepcont);
 "159
-[e ( ___nop ..  ]
-[; ;main.c: 160: stepcont++;
+[e ( _sprintf (1 , (. , &U _salida :s 1C _stepcont ]
+[; ;main.c: 160: enviarTrama(salida);
 "160
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 161: __nop();
-"161
-[e ( ___nop ..  ]
-[; ;main.c: 162: actualstep++;
+[e ( _enviarTrama (1 &U _salida ]
+[; ;main.c: 162: switch (actualstep) {
 "162
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 163: break;
+[e $U 286  ]
+{
+[; ;main.c: 163: case 0:
 "163
-[e $U 284  ]
-[; ;main.c: 164: case 1:
+[e :U 287 ]
+[; ;main.c: 164: LATA = 0b0001;
 "164
-[e :U 291 ]
-[; ;main.c: 165: LATA = 0b0011;
+[e = _LATA -> -> 1 `i `uc ]
+[; ;main.c: 165: for (i = 0; i <= vel; i++);
 "165
-[e = _LATA -> -> 3 `i `uc ]
-[; ;main.c: 166: for (i = 0; i <= vel; i++);
-"166
 {
 [e = _i -> 0 `i ]
-[e $U 295  ]
-[e :U 292 ]
+[e $U 291  ]
+[e :U 288 ]
 [e ++ _i -> 1 `i ]
-[e :U 295 ]
-[e $ <= _i _vel 292  ]
-[e :U 293 ]
+[e :U 291 ]
+[e $ <= _i _vel 288  ]
+[e :U 289 ]
 }
+[; ;main.c: 166: __nop();
+"166
+[e ( ___nop ..  ]
 [; ;main.c: 167: stepcont++;
 "167
 [e ++ _stepcont -> 1 `i ]
-[; ;main.c: 168: actualstep++;
+[; ;main.c: 168: __nop();
 "168
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 169: break;
+[e ( ___nop ..  ]
+[; ;main.c: 169: actualstep++;
 "169
-[e $U 284  ]
-[; ;main.c: 170: case 2:
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 170: break;
 "170
-[e :U 296 ]
-[; ;main.c: 171: LATA = 0b0010;
+[e $U 285  ]
+[; ;main.c: 171: case 1:
 "171
-[e = _LATA -> -> 2 `i `uc ]
-[; ;main.c: 172: for (i = 0; i <= vel; i++);
+[e :U 292 ]
+[; ;main.c: 172: LATA = 0b0011;
 "172
-{
-[e = _i -> 0 `i ]
-[e $U 300  ]
-[e :U 297 ]
-[e ++ _i -> 1 `i ]
-[e :U 300 ]
-[e $ <= _i _vel 297  ]
-[e :U 298 ]
-}
-[; ;main.c: 173: stepcont++;
+[e = _LATA -> -> 3 `i `uc ]
+[; ;main.c: 173: for (i = 0; i <= vel; i++);
 "173
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 174: actualstep++;
+{
+[e = _i -> 0 `i ]
+[e $U 296  ]
+[e :U 293 ]
+[e ++ _i -> 1 `i ]
+[e :U 296 ]
+[e $ <= _i _vel 293  ]
+[e :U 294 ]
+}
+[; ;main.c: 174: stepcont++;
 "174
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 175: break;
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 175: actualstep++;
 "175
-[e $U 284  ]
-[; ;main.c: 176: case 3:
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 176: break;
 "176
-[e :U 301 ]
-[; ;main.c: 177: LATA = 0b0110;
+[e $U 285  ]
+[; ;main.c: 177: case 2:
 "177
-[e = _LATA -> -> 6 `i `uc ]
-[; ;main.c: 178: for (i = 0; i <= vel; i++);
+[e :U 297 ]
+[; ;main.c: 178: LATA = 0b0010;
 "178
-{
-[e = _i -> 0 `i ]
-[e $U 305  ]
-[e :U 302 ]
-[e ++ _i -> 1 `i ]
-[e :U 305 ]
-[e $ <= _i _vel 302  ]
-[e :U 303 ]
-}
-[; ;main.c: 179: stepcont++;
+[e = _LATA -> -> 2 `i `uc ]
+[; ;main.c: 179: for (i = 0; i <= vel; i++);
 "179
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 180: actualstep++;
+{
+[e = _i -> 0 `i ]
+[e $U 301  ]
+[e :U 298 ]
+[e ++ _i -> 1 `i ]
+[e :U 301 ]
+[e $ <= _i _vel 298  ]
+[e :U 299 ]
+}
+[; ;main.c: 180: stepcont++;
 "180
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 181: break;
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 181: actualstep++;
 "181
-[e $U 284  ]
-[; ;main.c: 182: case 4:
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 182: break;
 "182
-[e :U 306 ]
-[; ;main.c: 183: LATA = 0b0100;
+[e $U 285  ]
+[; ;main.c: 183: case 3:
 "183
-[e = _LATA -> -> 4 `i `uc ]
-[; ;main.c: 184: for (i = 0; i <= vel; i++);
+[e :U 302 ]
+[; ;main.c: 184: LATA = 0b0110;
 "184
-{
-[e = _i -> 0 `i ]
-[e $U 310  ]
-[e :U 307 ]
-[e ++ _i -> 1 `i ]
-[e :U 310 ]
-[e $ <= _i _vel 307  ]
-[e :U 308 ]
-}
-[; ;main.c: 185: stepcont++;
+[e = _LATA -> -> 6 `i `uc ]
+[; ;main.c: 185: for (i = 0; i <= vel; i++);
 "185
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 186: actualstep++;
-"186
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 187: break;
-"187
-[e $U 284  ]
-[; ;main.c: 188: case 5:
-"188
-[e :U 311 ]
-[; ;main.c: 189: LATA = 0b1100;
-"189
-[e = _LATA -> -> 12 `i `uc ]
-[; ;main.c: 190: for (i = 0; i <= vel; i++);
-"190
 {
 [e = _i -> 0 `i ]
-[e $U 315  ]
-[e :U 312 ]
+[e $U 306  ]
+[e :U 303 ]
 [e ++ _i -> 1 `i ]
-[e :U 315 ]
-[e $ <= _i _vel 312  ]
-[e :U 313 ]
+[e :U 306 ]
+[e $ <= _i _vel 303  ]
+[e :U 304 ]
 }
-[; ;main.c: 191: stepcont++;
-"191
+[; ;main.c: 186: stepcont++;
+"186
 [e ++ _stepcont -> 1 `i ]
-[; ;main.c: 192: actualstep++;
-"192
+[; ;main.c: 187: actualstep++;
+"187
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 193: break;
+[; ;main.c: 188: break;
+"188
+[e $U 285  ]
+[; ;main.c: 189: case 4:
+"189
+[e :U 307 ]
+[; ;main.c: 190: LATA = 0b0100;
+"190
+[e = _LATA -> -> 4 `i `uc ]
+[; ;main.c: 191: for (i = 0; i <= vel; i++);
+"191
+{
+[e = _i -> 0 `i ]
+[e $U 311  ]
+[e :U 308 ]
+[e ++ _i -> 1 `i ]
+[e :U 311 ]
+[e $ <= _i _vel 308  ]
+[e :U 309 ]
+}
+[; ;main.c: 192: stepcont++;
+"192
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 193: actualstep++;
 "193
-[e $U 284  ]
-[; ;main.c: 195: case 6:
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 194: break;
+"194
+[e $U 285  ]
+[; ;main.c: 195: case 5:
 "195
-[e :U 316 ]
-[; ;main.c: 196: LATA = 0b1000;
+[e :U 312 ]
+[; ;main.c: 196: LATA = 0b1100;
 "196
-[e = _LATA -> -> 8 `i `uc ]
+[e = _LATA -> -> 12 `i `uc ]
 [; ;main.c: 197: for (i = 0; i <= vel; i++);
 "197
 {
 [e = _i -> 0 `i ]
-[e $U 320  ]
-[e :U 317 ]
+[e $U 316  ]
+[e :U 313 ]
 [e ++ _i -> 1 `i ]
-[e :U 320 ]
-[e $ <= _i _vel 317  ]
-[e :U 318 ]
+[e :U 316 ]
+[e $ <= _i _vel 313  ]
+[e :U 314 ]
 }
 [; ;main.c: 198: stepcont++;
 "198
@@ -3074,169 +3033,169 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _actualstep -> 1 `i ]
 [; ;main.c: 200: break;
 "200
-[e $U 284  ]
-[; ;main.c: 201: case 7:
-"201
-[e :U 321 ]
-[; ;main.c: 202: LATA = 0b1001;
+[e $U 285  ]
+[; ;main.c: 202: case 6:
 "202
-[e = _LATA -> -> 9 `i `uc ]
-[; ;main.c: 203: for (i = 0; i <= vel; i++);
+[e :U 317 ]
+[; ;main.c: 203: LATA = 0b1000;
 "203
-{
-[e = _i -> 0 `i ]
-[e $U 325  ]
-[e :U 322 ]
-[e ++ _i -> 1 `i ]
-[e :U 325 ]
-[e $ <= _i _vel 322  ]
-[e :U 323 ]
-}
-[; ;main.c: 204: stepcont++;
-"204
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 205: actualstep++;
-"205
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 206: break;
-"206
-[e $U 284  ]
-"207
-}
-[; ;main.c: 207: }
-[e $U 284  ]
-"155
-[e :U 285 ]
-[e [\ _actualstep , $ -> 0 `i 286
- , $ -> 1 `i 291
- , $ -> 2 `i 296
- , $ -> 3 `i 301
- , $ -> 4 `i 306
- , $ -> 5 `i 311
- , $ -> 6 `i 316
- , $ -> 7 `i 321
- 284 ]
-"207
-[e :U 284 ]
-"209
-}
-[e :U 280 ]
-"147
-[e $ <= _stepcont _steps 281  ]
-[e :U 282 ]
-[; ;main.c: 209: }
-[; ;main.c: 210: apagar();
-"210
-[e ( _apagar ..  ]
-[; ;main.c: 211: stepcont = 0;
-"211
-[e = _stepcont -> 0 `i ]
-[; ;main.c: 212: steps = 0;
-"212
-[e = _steps -> 0 `i ]
-"213
-}
-[; ;main.c: 213: }
-[e $U 326  ]
-"215
-[e :U 279 ]
-[; ;main.c: 215: else if (steps < 0) {
-[e $ ! < _steps -> 0 `i 327  ]
-{
-[; ;main.c: 218: while (stepcont >= steps) {
-"218
-[e $U 328  ]
-[e :U 329 ]
-{
-[; ;main.c: 219: if (actualstep > 7) {
-"219
-[e $ ! > _actualstep -> 7 `i 331  ]
-{
-[; ;main.c: 220: actualstep = 0;
-"220
-[e = _actualstep -> 0 `i ]
-"221
-}
-[e :U 331 ]
-[; ;main.c: 221: }
-[; ;main.c: 222: sprintf(salida, "stepcount : %d ", stepcont);
-"222
-[e ( _sprintf (1 , (. , &U _salida :s 2C _stepcont ]
-[; ;main.c: 223: enviarTrama(salida);
-"223
-[e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 225: switch (actualstep) {
-"225
-[e $U 333  ]
-{
-[; ;main.c: 226: case 0:
-"226
-[e :U 334 ]
-[; ;main.c: 227: LATA = 0b1001;
-"227
-[e = _LATA -> -> 9 `i `uc ]
-[; ;main.c: 228: for (i = 0; i <= vel; i++);
-"228
-{
-[e = _i -> 0 `i ]
-[e $U 338  ]
-[e :U 335 ]
-[e ++ _i -> 1 `i ]
-[e :U 338 ]
-[e $ <= _i _vel 335  ]
-[e :U 336 ]
-}
-[; ;main.c: 229: stepcont--;
-"229
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 230: actualstep++;
-"230
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 232: break;
-"232
-[e $U 332  ]
-[; ;main.c: 233: case 1:
-"233
-[e :U 339 ]
-[; ;main.c: 234: LATA = 0b1000;
-"234
 [e = _LATA -> -> 8 `i `uc ]
-[; ;main.c: 235: for (i = 0; i <= vel; i++);
-"235
+[; ;main.c: 204: for (i = 0; i <= vel; i++);
+"204
 {
 [e = _i -> 0 `i ]
-[e $U 343  ]
-[e :U 340 ]
+[e $U 321  ]
+[e :U 318 ]
 [e ++ _i -> 1 `i ]
-[e :U 343 ]
-[e $ <= _i _vel 340  ]
-[e :U 341 ]
+[e :U 321 ]
+[e $ <= _i _vel 318  ]
+[e :U 319 ]
 }
-[; ;main.c: 236: stepcont--;
-"236
+[; ;main.c: 205: stepcont++;
+"205
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 206: actualstep++;
+"206
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 207: break;
+"207
+[e $U 285  ]
+[; ;main.c: 208: case 7:
+"208
+[e :U 322 ]
+[; ;main.c: 209: LATA = 0b1001;
+"209
+[e = _LATA -> -> 9 `i `uc ]
+[; ;main.c: 210: for (i = 0; i <= vel; i++);
+"210
+{
+[e = _i -> 0 `i ]
+[e $U 326  ]
+[e :U 323 ]
+[e ++ _i -> 1 `i ]
+[e :U 326 ]
+[e $ <= _i _vel 323  ]
+[e :U 324 ]
+}
+[; ;main.c: 211: stepcont++;
+"211
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 212: actualstep++;
+"212
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 213: break;
+"213
+[e $U 285  ]
+"214
+}
+[; ;main.c: 214: }
+[e $U 285  ]
+"162
+[e :U 286 ]
+[e [\ _actualstep , $ -> 0 `i 287
+ , $ -> 1 `i 292
+ , $ -> 2 `i 297
+ , $ -> 3 `i 302
+ , $ -> 4 `i 307
+ , $ -> 5 `i 312
+ , $ -> 6 `i 317
+ , $ -> 7 `i 322
+ 285 ]
+"214
+[e :U 285 ]
+"216
+}
+[e :U 281 ]
+"154
+[e $ <= _stepcont _steps 282  ]
+[e :U 283 ]
+[; ;main.c: 216: }
+[; ;main.c: 217: apagarM1();
+"217
+[e ( _apagarM1 ..  ]
+[; ;main.c: 218: stepcont = 0;
+"218
+[e = _stepcont -> 0 `i ]
+[; ;main.c: 219: steps = 0;
+"219
+[e = _steps -> 0 `i ]
+"220
+}
+[; ;main.c: 220: }
+[e $U 327  ]
+"221
+[e :U 280 ]
+[; ;main.c: 221: else if (steps < 0) {
+[e $ ! < _steps -> 0 `i 328  ]
+{
+[; ;main.c: 224: while (stepcont >= steps) {
+"224
+[e $U 329  ]
+[e :U 330 ]
+{
+[; ;main.c: 225: if (actualstep > 7) {
+"225
+[e $ ! > _actualstep -> 7 `i 332  ]
+{
+[; ;main.c: 226: actualstep = 0;
+"226
+[e = _actualstep -> 0 `i ]
+"227
+}
+[e :U 332 ]
+[; ;main.c: 227: }
+[; ;main.c: 228: sprintf(salida, "stepcount : %d ", stepcont);
+"228
+[e ( _sprintf (1 , (. , &U _salida :s 2C _stepcont ]
+[; ;main.c: 229: enviarTrama(salida);
+"229
+[e ( _enviarTrama (1 &U _salida ]
+[; ;main.c: 231: switch (actualstep) {
+"231
+[e $U 334  ]
+{
+[; ;main.c: 232: case 0:
+"232
+[e :U 335 ]
+[; ;main.c: 233: LATA = 0b1001;
+"233
+[e = _LATA -> -> 9 `i `uc ]
+[; ;main.c: 234: for (i = 0; i <= vel; i++);
+"234
+{
+[e = _i -> 0 `i ]
+[e $U 339  ]
+[e :U 336 ]
+[e ++ _i -> 1 `i ]
+[e :U 339 ]
+[e $ <= _i _vel 336  ]
+[e :U 337 ]
+}
+[; ;main.c: 235: stepcont--;
+"235
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 237: actualstep++;
-"237
+[; ;main.c: 236: actualstep++;
+"236
 [e ++ _actualstep -> 1 `i ]
 [; ;main.c: 238: break;
 "238
-[e $U 332  ]
-[; ;main.c: 239: case 2:
+[e $U 333  ]
+[; ;main.c: 239: case 1:
 "239
-[e :U 344 ]
-[; ;main.c: 240: LATA = 0b1100;
+[e :U 340 ]
+[; ;main.c: 240: LATA = 0b1000;
 "240
-[e = _LATA -> -> 12 `i `uc ]
+[e = _LATA -> -> 8 `i `uc ]
 [; ;main.c: 241: for (i = 0; i <= vel; i++);
 "241
 {
 [e = _i -> 0 `i ]
-[e $U 348  ]
-[e :U 345 ]
+[e $U 344  ]
+[e :U 341 ]
 [e ++ _i -> 1 `i ]
-[e :U 348 ]
-[e $ <= _i _vel 345  ]
-[e :U 346 ]
+[e :U 344 ]
+[e $ <= _i _vel 341  ]
+[e :U 342 ]
 }
 [; ;main.c: 242: stepcont--;
 "242
@@ -3244,51 +3203,51 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 243: actualstep++;
 "243
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 245: break;
+[; ;main.c: 244: break;
+"244
+[e $U 333  ]
+[; ;main.c: 245: case 2:
 "245
-[e $U 332  ]
-[; ;main.c: 246: case 3:
+[e :U 345 ]
+[; ;main.c: 246: LATA = 0b1100;
 "246
-[e :U 349 ]
-[; ;main.c: 247: LATA = 0b0100;
+[e = _LATA -> -> 12 `i `uc ]
+[; ;main.c: 247: for (i = 0; i <= vel; i++);
 "247
-[e = _LATA -> -> 4 `i `uc ]
-[; ;main.c: 248: for (i = 0; i <= vel; i++);
-"248
 {
 [e = _i -> 0 `i ]
-[e $U 353  ]
-[e :U 350 ]
+[e $U 349  ]
+[e :U 346 ]
 [e ++ _i -> 1 `i ]
-[e :U 353 ]
-[e $ <= _i _vel 350  ]
-[e :U 351 ]
+[e :U 349 ]
+[e $ <= _i _vel 346  ]
+[e :U 347 ]
 }
-[; ;main.c: 249: stepcont--;
-"249
+[; ;main.c: 248: stepcont--;
+"248
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 250: actualstep++;
-"250
+[; ;main.c: 249: actualstep++;
+"249
 [e ++ _actualstep -> 1 `i ]
 [; ;main.c: 251: break;
 "251
-[e $U 332  ]
-[; ;main.c: 252: case 4:
+[e $U 333  ]
+[; ;main.c: 252: case 3:
 "252
-[e :U 354 ]
-[; ;main.c: 253: LATA = 0b0110;
+[e :U 350 ]
+[; ;main.c: 253: LATA = 0b0100;
 "253
-[e = _LATA -> -> 6 `i `uc ]
+[e = _LATA -> -> 4 `i `uc ]
 [; ;main.c: 254: for (i = 0; i <= vel; i++);
 "254
 {
 [e = _i -> 0 `i ]
-[e $U 358  ]
-[e :U 355 ]
+[e $U 354  ]
+[e :U 351 ]
 [e ++ _i -> 1 `i ]
-[e :U 358 ]
-[e $ <= _i _vel 355  ]
-[e :U 356 ]
+[e :U 354 ]
+[e $ <= _i _vel 351  ]
+[e :U 352 ]
 }
 [; ;main.c: 255: stepcont--;
 "255
@@ -3298,23 +3257,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _actualstep -> 1 `i ]
 [; ;main.c: 257: break;
 "257
-[e $U 332  ]
-[; ;main.c: 258: case 5:
+[e $U 333  ]
+[; ;main.c: 258: case 4:
 "258
-[e :U 359 ]
-[; ;main.c: 259: LATA = 0b0010;
+[e :U 355 ]
+[; ;main.c: 259: LATA = 0b0110;
 "259
-[e = _LATA -> -> 2 `i `uc ]
+[e = _LATA -> -> 6 `i `uc ]
 [; ;main.c: 260: for (i = 0; i <= vel; i++);
 "260
 {
 [e = _i -> 0 `i ]
-[e $U 363  ]
-[e :U 360 ]
+[e $U 359  ]
+[e :U 356 ]
 [e ++ _i -> 1 `i ]
-[e :U 363 ]
-[e $ <= _i _vel 360  ]
-[e :U 361 ]
+[e :U 359 ]
+[e $ <= _i _vel 356  ]
+[e :U 357 ]
 }
 [; ;main.c: 261: stepcont--;
 "261
@@ -3324,49 +3283,49 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _actualstep -> 1 `i ]
 [; ;main.c: 263: break;
 "263
-[e $U 332  ]
-[; ;main.c: 265: case 6:
+[e $U 333  ]
+[; ;main.c: 264: case 5:
+"264
+[e :U 360 ]
+[; ;main.c: 265: LATA = 0b0010;
 "265
-[e :U 364 ]
-[; ;main.c: 266: LATA = 0b0011;
+[e = _LATA -> -> 2 `i `uc ]
+[; ;main.c: 266: for (i = 0; i <= vel; i++);
 "266
-[e = _LATA -> -> 3 `i `uc ]
-[; ;main.c: 267: for (i = 0; i <= vel; i++);
-"267
 {
 [e = _i -> 0 `i ]
-[e $U 368  ]
-[e :U 365 ]
+[e $U 364  ]
+[e :U 361 ]
 [e ++ _i -> 1 `i ]
-[e :U 368 ]
-[e $ <= _i _vel 365  ]
-[e :U 366 ]
+[e :U 364 ]
+[e $ <= _i _vel 361  ]
+[e :U 362 ]
 }
-[; ;main.c: 268: stepcont--;
-"268
+[; ;main.c: 267: stepcont--;
+"267
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 269: actualstep++;
-"269
+[; ;main.c: 268: actualstep++;
+"268
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 270: break;
-"270
-[e $U 332  ]
-[; ;main.c: 271: case 7:
+[; ;main.c: 269: break;
+"269
+[e $U 333  ]
+[; ;main.c: 271: case 6:
 "271
-[e :U 369 ]
-[; ;main.c: 272: LATA = 0b0001;
+[e :U 365 ]
+[; ;main.c: 272: LATA = 0b0011;
 "272
-[e = _LATA -> -> 1 `i `uc ]
+[e = _LATA -> -> 3 `i `uc ]
 [; ;main.c: 273: for (i = 0; i <= vel; i++);
 "273
 {
 [e = _i -> 0 `i ]
-[e $U 373  ]
-[e :U 370 ]
+[e $U 369  ]
+[e :U 366 ]
 [e ++ _i -> 1 `i ]
-[e :U 373 ]
-[e $ <= _i _vel 370  ]
-[e :U 371 ]
+[e :U 369 ]
+[e $ <= _i _vel 366  ]
+[e :U 367 ]
 }
 [; ;main.c: 274: stepcont--;
 "274
@@ -3376,212 +3335,831 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _actualstep -> 1 `i ]
 [; ;main.c: 276: break;
 "276
-[e $U 332  ]
+[e $U 333  ]
+[; ;main.c: 277: case 7:
 "277
+[e :U 370 ]
+[; ;main.c: 278: LATA = 0b0001;
+"278
+[e = _LATA -> -> 1 `i `uc ]
+[; ;main.c: 279: for (i = 0; i <= vel; i++);
+"279
+{
+[e = _i -> 0 `i ]
+[e $U 374  ]
+[e :U 371 ]
+[e ++ _i -> 1 `i ]
+[e :U 374 ]
+[e $ <= _i _vel 371  ]
+[e :U 372 ]
 }
-[; ;main.c: 277: }
-[e $U 332  ]
-"225
-[e :U 333 ]
-[e [\ _actualstep , $ -> 0 `i 334
- , $ -> 1 `i 339
- , $ -> 2 `i 344
- , $ -> 3 `i 349
- , $ -> 4 `i 354
- , $ -> 5 `i 359
- , $ -> 6 `i 364
- , $ -> 7 `i 369
- 332 ]
-"277
-[e :U 332 ]
+[; ;main.c: 280: stepcont--;
 "280
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 281: actualstep++;
+"281
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 282: break;
+"282
+[e $U 333  ]
+"283
+}
+[; ;main.c: 283: }
+[e $U 333  ]
+"231
+[e :U 334 ]
+[e [\ _actualstep , $ -> 0 `i 335
+ , $ -> 1 `i 340
+ , $ -> 2 `i 345
+ , $ -> 3 `i 350
+ , $ -> 4 `i 355
+ , $ -> 5 `i 360
+ , $ -> 6 `i 365
+ , $ -> 7 `i 370
+ 333 ]
+"283
+[e :U 333 ]
+"286
+}
+[e :U 329 ]
+"224
+[e $ >= _stepcont _steps 330  ]
+[e :U 331 ]
+[; ;main.c: 286: }
+[; ;main.c: 287: apagarM1();
+"287
+[e ( _apagarM1 ..  ]
+[; ;main.c: 288: stepcont = 0;
+"288
+[e = _stepcont -> 0 `i ]
+[; ;main.c: 289: steps = 0;
+"289
+[e = _steps -> 0 `i ]
+"290
 }
 [e :U 328 ]
-"218
-[e $ >= _stepcont _steps 329  ]
-[e :U 330 ]
-[; ;main.c: 280: }
-[; ;main.c: 281: apagar();
-"281
-[e ( _apagar ..  ]
-[; ;main.c: 282: stepcont = 0;
-"282
-[e = _stepcont -> 0 `i ]
-[; ;main.c: 283: steps = 0;
-"283
-[e = _steps -> 0 `i ]
-"285
-}
+"291
 [e :U 327 ]
-"286
-[e :U 326 ]
 }
-[e :U 278 ]
-"287
+[e :U 279 ]
+[; ;main.c: 290: }
+[; ;main.c: 291: }
+[; ;main.c: 292: if (ytrue == 0) {
+"292
+[e $ ! == _ytrue -> 0 `i 375  ]
+{
+[; ;main.c: 294: if (steps > 0) {
+"294
+[e $ ! > _steps -> 0 `i 376  ]
+{
+[; ;main.c: 295: __nop();
+"295
+[e ( ___nop ..  ]
+[; ;main.c: 296: while (stepcont <= steps) {
+"296
+[e $U 377  ]
+[e :U 378 ]
+{
+[; ;main.c: 298: if (actualstep > 7) {
+"298
+[e $ ! > _actualstep -> 7 `i 380  ]
+{
+[; ;main.c: 299: actualstep = 0;
+"299
+[e = _actualstep -> 0 `i ]
+"300
+}
+[e :U 380 ]
+[; ;main.c: 300: }
+[; ;main.c: 301: sprintf(salida, "stepcount : %d ", stepcont);
+"301
+[e ( _sprintf (1 , (. , &U _salida :s 3C _stepcont ]
+[; ;main.c: 302: enviarTrama(salida);
+"302
+[e ( _enviarTrama (1 &U _salida ]
+[; ;main.c: 304: switch (actualstep) {
+"304
+[e $U 382  ]
+{
+[; ;main.c: 305: case 0:
+"305
+[e :U 383 ]
+[; ;main.c: 306: LATB = 0b0001;
+"306
+[e = _LATB -> -> 1 `i `uc ]
+[; ;main.c: 307: for (i = 0; i <= vel; i++);
+"307
+{
+[e = _i -> 0 `i ]
+[e $U 387  ]
+[e :U 384 ]
+[e ++ _i -> 1 `i ]
+[e :U 387 ]
+[e $ <= _i _vel 384  ]
+[e :U 385 ]
+}
+[; ;main.c: 308: __nop();
+"308
+[e ( ___nop ..  ]
+[; ;main.c: 309: stepcont++;
+"309
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 310: __nop();
+"310
+[e ( ___nop ..  ]
+[; ;main.c: 311: actualstep++;
+"311
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 312: break;
+"312
+[e $U 381  ]
+[; ;main.c: 313: case 1:
+"313
+[e :U 388 ]
+[; ;main.c: 314: LATB = 0b0011;
+"314
+[e = _LATB -> -> 3 `i `uc ]
+[; ;main.c: 315: for (i = 0; i <= vel; i++);
+"315
+{
+[e = _i -> 0 `i ]
+[e $U 392  ]
+[e :U 389 ]
+[e ++ _i -> 1 `i ]
+[e :U 392 ]
+[e $ <= _i _vel 389  ]
+[e :U 390 ]
+}
+[; ;main.c: 316: stepcont++;
+"316
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 317: actualstep++;
+"317
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 318: break;
+"318
+[e $U 381  ]
+[; ;main.c: 319: case 2:
+"319
+[e :U 393 ]
+[; ;main.c: 320: LATB = 0b0010;
+"320
+[e = _LATB -> -> 2 `i `uc ]
+[; ;main.c: 321: for (i = 0; i <= vel; i++);
+"321
+{
+[e = _i -> 0 `i ]
+[e $U 397  ]
+[e :U 394 ]
+[e ++ _i -> 1 `i ]
+[e :U 397 ]
+[e $ <= _i _vel 394  ]
+[e :U 395 ]
+}
+[; ;main.c: 322: stepcont++;
+"322
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 323: actualstep++;
+"323
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 324: break;
+"324
+[e $U 381  ]
+[; ;main.c: 325: case 3:
+"325
+[e :U 398 ]
+[; ;main.c: 326: LATB = 0b0110;
+"326
+[e = _LATB -> -> 6 `i `uc ]
+[; ;main.c: 327: for (i = 0; i <= vel; i++);
+"327
+{
+[e = _i -> 0 `i ]
+[e $U 402  ]
+[e :U 399 ]
+[e ++ _i -> 1 `i ]
+[e :U 402 ]
+[e $ <= _i _vel 399  ]
+[e :U 400 ]
+}
+[; ;main.c: 328: stepcont++;
+"328
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 329: actualstep++;
+"329
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 330: break;
+"330
+[e $U 381  ]
+[; ;main.c: 331: case 4:
+"331
+[e :U 403 ]
+[; ;main.c: 332: LATB = 0b0100;
+"332
+[e = _LATB -> -> 4 `i `uc ]
+[; ;main.c: 333: for (i = 0; i <= vel; i++);
+"333
+{
+[e = _i -> 0 `i ]
+[e $U 407  ]
+[e :U 404 ]
+[e ++ _i -> 1 `i ]
+[e :U 407 ]
+[e $ <= _i _vel 404  ]
+[e :U 405 ]
+}
+[; ;main.c: 334: stepcont++;
+"334
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 335: actualstep++;
+"335
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 336: break;
+"336
+[e $U 381  ]
+[; ;main.c: 337: case 5:
+"337
+[e :U 408 ]
+[; ;main.c: 338: LATB = 0b1100;
+"338
+[e = _LATB -> -> 12 `i `uc ]
+[; ;main.c: 339: for (i = 0; i <= vel; i++);
+"339
+{
+[e = _i -> 0 `i ]
+[e $U 412  ]
+[e :U 409 ]
+[e ++ _i -> 1 `i ]
+[e :U 412 ]
+[e $ <= _i _vel 409  ]
+[e :U 410 ]
+}
+[; ;main.c: 340: stepcont++;
+"340
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 341: actualstep++;
+"341
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 342: break;
+"342
+[e $U 381  ]
+[; ;main.c: 344: case 6:
+"344
+[e :U 413 ]
+[; ;main.c: 345: LATB = 0b1000;
+"345
+[e = _LATB -> -> 8 `i `uc ]
+[; ;main.c: 346: for (i = 0; i <= vel; i++);
+"346
+{
+[e = _i -> 0 `i ]
+[e $U 417  ]
+[e :U 414 ]
+[e ++ _i -> 1 `i ]
+[e :U 417 ]
+[e $ <= _i _vel 414  ]
+[e :U 415 ]
+}
+[; ;main.c: 347: stepcont++;
+"347
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 348: actualstep++;
+"348
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 349: break;
+"349
+[e $U 381  ]
+[; ;main.c: 350: case 7:
+"350
+[e :U 418 ]
+[; ;main.c: 351: LATB = 0b1001;
+"351
+[e = _LATB -> -> 9 `i `uc ]
+[; ;main.c: 352: for (i = 0; i <= vel; i++);
+"352
+{
+[e = _i -> 0 `i ]
+[e $U 422  ]
+[e :U 419 ]
+[e ++ _i -> 1 `i ]
+[e :U 422 ]
+[e $ <= _i _vel 419  ]
+[e :U 420 ]
+}
+[; ;main.c: 353: stepcont++;
+"353
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 354: actualstep++;
+"354
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 355: break;
+"355
+[e $U 381  ]
+"356
+}
+[; ;main.c: 356: }
+[e $U 381  ]
+"304
+[e :U 382 ]
+[e [\ _actualstep , $ -> 0 `i 383
+ , $ -> 1 `i 388
+ , $ -> 2 `i 393
+ , $ -> 3 `i 398
+ , $ -> 4 `i 403
+ , $ -> 5 `i 408
+ , $ -> 6 `i 413
+ , $ -> 7 `i 418
+ 381 ]
+"356
+[e :U 381 ]
+"358
+}
+[e :U 377 ]
+"296
+[e $ <= _stepcont _steps 378  ]
+[e :U 379 ]
+[; ;main.c: 358: }
+[; ;main.c: 359: apagarM2();
+"359
+[e ( _apagarM2 ..  ]
+[; ;main.c: 360: stepcont = 0;
+"360
+[e = _stepcont -> 0 `i ]
+[; ;main.c: 361: steps = 0;
+"361
+[e = _steps -> 0 `i ]
+"362
+}
+[; ;main.c: 362: }
+[e $U 423  ]
+"363
+[e :U 376 ]
+[; ;main.c: 363: else if (steps < 0) {
+[e $ ! < _steps -> 0 `i 424  ]
+{
+[; ;main.c: 366: while (stepcont >= steps) {
+"366
+[e $U 425  ]
+[e :U 426 ]
+{
+[; ;main.c: 367: if (actualstep > 7) {
+"367
+[e $ ! > _actualstep -> 7 `i 428  ]
+{
+[; ;main.c: 368: actualstep = 0;
+"368
+[e = _actualstep -> 0 `i ]
+"369
+}
+[e :U 428 ]
+[; ;main.c: 369: }
+[; ;main.c: 370: sprintf(salida, "stepcount : %d ", stepcont);
+"370
+[e ( _sprintf (1 , (. , &U _salida :s 4C _stepcont ]
+[; ;main.c: 371: enviarTrama(salida);
+"371
+[e ( _enviarTrama (1 &U _salida ]
+[; ;main.c: 373: switch (actualstep) {
+"373
+[e $U 430  ]
+{
+[; ;main.c: 374: case 0:
+"374
+[e :U 431 ]
+[; ;main.c: 375: LATB = 0b1001;
+"375
+[e = _LATB -> -> 9 `i `uc ]
+[; ;main.c: 376: for (i = 0; i <= vel; i++);
+"376
+{
+[e = _i -> 0 `i ]
+[e $U 435  ]
+[e :U 432 ]
+[e ++ _i -> 1 `i ]
+[e :U 435 ]
+[e $ <= _i _vel 432  ]
+[e :U 433 ]
+}
+[; ;main.c: 377: stepcont--;
+"377
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 378: actualstep++;
+"378
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 380: break;
+"380
+[e $U 429  ]
+[; ;main.c: 381: case 1:
+"381
+[e :U 436 ]
+[; ;main.c: 382: LATB = 0b1000;
+"382
+[e = _LATB -> -> 8 `i `uc ]
+[; ;main.c: 383: for (i = 0; i <= vel; i++);
+"383
+{
+[e = _i -> 0 `i ]
+[e $U 440  ]
+[e :U 437 ]
+[e ++ _i -> 1 `i ]
+[e :U 440 ]
+[e $ <= _i _vel 437  ]
+[e :U 438 ]
+}
+[; ;main.c: 384: stepcont--;
+"384
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 385: actualstep++;
+"385
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 386: break;
+"386
+[e $U 429  ]
+[; ;main.c: 387: case 2:
+"387
+[e :U 441 ]
+[; ;main.c: 388: LATB = 0b1100;
+"388
+[e = _LATB -> -> 12 `i `uc ]
+[; ;main.c: 389: for (i = 0; i <= vel; i++);
+"389
+{
+[e = _i -> 0 `i ]
+[e $U 445  ]
+[e :U 442 ]
+[e ++ _i -> 1 `i ]
+[e :U 445 ]
+[e $ <= _i _vel 442  ]
+[e :U 443 ]
+}
+[; ;main.c: 390: stepcont--;
+"390
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 391: actualstep++;
+"391
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 393: break;
+"393
+[e $U 429  ]
+[; ;main.c: 394: case 3:
+"394
+[e :U 446 ]
+[; ;main.c: 395: LATB = 0b0100;
+"395
+[e = _LATB -> -> 4 `i `uc ]
+[; ;main.c: 396: for (i = 0; i <= vel; i++);
+"396
+{
+[e = _i -> 0 `i ]
+[e $U 450  ]
+[e :U 447 ]
+[e ++ _i -> 1 `i ]
+[e :U 450 ]
+[e $ <= _i _vel 447  ]
+[e :U 448 ]
+}
+[; ;main.c: 397: stepcont--;
+"397
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 398: actualstep++;
+"398
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 399: break;
+"399
+[e $U 429  ]
+[; ;main.c: 400: case 4:
+"400
+[e :U 451 ]
+[; ;main.c: 401: LATB = 0b0110;
+"401
+[e = _LATB -> -> 6 `i `uc ]
+[; ;main.c: 402: for (i = 0; i <= vel; i++);
+"402
+{
+[e = _i -> 0 `i ]
+[e $U 455  ]
+[e :U 452 ]
+[e ++ _i -> 1 `i ]
+[e :U 455 ]
+[e $ <= _i _vel 452  ]
+[e :U 453 ]
+}
+[; ;main.c: 403: stepcont--;
+"403
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 404: actualstep++;
+"404
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 405: break;
+"405
+[e $U 429  ]
+[; ;main.c: 406: case 5:
+"406
+[e :U 456 ]
+[; ;main.c: 407: LATB = 0b0010;
+"407
+[e = _LATB -> -> 2 `i `uc ]
+[; ;main.c: 408: for (i = 0; i <= vel; i++);
+"408
+{
+[e = _i -> 0 `i ]
+[e $U 460  ]
+[e :U 457 ]
+[e ++ _i -> 1 `i ]
+[e :U 460 ]
+[e $ <= _i _vel 457  ]
+[e :U 458 ]
+}
+[; ;main.c: 409: stepcont--;
+"409
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 410: actualstep++;
+"410
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 411: break;
+"411
+[e $U 429  ]
+[; ;main.c: 413: case 6:
+"413
+[e :U 461 ]
+[; ;main.c: 414: LATB = 0b0011;
+"414
+[e = _LATB -> -> 3 `i `uc ]
+[; ;main.c: 415: for (i = 0; i <= vel; i++);
+"415
+{
+[e = _i -> 0 `i ]
+[e $U 465  ]
+[e :U 462 ]
+[e ++ _i -> 1 `i ]
+[e :U 465 ]
+[e $ <= _i _vel 462  ]
+[e :U 463 ]
+}
+[; ;main.c: 416: stepcont--;
+"416
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 417: actualstep++;
+"417
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 418: break;
+"418
+[e $U 429  ]
+[; ;main.c: 419: case 7:
+"419
+[e :U 466 ]
+[; ;main.c: 420: LATB = 0b0001;
+"420
+[e = _LATB -> -> 1 `i `uc ]
+[; ;main.c: 421: for (i = 0; i <= vel; i++);
+"421
+{
+[e = _i -> 0 `i ]
+[e $U 470  ]
+[e :U 467 ]
+[e ++ _i -> 1 `i ]
+[e :U 470 ]
+[e $ <= _i _vel 467  ]
+[e :U 468 ]
+}
+[; ;main.c: 422: stepcont--;
+"422
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 423: actualstep++;
+"423
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 424: break;
+"424
+[e $U 429  ]
+"425
+}
+[; ;main.c: 425: }
+[e $U 429  ]
+"373
+[e :U 430 ]
+[e [\ _actualstep , $ -> 0 `i 431
+ , $ -> 1 `i 436
+ , $ -> 2 `i 441
+ , $ -> 3 `i 446
+ , $ -> 4 `i 451
+ , $ -> 5 `i 456
+ , $ -> 6 `i 461
+ , $ -> 7 `i 466
+ 429 ]
+"425
+[e :U 429 ]
+"428
+}
+[e :U 425 ]
+"366
+[e $ >= _stepcont _steps 426  ]
+[e :U 427 ]
+[; ;main.c: 428: }
+[; ;main.c: 429: apagarM2();
+"429
+[e ( _apagarM2 ..  ]
+[; ;main.c: 430: stepcont = 0;
+"430
+[e = _stepcont -> 0 `i ]
+[; ;main.c: 431: steps = 0;
+"431
+[e = _steps -> 0 `i ]
+"433
+}
+[e :U 424 ]
+"434
+[e :U 423 ]
+}
+[e :U 375 ]
+"437
 }
 [e :U 256 ]
-"88
+"91
 [e $U 257  ]
 [e :U 258 ]
-[; ;main.c: 285: }
-[; ;main.c: 286: }
-[; ;main.c: 287: }
-[; ;main.c: 289: }
-"289
+[; ;main.c: 433: }
+[; ;main.c: 434: }
+[; ;main.c: 437: }
+[; ;main.c: 438: }
+"438
 [e :UE 255 ]
 }
-"291
+"440
 [v _enviarTrama `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;main.c: 291: void enviarTrama(char *datos) {
+[; ;main.c: 440: void enviarTrama(char *datos) {
 [e :U _enviarTrama ]
 [v _datos `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 295: while (*datos != 0) {
-"295
-[e $U 375  ]
-[e :U 376 ]
+[; ;main.c: 444: while (*datos != 0) {
+"444
+[e $U 472  ]
+[e :U 473 ]
 {
-[; ;main.c: 296: TXREG = *datos;
-"296
+[; ;main.c: 445: TXREG = *datos;
+"445
 [e = _TXREG *U _datos ]
-[; ;main.c: 297: while (TXSTAbits.TRMT == 0);
-"297
-[e $U 378  ]
-[e :U 379 ]
-[e :U 378 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 379  ]
-[e :U 380 ]
-[; ;main.c: 298: *datos++;
-"298
+[; ;main.c: 446: while (TXSTAbits.TRMT == 0);
+"446
+[e $U 475  ]
+[e :U 476 ]
+[e :U 475 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 476  ]
+[e :U 477 ]
+[; ;main.c: 447: *datos++;
+"447
 [e *U ++ _datos * -> -> 1 `i `x -> -> # *U _datos `i `x ]
-"299
+"448
 }
-[e :U 375 ]
-"295
-[e $ != -> *U _datos `i -> 0 `i 376  ]
-[e :U 377 ]
-[; ;main.c: 299: }
-[; ;main.c: 301: TXREG = 0x0A;
-"301
+[e :U 472 ]
+"444
+[e $ != -> *U _datos `i -> 0 `i 473  ]
+[e :U 474 ]
+[; ;main.c: 448: }
+[; ;main.c: 450: TXREG = 0x0A;
+"450
 [e = _TXREG -> -> 10 `i `uc ]
-[; ;main.c: 302: while (TXSTAbits.TRMT == 0);
-"302
-[e $U 381  ]
-[e :U 382 ]
-[e :U 381 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 382  ]
-[e :U 383 ]
-[; ;main.c: 303: TXREG = 0x0D;
-"303
+[; ;main.c: 451: while (TXSTAbits.TRMT == 0);
+"451
+[e $U 478  ]
+[e :U 479 ]
+[e :U 478 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 479  ]
+[e :U 480 ]
+[; ;main.c: 452: TXREG = 0x0D;
+"452
 [e = _TXREG -> -> 13 `i `uc ]
-[; ;main.c: 304: while (TXSTAbits.TRMT == 0);
-"304
-[e $U 384  ]
-[e :U 385 ]
-[e :U 384 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 385  ]
-[e :U 386 ]
-[; ;main.c: 306: }
-"306
-[e :UE 374 ]
+[; ;main.c: 453: while (TXSTAbits.TRMT == 0);
+"453
+[e $U 481  ]
+[e :U 482 ]
+[e :U 481 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 482  ]
+[e :U 483 ]
+[; ;main.c: 455: }
+"455
+[e :UE 471 ]
 }
-"308
+"457
 [v _ledestado `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 308: void ledestado(int tiempoled) {
+[; ;main.c: 457: void ledestado(int tiempoled) {
 [e :U _ledestado ]
 [v _tiempoled `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 309: cont_led++;
-"309
+[; ;main.c: 458: cont_led++;
+"458
 [e ++ _cont_led -> 1 `i ]
-[; ;main.c: 310: if (cont_led >= tiempoled) {
-"310
-[e $ ! >= _cont_led _tiempoled 388  ]
+[; ;main.c: 459: if (cont_led >= tiempoled) {
+"459
+[e $ ! >= _cont_led _tiempoled 485  ]
 {
-[; ;main.c: 311: LATBbits.LB7 = ~PORTBbits.RB7;
-"311
+[; ;main.c: 460: LATBbits.LB7 = ~PORTBbits.RB7;
+"460
 [e = . . _LATBbits 8 1 -> ~ -> . . _PORTBbits 0 7 `i `uc ]
-[; ;main.c: 312: cont_led = 0;
-"312
+[; ;main.c: 461: cont_led = 0;
+"461
 [e = _cont_led -> 0 `i ]
-"313
+"462
 }
-[e :U 388 ]
-[; ;main.c: 313: }
-[; ;main.c: 314: led = 0;
-"314
+[e :U 485 ]
+[; ;main.c: 462: }
+[; ;main.c: 463: led = 0;
+"463
 [e = _led -> 0 `i ]
-[; ;main.c: 315: }
-"315
-[e :UE 387 ]
+[; ;main.c: 464: }
+"464
+[e :UE 484 ]
 }
-"317
+"466
 [v _stringtoint `(i ~T0 @X0 1 ef2`*uc`i ]
 {
-[; ;main.c: 317: int stringtoint(char string[], int tamanio) {
+[; ;main.c: 466: int stringtoint(char string[], int tamanio) {
 [e :U _stringtoint ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [v _tamanio `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 318: h = 0;
-"318
+[; ;main.c: 467: h = 0;
+"467
 [e = _h -> 0 `i ]
-[; ;main.c: 319: o = 1;
-"319
+[; ;main.c: 468: o = 1;
+"468
 [e = _o -> 1 `i ]
-[; ;main.c: 320: p = tamanio - 1;
-"320
+[; ;main.c: 469: p = tamanio - 1;
+"469
 [e = _p - _tamanio -> 1 `i ]
-[; ;main.c: 322: while (p >= 0) {
-"322
-[e $U 390  ]
-[e :U 391 ]
+[; ;main.c: 471: while (p >= 0) {
+"471
+[e $U 487  ]
+[e :U 488 ]
 {
-[; ;main.c: 323: help = string[p] - '0';
-"323
+[; ;main.c: 472: help = string[p] - '0';
+"472
 [e = _help -> - -> *U + _string * -> _p `x -> -> # *U _string `i `x `ui -> 48 `ui `i ]
-[; ;main.c: 324: help = help*o;
-"324
+[; ;main.c: 473: help = help*o;
+"473
 [e = _help * _help _o ]
-[; ;main.c: 325: h = h + help;
-"325
+[; ;main.c: 474: h = h + help;
+"474
 [e = _h + _h _help ]
-[; ;main.c: 326: p = p - 1;
-"326
+[; ;main.c: 475: p = p - 1;
+"475
 [e = _p - _p -> 1 `i ]
-[; ;main.c: 327: o = o * 10;
-"327
+[; ;main.c: 476: o = o * 10;
+"476
 [e = _o * _o -> 10 `i ]
-"328
+"477
 }
-[e :U 390 ]
-"322
-[e $ >= _p -> 0 `i 391  ]
-[e :U 392 ]
-[; ;main.c: 328: }
-[; ;main.c: 329: return h;
-"329
+[e :U 487 ]
+"471
+[e $ >= _p -> 0 `i 488  ]
+[e :U 489 ]
+[; ;main.c: 477: }
+[; ;main.c: 478: return h;
+"478
 [e ) _h ]
-[e $UE 389  ]
-[; ;main.c: 330: }
-"330
-[e :UE 389 ]
+[e $UE 486  ]
+[; ;main.c: 479: }
+"479
+[e :UE 486 ]
 }
-"398
-[v _apagar `(v ~T0 @X0 1 ef ]
+"481
+[v _apagarM1 `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 398: void apagar() {
-[e :U _apagar ]
+[; ;main.c: 481: void apagarM1() {
+[e :U _apagarM1 ]
 [f ]
-[; ;main.c: 399: LATA = 0;
-"399
+[; ;main.c: 482: LATA = 0;
+"482
 [e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 400: }
-"400
-[e :UE 393 ]
+[; ;main.c: 483: }
+"483
+[e :UE 490 ]
+}
+"484
+[v _apagarM2 `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 484: void apagarM2() {
+[e :U _apagarM2 ]
+[f ]
+[; ;main.c: 485: LATBbits.LB0 = 0;
+"485
+[e = . . _LATBbits 1 0 -> -> 0 `i `uc ]
+[; ;main.c: 486: LATBbits.LB1 = 0;
+"486
+[e = . . _LATBbits 2 1 -> -> 0 `i `uc ]
+[; ;main.c: 487: LATBbits.LB2 = 0;
+"487
+[e = . . _LATBbits 3 1 -> -> 0 `i `uc ]
+[; ;main.c: 488: LATBbits.LB3 = 0;
+"488
+[e = . . _LATBbits 4 1 -> -> 0 `i `uc ]
+[; ;main.c: 489: }
+"489
+[e :UE 491 ]
 }
 [p f _sprintf 8388736 ]
 [a 1C 115 116 101 112 99 111 117 110 116 32 58 32 37 100 32 0 ]
 [a 2C 115 116 101 112 99 111 117 110 116 32 58 32 37 100 32 0 ]
+[a 3C 115 116 101 112 99 111 117 110 116 32 58 32 37 100 32 0 ]
+[a 4C 115 116 101 112 99 111 117 110 116 32 58 32 37 100 32 0 ]

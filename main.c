@@ -36,7 +36,7 @@ int stepsPerRev = 4076; /*El 28BYJ-48 tiene un paso de 5.625 grados (64 pasos po
                         *  Combinados, la precisión total es de 4096 pasos por vuelta, equivalente a un paso de 0.088º , pere la relcion del reductor nos da 4076 pasos por vuelta*/
 
 char comando [25];
-int vel = 1500; /*velocidad del motor El 28BYJ-48 tiene un par máximo tras el reductor de 3N?cm (0.3Kgf?cm).
+int vel = 50; /*velocidad del motor El 28BYJ-48 tiene un par máximo tras el reductor de 3N?cm (0.3Kgf?cm).
 La frecuencia máxima es de 100Hz, lo que supone unos 40 segundos por vuelta, o equivalentemente una velocidad de giro máxima en torno a 1.5 rpm.*/
 
 const char saludo[] = "bienvenido";
@@ -44,6 +44,7 @@ const char comandonoreconocido[] = "Comando no Reconocido";
 int numSteps = 8; //secuencia half step tiene 8 pasos
 //int stepsLookup[8] = {0b1000, 0b1100, 0b0100, 0b0110, 0b0010, 0b0011, 0b0001, 0b1001};
 const char moverx[] = "MOVERX";
+const char movery[] = "MOVERY";
 int steps; // numero entre cero y 4076
 int actualstep = 0;
 int h, o, p, help;
@@ -52,6 +53,7 @@ char tam[20];
 int led;
 int r; //para escribir la palabra
 int xtrue = 1;
+int ytrue = 1;
 char digitos [3];
 int enter;
 int tama;
@@ -62,12 +64,13 @@ char entrada[25];
 int i;
 int lleg;
 char *ptr_llegada;
-const char prueba[] = "PUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+//const char prueba[] = "PUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 void ledestado(int tiempoled);
 void enviarTrama(char *datos);
 void paso_Der();
 int stringtoint(char string[], int tamanio);
-void apagar();
+void apagarM1();
+void apagarM2();
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -98,6 +101,7 @@ void main(void) {
                 tam[r] = comando[r];
             }
             xtrue = strcmp(tam, moverx);
+            ytrue = strcmp(tam, movery);
             enviarTrama(comando);
             ptr_llegada = &comando[6];
             if (*ptr_llegada == '-') {
@@ -124,168 +128,313 @@ void main(void) {
                 lleg = 0;
                 tama2 = tama - 6;
                 steps = stringtoint(entrada, tama2);
-               
+
                 enter = 0;
                 tama = 0;
                 NOP();
             }
-                        for (i = 0; i < 25; i++) { //limpio comando
-                            comando[i] = '\0';
-                        }
-                        for (i = 0; i < 25; i++) { //limpio comando
-                            entrada[i] = '\0';
-                        }
+            for (i = 0; i < 25; i++) { //limpio comando
+                comando[i] = '\0';
+            }
+            for (i = 0; i < 25; i++) { //limpio comando
+                entrada[i] = '\0';
+            }
+            if (xtrue != 0 && ytrue != 0) {
+                enviarTrama(comandonoreconocido);
+            }
 
         }
-        //        if(xtrue == 0) && (ytrue == 0){
-        //            
-        //        }
-        if (xtrue == 0) {
+//        if (xtrue == 0 || ytrue == 0) {
 
-            if (steps > 0) {
-                NOP();
-                while (stepcont <= steps) {
 
-                    if (actualstep > 7) {
-                        actualstep = 0;
+            if (xtrue == 0) {
+
+                if (steps > 0) {
+                    NOP();
+                    while (stepcont <= steps) {
+
+                        if (actualstep > 7) {
+                            actualstep = 0;
+                        }
+                        sprintf(salida, "stepcount : %d ", stepcont);
+                        enviarTrama(salida);
+
+                        switch (actualstep) {
+                            case 0:
+                                LATA = 0b0001;
+                                for (i = 0; i <= vel; i++);
+                                NOP();
+                                stepcont++;
+                                NOP();
+                                actualstep++;
+                                break;
+                            case 1:
+                                LATA = 0b0011;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 2:
+                                LATA = 0b0010;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 3:
+                                LATA = 0b0110;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 4:
+                                LATA = 0b0100;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 5:
+                                LATA = 0b1100;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+
+                            case 6:
+                                LATA = 0b1000;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 7:
+                                LATA = 0b1001;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                        }
+
                     }
-                    sprintf(salida, "stepcount : %d ", stepcont);
-                    enviarTrama(salida);                    
+                    apagarM1();
+                    stepcont = 0;
+                    steps = 0;
+                }//            D
+                else if (steps < 0) {
 
-                    switch (actualstep) {
-                        case 0:
-                            LATA = 0b0001;
-                            for (i = 0; i <= vel; i++);
-                            NOP();
-                            stepcont++;
-                            NOP();
-                            actualstep++;
-                            break;
-                        case 1:
-                            LATA = 0b0011;
-                            for (i = 0; i <= vel; i++);
-                            stepcont++;
-                            actualstep++;
-                            break;
-                        case 2:
-                            LATA = 0b0010;
-                            for (i = 0; i <= vel; i++);
-                            stepcont++;
-                            actualstep++;
-                            break;
-                        case 3:
-                            LATA = 0b0110;
-                            for (i = 0; i <= vel; i++);
-                            stepcont++;
-                            actualstep++;
-                            break;
-                        case 4:
-                            LATA = 0b0100;
-                            for (i = 0; i <= vel; i++);
-                            stepcont++;
-                            actualstep++;
-                            break;
-                        case 5:
-                            LATA = 0b1100;
-                            for (i = 0; i <= vel; i++);
-                            stepcont++;
-                            actualstep++;
-                            break;
 
-                        case 6:
-                            LATA = 0b1000;
-                            for (i = 0; i <= vel; i++);
-                            stepcont++;
-                            actualstep++;
-                            break;
-                        case 7:
-                            LATA = 0b1001;
-                            for (i = 0; i <= vel; i++);
-                            stepcont++;
-                            actualstep++;
-                            break;
+                    while (stepcont >= steps) {
+                        if (actualstep > 7) {
+                            actualstep = 0;
+                        }
+                        sprintf(salida, "stepcount : %d ", stepcont);
+                        enviarTrama(salida);
+
+                        switch (actualstep) {
+                            case 0:
+                                LATA = 0b1001;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+
+                                break;
+                            case 1:
+                                LATA = 0b1000;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                            case 2:
+                                LATA = 0b1100;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+
+                                break;
+                            case 3:
+                                LATA = 0b0100;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                            case 4:
+                                LATA = 0b0110;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                            case 5:
+                                LATA = 0b0010;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+
+                            case 6:
+                                LATA = 0b0011;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                            case 7:
+                                LATA = 0b0001;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                        }
+
+
                     }
+                    apagarM1();
+                    stepcont = 0;
+                    steps = 0;
+                }
+            }
+            if (ytrue == 0) {
+
+                if (steps > 0) {
+                    NOP();
+                    while (stepcont <= steps) {
+
+                        if (actualstep > 7) {
+                            actualstep = 0;
+                        }
+                        sprintf(salida, "stepcount : %d ", stepcont);
+                        enviarTrama(salida);
+
+                        switch (actualstep) {
+                            case 0:
+                                LATB = 0b0001;
+                                for (i = 0; i <= vel; i++);
+                                NOP();
+                                stepcont++;
+                                NOP();
+                                actualstep++;
+                                break;
+                            case 1:
+                                LATB = 0b0011;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 2:
+                                LATB = 0b0010;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 3:
+                                LATB = 0b0110;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 4:
+                                LATB = 0b0100;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 5:
+                                LATB = 0b1100;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+
+                            case 6:
+                                LATB = 0b1000;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                            case 7:
+                                LATB = 0b1001;
+                                for (i = 0; i <= vel; i++);
+                                stepcont++;
+                                actualstep++;
+                                break;
+                        }
+
+                    }
+                    apagarM2();
+                    stepcont = 0;
+                    steps = 0;
+                }//            D
+                else if (steps < 0) {
+
+
+                    while (stepcont >= steps) {
+                        if (actualstep > 7) {
+                            actualstep = 0;
+                        }
+                        sprintf(salida, "stepcount : %d ", stepcont);
+                        enviarTrama(salida);
+
+                        switch (actualstep) {
+                            case 0:
+                                LATB = 0b1001;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+
+                                break;
+                            case 1:
+                                LATB = 0b1000;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                            case 2:
+                                LATB = 0b1100;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+
+                                break;
+                            case 3:
+                                LATB = 0b0100;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                            case 4:
+                                LATB = 0b0110;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                            case 5:
+                                LATB = 0b0010;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+
+                            case 6:
+                                LATB = 0b0011;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                            case 7:
+                                LATB = 0b0001;
+                                for (i = 0; i <= vel; i++);
+                                stepcont--;
+                                actualstep++;
+                                break;
+                        }
+
+
+                    }
+                    apagarM2();
+                    stepcont = 0;
+                    steps = 0;
 
                 }
-                apagar();
-                stepcont = 0;
-                steps = 0;
             }
-//            D
-            else if (steps < 0) {
 
-
-                while (stepcont >= steps) {
-                    if (actualstep > 7) {
-                        actualstep = 0;
-                    }
-                    sprintf(salida, "stepcount : %d ", stepcont);
-                    enviarTrama(salida);     
-                    
-                    switch (actualstep) {
-                        case 0:
-                            LATA = 0b1001;
-                            for (i = 0; i <= vel; i++);
-                            stepcont--;
-                            actualstep++;
-
-                            break;
-                        case 1:
-                            LATA = 0b1000;
-                            for (i = 0; i <= vel; i++);
-                            stepcont--;
-                            actualstep++;
-                            break;
-                        case 2:
-                            LATA = 0b1100;
-                            for (i = 0; i <= vel; i++);
-                            stepcont--;
-                            actualstep++;
-
-                            break;
-                        case 3:
-                            LATA = 0b0100;
-                            for (i = 0; i <= vel; i++);
-                            stepcont--;
-                            actualstep++;
-                            break;
-                        case 4:
-                            LATA = 0b0110;
-                            for (i = 0; i <= vel; i++);
-                            stepcont--;
-                            actualstep++;
-                            break;
-                        case 5:
-                            LATA = 0b0010;
-                            for (i = 0; i <= vel; i++);
-                            stepcont--;
-                            actualstep++;
-                            break;
-
-                        case 6:
-                            LATA = 0b0011;
-                            for (i = 0; i <= vel; i++);
-                            stepcont--;
-                            actualstep++;
-                            break;
-                        case 7:
-                            LATA = 0b0001;
-                            for (i = 0; i <= vel; i++);
-                            stepcont--;
-                            actualstep++;
-                            break;
-                    }
-                    
-                    
-                }
-                apagar();
-                stepcont = 0;
-                steps = 0;
-
-            }
-        }
+//        } 
     }
-
 }
 
 void enviarTrama(char *datos) {
@@ -329,72 +478,12 @@ int stringtoint(char string[], int tamanio) {
     return h;
 }
 
-
-
-
-//void paso_Der() {
-//    LATA = 0b0001;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0011;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0010;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0110;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0100;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b1100;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b1000;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b1001;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-
-
-//}
-
-//void paso_Izq() {
-
-
-//    LATA = 0b1001;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b1000;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b1100;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0100;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0110;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0010;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0011;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-//    LATA = 0b0001;
-//    for (int i = 0; i <= vel; i++);
-//    StepCounter++;
-
-
-
-
-
-//}
-
-void apagar() {
+void apagarM1() {
     LATA = 0;
+}
+void apagarM2() {
+    LATBbits.LB0 = 0;
+    LATBbits.LB1 = 0;
+    LATBbits.LB2 = 0;
+    LATBbits.LB3 = 0;
 }

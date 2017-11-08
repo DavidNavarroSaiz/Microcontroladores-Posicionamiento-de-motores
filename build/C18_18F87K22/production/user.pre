@@ -3007,13 +3007,17 @@ typedef unsigned char bool;
 void InitApp(void);
 
 # 28 "user.c"
-void InitApp(void)
-{
-PORTA = 0 ;
-PORTB = 0 ;
-PORTC = 0 ;
+void InitApp(void) {
+PORTA = 0;
+PORTB = 0;
+PORTC = 0;
 
-TRISA = 0 ;
+TRISBbits.RB0 = 0;
+TRISBbits.RB1 = 0;
+TRISBbits.RB2 = 0;
+TRISBbits.RB3 = 0;
+
+TRISA = 0;
 
 
 TRISBbits.RB7 = 0;
