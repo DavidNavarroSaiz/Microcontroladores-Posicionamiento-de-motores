@@ -211,7 +211,7 @@ void main(void) {
                 stepcont = 0;
                 steps = 0;
             }
-            
+//            D
             else if (steps < 0) {
 
 
