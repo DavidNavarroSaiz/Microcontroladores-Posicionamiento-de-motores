@@ -2533,11 +2533,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;main.c: 48: int actualstep = 0;
 "49
-[v _n `i ~T0 @X0 1 e ]
+[v _h `i ~T0 @X0 1 e ]
 [v _o `i ~T0 @X0 1 e ]
 [v _p `i ~T0 @X0 1 e ]
 [v _help `i ~T0 @X0 1 e ]
-[; ;main.c: 49: int n, o, p, help;
+[; ;main.c: 49: int h, o, p, help;
 "51
 [v _tam `uc ~T0 @X0 -> 20 `i e ]
 [; ;main.c: 51: char tam[20];
@@ -2679,711 +2679,750 @@ Version 3.2 HI-TECH Software Intermediate Code
 "94
 [e $ ! == _enter -> 1 `i 260  ]
 {
-[; ;main.c: 95: for (r = 0; r <= 5; r++) {
-"95
+[; ;main.c: 96: __nop();
+"96
+[e ( ___nop ..  ]
+[; ;main.c: 97: for (r = 0; r <= 5; r++) {
+"97
 {
 [e = _r -> 0 `i ]
 [e $ <= _r -> 5 `i 261  ]
 [e $U 262  ]
 [e :U 261 ]
 {
-[; ;main.c: 96: tam[r] = comando[r];
-"96
+[; ;main.c: 98: tam[r] = comando[r];
+"98
 [e = *U + &U _tam * -> -> _r `ui `ux -> -> # *U &U _tam `ui `ux *U + &U _comando * -> -> _r `ui `ux -> -> # *U &U _comando `ui `ux ]
-"97
+"99
 }
-"95
+"97
 [e ++ _r -> 1 `i ]
 [e $ <= _r -> 5 `i 261  ]
 [e :U 262 ]
-"97
-}
-[; ;main.c: 97: }
-[; ;main.c: 98: xtrue = strcmp(tam, moverx);
-"98
-[e = _xtrue ( _strcmp (2 , -> &U _tam `*Cuc &U _moverx ]
-[; ;main.c: 99: enviarTrama(comando);
 "99
-[e ( _enviarTrama (1 &U _comando ]
-[; ;main.c: 100: ptr_llegada = &comando[6];
+}
+[; ;main.c: 99: }
+[; ;main.c: 100: xtrue = strcmp(tam, moverx);
 "100
-[e = _ptr_llegada &U *U + &U _comando * -> -> -> 6 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
-[; ;main.c: 101: if (*ptr_llegada == '-') {
+[e = _xtrue ( _strcmp (2 , -> &U _tam `*Cuc &U _moverx ]
+[; ;main.c: 101: enviarTrama(comando);
 "101
+[e ( _enviarTrama (1 &U _comando ]
+[; ;main.c: 102: ptr_llegada = &comando[6];
+"102
+[e = _ptr_llegada &U *U + &U _comando * -> -> -> 6 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
+[; ;main.c: 103: if (*ptr_llegada == '-') {
+"103
 [e $ ! == -> *U _ptr_llegada `ui -> 45 `ui 264  ]
 {
-[; ;main.c: 102: ptr_llegada = &comando[7];
-"102
+[; ;main.c: 104: ptr_llegada = &comando[7];
+"104
 [e = _ptr_llegada &U *U + &U _comando * -> -> -> 7 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
-[; ;main.c: 103: while (*ptr_llegada != 0) {
-"103
+[; ;main.c: 105: while (*ptr_llegada != 0) {
+"105
 [e $U 265  ]
 [e :U 266 ]
 {
-[; ;main.c: 104: entrada[lleg] = *ptr_llegada;
-"104
-[e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
-[; ;main.c: 105: ptr_llegada++;
-"105
-[e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
-[; ;main.c: 106: lleg++;
+[; ;main.c: 106: entrada[lleg] = *ptr_llegada;
 "106
-[e ++ _lleg -> 1 `i ]
+[e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
+[; ;main.c: 107: ptr_llegada++;
 "107
+[e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
+[; ;main.c: 108: lleg++;
+"108
+[e ++ _lleg -> 1 `i ]
+"109
 }
 [e :U 265 ]
-"103
+"105
 [e $ != -> *U _ptr_llegada `i -> 0 `i 266  ]
 [e :U 267 ]
-[; ;main.c: 107: }
-[; ;main.c: 108: lleg = 0;
-"108
-[e = _lleg -> 0 `i ]
-[; ;main.c: 110: tama1 = tama - 7;
+[; ;main.c: 109: }
+[; ;main.c: 110: lleg = 0;
 "110
-[e = _tama1 - _tama -> 7 `i ]
-[; ;main.c: 111: steps = stringtoint(entrada, tama1);
-"111
-[e = _steps ( _stringtoint (2 , &U _entrada _tama1 ]
-[; ;main.c: 112: steps = (-1) * steps;
+[e = _lleg -> 0 `i ]
+[; ;main.c: 112: tama1 = tama - 7;
 "112
-[e = _steps * -U -> 1 `i _steps ]
+[e = _tama1 - _tama -> 7 `i ]
+[; ;main.c: 113: steps = stringtoint(entrada, tama1);
+"113
+[e = _steps ( _stringtoint (2 , &U _entrada _tama1 ]
+[; ;main.c: 114: steps = (-1) * steps;
 "114
+[e = _steps * -U -> 1 `i _steps ]
+[; ;main.c: 115: enter = 0;
+"115
+[e = _enter -> 0 `i ]
+[; ;main.c: 116: tama = 0;
+"116
+[e = _tama -> 0 `i ]
+"118
 }
-[; ;main.c: 114: } else {
+[; ;main.c: 118: } else {
 [e $U 268  ]
 [e :U 264 ]
 {
-[; ;main.c: 115: while (*ptr_llegada != 0) {
-"115
+[; ;main.c: 119: while (*ptr_llegada != 0) {
+"119
 [e $U 269  ]
 [e :U 270 ]
 {
-[; ;main.c: 116: entrada[lleg] = *ptr_llegada;
-"116
+[; ;main.c: 120: entrada[lleg] = *ptr_llegada;
+"120
 [e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
-[; ;main.c: 117: ptr_llegada++;
-"117
+[; ;main.c: 121: ptr_llegada++;
+"121
 [e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
-[; ;main.c: 118: lleg++;
-"118
+[; ;main.c: 122: lleg++;
+"122
 [e ++ _lleg -> 1 `i ]
-"119
+"123
 }
 [e :U 269 ]
-"115
+"119
 [e $ != -> *U _ptr_llegada `i -> 0 `i 270  ]
 [e :U 271 ]
-[; ;main.c: 119: }
-[; ;main.c: 120: lleg = 0;
-"120
+[; ;main.c: 123: }
+[; ;main.c: 124: lleg = 0;
+"124
 [e = _lleg -> 0 `i ]
-[; ;main.c: 121: tama2 = tama - 6;
-"121
-[e = _tama2 - _tama -> 6 `i ]
-[; ;main.c: 122: steps = stringtoint(entrada, tama2);
-"122
-[e = _steps ( _stringtoint (2 , &U _entrada _tama2 ]
-[; ;main.c: 123: enviarTrama(entrada);
-"123
-[e ( _enviarTrama (1 &U _entrada ]
+[; ;main.c: 125: tama2 = tama - 6;
 "125
+[e = _tama2 - _tama -> 6 `i ]
+[; ;main.c: 126: steps = stringtoint(entrada, tama2);
+"126
+[e = _steps ( _stringtoint (2 , &U _entrada _tama2 ]
+[; ;main.c: 128: enter = 0;
+"128
+[e = _enter -> 0 `i ]
+[; ;main.c: 129: tama = 0;
+"129
+[e = _tama -> 0 `i ]
+[; ;main.c: 130: __nop();
+"130
+[e ( ___nop ..  ]
+"131
 }
 [e :U 268 ]
-[; ;main.c: 125: }
-[; ;main.c: 133: enter = 0;
-"133
-[e = _enter -> 0 `i ]
-[; ;main.c: 134: tama = 0;
-"134
-[e = _tama -> 0 `i ]
-"135
-}
-[e :U 260 ]
-[; ;main.c: 135: }
-[; ;main.c: 139: if (xtrue == 0) {
-"139
-[e $ ! == _xtrue -> 0 `i 272  ]
-{
-[; ;main.c: 141: if (steps > 0) {
-"141
-[e $ ! > _steps -> 0 `i 273  ]
-{
-[; ;main.c: 142: __nop();
-"142
-[e ( ___nop ..  ]
-[; ;main.c: 143: while (stepcont <= steps) {
-"143
-[e $U 274  ]
-[e :U 275 ]
-{
-[; ;main.c: 145: if (actualstep > 7) {
-"145
-[e $ ! > _actualstep -> 7 `i 277  ]
-{
-[; ;main.c: 146: actualstep = 0;
-"146
-[e = _actualstep -> 0 `i ]
-"147
-}
-[e :U 277 ]
-[; ;main.c: 147: }
-[; ;main.c: 148: sprintf(salida, "stepcount : %d ", stepcont);
-"148
-[e ( _sprintf (1 , (. , &U _salida :s 1C _stepcont ]
-[; ;main.c: 149: enviarTrama(salida);
-"149
-[e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 150: sprintf(salida, "actualstep : %u ", steps);
-"150
-[e ( _sprintf (1 , (. , &U _salida :s 2C _steps ]
-[; ;main.c: 151: enviarTrama(salida);
-"151
-[e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 153: switch (actualstep) {
-"153
-[e $U 279  ]
-{
-[; ;main.c: 154: case 0:
-"154
-[e :U 280 ]
-[; ;main.c: 155: LATA = 0b0001;
-"155
-[e = _LATA -> -> 1 `i `uc ]
-[; ;main.c: 156: for (i = 0; i <= vel; i++);
-"156
+[; ;main.c: 131: }
+[; ;main.c: 132: for (i = 0; i < 25; i++) {
+"132
 {
 [e = _i -> 0 `i ]
-[e $U 284  ]
-[e :U 281 ]
-[e ++ _i -> 1 `i ]
-[e :U 284 ]
-[e $ <= _i _vel 281  ]
-[e :U 282 ]
+[e $ < _i -> 25 `i 272  ]
+[e $U 273  ]
+[e :U 272 ]
+{
+[; ;main.c: 133: comando[i] = '\0';
+"133
+[e = *U + &U _comando * -> -> _i `ui `ux -> -> # *U &U _comando `ui `ux -> -> 0 `ui `uc ]
+"134
 }
-[; ;main.c: 157: __nop();
-"157
+"132
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 25 `i 272  ]
+[e :U 273 ]
+"134
+}
+[; ;main.c: 134: }
+[; ;main.c: 135: for (i = 0; i < 25; i++) {
+"135
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 25 `i 275  ]
+[e $U 276  ]
+[e :U 275 ]
+{
+[; ;main.c: 136: entrada[i] = '\0';
+"136
+[e = *U + &U _entrada * -> -> _i `ui `ux -> -> # *U &U _entrada `ui `ux -> -> 0 `ui `uc ]
+"137
+}
+"135
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 25 `i 275  ]
+[e :U 276 ]
+"137
+}
+"139
+}
+[e :U 260 ]
+[; ;main.c: 137: }
+[; ;main.c: 139: }
+[; ;main.c: 143: if (xtrue == 0) {
+"143
+[e $ ! == _xtrue -> 0 `i 278  ]
+{
+[; ;main.c: 145: if (steps > 0) {
+"145
+[e $ ! > _steps -> 0 `i 279  ]
+{
+[; ;main.c: 146: __nop();
+"146
 [e ( ___nop ..  ]
-[; ;main.c: 158: stepcont++;
+[; ;main.c: 147: while (stepcont <= steps) {
+"147
+[e $U 280  ]
+[e :U 281 ]
+{
+[; ;main.c: 149: if (actualstep > 7) {
+"149
+[e $ ! > _actualstep -> 7 `i 283  ]
+{
+[; ;main.c: 150: actualstep = 0;
+"150
+[e = _actualstep -> 0 `i ]
+"151
+}
+[e :U 283 ]
+[; ;main.c: 151: }
+[; ;main.c: 152: sprintf(salida, "stepcount : %d ", stepcont);
+"152
+[e ( _sprintf (1 , (. , &U _salida :s 1C _stepcont ]
+[; ;main.c: 153: enviarTrama(salida);
+"153
+[e ( _enviarTrama (1 &U _salida ]
+[; ;main.c: 155: switch (actualstep) {
+"155
+[e $U 285  ]
+{
+[; ;main.c: 156: case 0:
+"156
+[e :U 286 ]
+[; ;main.c: 157: LATA = 0b0001;
+"157
+[e = _LATA -> -> 1 `i `uc ]
+[; ;main.c: 158: for (i = 0; i <= vel; i++);
 "158
-[e ++ _stepcont -> 1 `i ]
+{
+[e = _i -> 0 `i ]
+[e $U 290  ]
+[e :U 287 ]
+[e ++ _i -> 1 `i ]
+[e :U 290 ]
+[e $ <= _i _vel 287  ]
+[e :U 288 ]
+}
 [; ;main.c: 159: __nop();
 "159
 [e ( ___nop ..  ]
-[; ;main.c: 160: actualstep++;
+[; ;main.c: 160: stepcont++;
 "160
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 161: break;
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 161: __nop();
 "161
-[e $U 278  ]
-[; ;main.c: 162: case 1:
+[e ( ___nop ..  ]
+[; ;main.c: 162: actualstep++;
 "162
-[e :U 285 ]
-[; ;main.c: 163: LATA = 0b0011;
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 163: break;
 "163
-[e = _LATA -> -> 3 `i `uc ]
-[; ;main.c: 164: for (i = 0; i <= vel; i++);
+[e $U 284  ]
+[; ;main.c: 164: case 1:
 "164
-{
-[e = _i -> 0 `i ]
-[e $U 289  ]
-[e :U 286 ]
-[e ++ _i -> 1 `i ]
-[e :U 289 ]
-[e $ <= _i _vel 286  ]
-[e :U 287 ]
-}
-[; ;main.c: 165: stepcont++;
-"165
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 166: actualstep++;
-"166
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 167: break;
-"167
-[e $U 278  ]
-[; ;main.c: 168: case 2:
-"168
-[e :U 290 ]
-[; ;main.c: 169: LATA = 0b0010;
-"169
-[e = _LATA -> -> 2 `i `uc ]
-[; ;main.c: 170: for (i = 0; i <= vel; i++);
-"170
-{
-[e = _i -> 0 `i ]
-[e $U 294  ]
 [e :U 291 ]
-[e ++ _i -> 1 `i ]
-[e :U 294 ]
-[e $ <= _i _vel 291  ]
+[; ;main.c: 165: LATA = 0b0011;
+"165
+[e = _LATA -> -> 3 `i `uc ]
+[; ;main.c: 166: for (i = 0; i <= vel; i++);
+"166
+{
+[e = _i -> 0 `i ]
+[e $U 295  ]
 [e :U 292 ]
-}
-[; ;main.c: 171: stepcont++;
-"171
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 172: actualstep++;
-"172
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 173: break;
-"173
-[e $U 278  ]
-[; ;main.c: 174: case 3:
-"174
+[e ++ _i -> 1 `i ]
 [e :U 295 ]
-[; ;main.c: 175: LATA = 0b0110;
-"175
-[e = _LATA -> -> 6 `i `uc ]
-[; ;main.c: 176: for (i = 0; i <= vel; i++);
-"176
-{
-[e = _i -> 0 `i ]
-[e $U 299  ]
+[e $ <= _i _vel 292  ]
+[e :U 293 ]
+}
+[; ;main.c: 167: stepcont++;
+"167
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 168: actualstep++;
+"168
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 169: break;
+"169
+[e $U 284  ]
+[; ;main.c: 170: case 2:
+"170
 [e :U 296 ]
-[e ++ _i -> 1 `i ]
-[e :U 299 ]
-[e $ <= _i _vel 296  ]
+[; ;main.c: 171: LATA = 0b0010;
+"171
+[e = _LATA -> -> 2 `i `uc ]
+[; ;main.c: 172: for (i = 0; i <= vel; i++);
+"172
+{
+[e = _i -> 0 `i ]
+[e $U 300  ]
 [e :U 297 ]
-}
-[; ;main.c: 177: stepcont++;
-"177
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 178: actualstep++;
-"178
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 179: break;
-"179
-[e $U 278  ]
-[; ;main.c: 180: case 4:
-"180
+[e ++ _i -> 1 `i ]
 [e :U 300 ]
-[; ;main.c: 181: LATA = 0b0100;
-"181
-[e = _LATA -> -> 4 `i `uc ]
-[; ;main.c: 182: for (i = 0; i <= vel; i++);
-"182
-{
-[e = _i -> 0 `i ]
-[e $U 304  ]
+[e $ <= _i _vel 297  ]
+[e :U 298 ]
+}
+[; ;main.c: 173: stepcont++;
+"173
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 174: actualstep++;
+"174
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 175: break;
+"175
+[e $U 284  ]
+[; ;main.c: 176: case 3:
+"176
 [e :U 301 ]
-[e ++ _i -> 1 `i ]
-[e :U 304 ]
-[e $ <= _i _vel 301  ]
+[; ;main.c: 177: LATA = 0b0110;
+"177
+[e = _LATA -> -> 6 `i `uc ]
+[; ;main.c: 178: for (i = 0; i <= vel; i++);
+"178
+{
+[e = _i -> 0 `i ]
+[e $U 305  ]
 [e :U 302 ]
-}
-[; ;main.c: 183: stepcont++;
-"183
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 184: actualstep++;
-"184
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 185: break;
-"185
-[e $U 278  ]
-[; ;main.c: 186: case 5:
-"186
+[e ++ _i -> 1 `i ]
 [e :U 305 ]
-[; ;main.c: 187: LATA = 0b1100;
-"187
-[e = _LATA -> -> 12 `i `uc ]
-[; ;main.c: 188: for (i = 0; i <= vel; i++);
-"188
-{
-[e = _i -> 0 `i ]
-[e $U 309  ]
+[e $ <= _i _vel 302  ]
+[e :U 303 ]
+}
+[; ;main.c: 179: stepcont++;
+"179
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 180: actualstep++;
+"180
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 181: break;
+"181
+[e $U 284  ]
+[; ;main.c: 182: case 4:
+"182
 [e :U 306 ]
-[e ++ _i -> 1 `i ]
-[e :U 309 ]
-[e $ <= _i _vel 306  ]
+[; ;main.c: 183: LATA = 0b0100;
+"183
+[e = _LATA -> -> 4 `i `uc ]
+[; ;main.c: 184: for (i = 0; i <= vel; i++);
+"184
+{
+[e = _i -> 0 `i ]
+[e $U 310  ]
 [e :U 307 ]
-}
-[; ;main.c: 189: stepcont++;
-"189
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 190: actualstep++;
-"190
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 191: break;
-"191
-[e $U 278  ]
-[; ;main.c: 193: case 6:
-"193
+[e ++ _i -> 1 `i ]
 [e :U 310 ]
-[; ;main.c: 194: LATA = 0b1000;
-"194
-[e = _LATA -> -> 8 `i `uc ]
-[; ;main.c: 195: for (i = 0; i <= vel; i++);
-"195
-{
-[e = _i -> 0 `i ]
-[e $U 314  ]
+[e $ <= _i _vel 307  ]
+[e :U 308 ]
+}
+[; ;main.c: 185: stepcont++;
+"185
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 186: actualstep++;
+"186
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 187: break;
+"187
+[e $U 284  ]
+[; ;main.c: 188: case 5:
+"188
 [e :U 311 ]
-[e ++ _i -> 1 `i ]
-[e :U 314 ]
-[e $ <= _i _vel 311  ]
-[e :U 312 ]
-}
-[; ;main.c: 196: stepcont++;
-"196
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 197: actualstep++;
-"197
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 198: break;
-"198
-[e $U 278  ]
-[; ;main.c: 199: case 7:
-"199
-[e :U 315 ]
-[; ;main.c: 200: LATA = 0b1001;
-"200
-[e = _LATA -> -> 9 `i `uc ]
-[; ;main.c: 201: for (i = 0; i <= vel; i++);
-"201
+[; ;main.c: 189: LATA = 0b1100;
+"189
+[e = _LATA -> -> 12 `i `uc ]
+[; ;main.c: 190: for (i = 0; i <= vel; i++);
+"190
 {
 [e = _i -> 0 `i ]
-[e $U 319  ]
-[e :U 316 ]
+[e $U 315  ]
+[e :U 312 ]
 [e ++ _i -> 1 `i ]
-[e :U 319 ]
-[e $ <= _i _vel 316  ]
-[e :U 317 ]
+[e :U 315 ]
+[e $ <= _i _vel 312  ]
+[e :U 313 ]
 }
-[; ;main.c: 202: stepcont++;
-"202
+[; ;main.c: 191: stepcont++;
+"191
 [e ++ _stepcont -> 1 `i ]
-[; ;main.c: 203: actualstep++;
-"203
+[; ;main.c: 192: actualstep++;
+"192
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 204: break;
-"204
-[e $U 278  ]
-"205
+[; ;main.c: 193: break;
+"193
+[e $U 284  ]
+[; ;main.c: 195: case 6:
+"195
+[e :U 316 ]
+[; ;main.c: 196: LATA = 0b1000;
+"196
+[e = _LATA -> -> 8 `i `uc ]
+[; ;main.c: 197: for (i = 0; i <= vel; i++);
+"197
+{
+[e = _i -> 0 `i ]
+[e $U 320  ]
+[e :U 317 ]
+[e ++ _i -> 1 `i ]
+[e :U 320 ]
+[e $ <= _i _vel 317  ]
+[e :U 318 ]
 }
-[; ;main.c: 205: }
-[e $U 278  ]
-"153
-[e :U 279 ]
-[e [\ _actualstep , $ -> 0 `i 280
- , $ -> 1 `i 285
- , $ -> 2 `i 290
- , $ -> 3 `i 295
- , $ -> 4 `i 300
- , $ -> 5 `i 305
- , $ -> 6 `i 310
- , $ -> 7 `i 315
- 278 ]
+[; ;main.c: 198: stepcont++;
+"198
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 199: actualstep++;
+"199
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 200: break;
+"200
+[e $U 284  ]
+[; ;main.c: 201: case 7:
+"201
+[e :U 321 ]
+[; ;main.c: 202: LATA = 0b1001;
+"202
+[e = _LATA -> -> 9 `i `uc ]
+[; ;main.c: 203: for (i = 0; i <= vel; i++);
+"203
+{
+[e = _i -> 0 `i ]
+[e $U 325  ]
+[e :U 322 ]
+[e ++ _i -> 1 `i ]
+[e :U 325 ]
+[e $ <= _i _vel 322  ]
+[e :U 323 ]
+}
+[; ;main.c: 204: stepcont++;
+"204
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 205: actualstep++;
 "205
-[e :U 278 ]
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 206: break;
+"206
+[e $U 284  ]
 "207
 }
-[e :U 274 ]
-"143
-[e $ <= _stepcont _steps 275  ]
-[e :U 276 ]
 [; ;main.c: 207: }
-[; ;main.c: 208: apagar();
-"208
-[e ( _apagar ..  ]
-[; ;main.c: 209: stepcont = 0;
+[e $U 284  ]
+"155
+[e :U 285 ]
+[e [\ _actualstep , $ -> 0 `i 286
+ , $ -> 1 `i 291
+ , $ -> 2 `i 296
+ , $ -> 3 `i 301
+ , $ -> 4 `i 306
+ , $ -> 5 `i 311
+ , $ -> 6 `i 316
+ , $ -> 7 `i 321
+ 284 ]
+"207
+[e :U 284 ]
 "209
-[e = _stepcont -> 0 `i ]
-[; ;main.c: 210: steps = 0;
+}
+[e :U 280 ]
+"147
+[e $ <= _stepcont _steps 281  ]
+[e :U 282 ]
+[; ;main.c: 209: }
+[; ;main.c: 210: apagar();
 "210
+[e ( _apagar ..  ]
+[; ;main.c: 211: stepcont = 0;
+"211
+[e = _stepcont -> 0 `i ]
+[; ;main.c: 212: steps = 0;
+"212
 [e = _steps -> 0 `i ]
 "213
 }
-[; ;main.c: 213: } else if (steps < 0) {
-[e $U 320  ]
-[e :U 273 ]
-[e $ ! < _steps -> 0 `i 321  ]
+[; ;main.c: 213: }
+[e $U 326  ]
+"215
+[e :U 279 ]
+[; ;main.c: 215: else if (steps < 0) {
+[e $ ! < _steps -> 0 `i 327  ]
 {
-[; ;main.c: 216: while (stepcont >= steps) {
-"216
-[e $U 322  ]
-[e :U 323 ]
-{
-[; ;main.c: 217: if (actualstep > 7) {
-"217
-[e $ ! > _actualstep -> 7 `i 325  ]
-{
-[; ;main.c: 218: actualstep = 0;
+[; ;main.c: 218: while (stepcont >= steps) {
 "218
-[e = _actualstep -> 0 `i ]
+[e $U 328  ]
+[e :U 329 ]
+{
+[; ;main.c: 219: if (actualstep > 7) {
 "219
-}
-[e :U 325 ]
-[; ;main.c: 219: }
-[; ;main.c: 220: sprintf(salida, "stepcount : %d ", stepcont);
+[e $ ! > _actualstep -> 7 `i 331  ]
+{
+[; ;main.c: 220: actualstep = 0;
 "220
-[e ( _sprintf (1 , (. , &U _salida :s 3C _stepcont ]
-[; ;main.c: 221: enviarTrama(salida);
+[e = _actualstep -> 0 `i ]
 "221
-[e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 222: sprintf(salida, "actualstep : %d ", actualstep);
+}
+[e :U 331 ]
+[; ;main.c: 221: }
+[; ;main.c: 222: sprintf(salida, "stepcount : %d ", stepcont);
 "222
-[e ( _sprintf (1 , (. , &U _salida :s 4C _actualstep ]
+[e ( _sprintf (1 , (. , &U _salida :s 2C _stepcont ]
 [; ;main.c: 223: enviarTrama(salida);
 "223
 [e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 227: switch (actualstep) {
-"227
-[e $U 327  ]
+[; ;main.c: 225: switch (actualstep) {
+"225
+[e $U 333  ]
 {
-[; ;main.c: 228: case 0:
-"228
-[e :U 328 ]
-[; ;main.c: 229: LATA = 0b1001;
-"229
-[e = _LATA -> -> 9 `i `uc ]
-[; ;main.c: 230: for (i = 0; i <= vel; i++);
-"230
-{
-[e = _i -> 0 `i ]
-[e $U 332  ]
-[e :U 329 ]
-[e ++ _i -> 1 `i ]
-[e :U 332 ]
-[e $ <= _i _vel 329  ]
-[e :U 330 ]
-}
-[; ;main.c: 231: stepcont--;
-"231
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 232: actualstep++;
-"232
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 234: break;
-"234
-[e $U 326  ]
-[; ;main.c: 235: case 1:
-"235
-[e :U 333 ]
-[; ;main.c: 236: LATA = 0b1000;
-"236
-[e = _LATA -> -> 8 `i `uc ]
-[; ;main.c: 237: for (i = 0; i <= vel; i++);
-"237
-{
-[e = _i -> 0 `i ]
-[e $U 337  ]
+[; ;main.c: 226: case 0:
+"226
 [e :U 334 ]
-[e ++ _i -> 1 `i ]
-[e :U 337 ]
-[e $ <= _i _vel 334  ]
-[e :U 335 ]
-}
-[; ;main.c: 238: stepcont--;
-"238
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 239: actualstep++;
-"239
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 240: break;
-"240
-[e $U 326  ]
-[; ;main.c: 241: case 2:
-"241
-[e :U 338 ]
-[; ;main.c: 242: LATA = 0b1100;
-"242
-[e = _LATA -> -> 12 `i `uc ]
-[; ;main.c: 243: for (i = 0; i <= vel; i++);
-"243
-{
-[e = _i -> 0 `i ]
-[e $U 342  ]
-[e :U 339 ]
-[e ++ _i -> 1 `i ]
-[e :U 342 ]
-[e $ <= _i _vel 339  ]
-[e :U 340 ]
-}
-[; ;main.c: 244: stepcont--;
-"244
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 245: actualstep++;
-"245
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 247: break;
-"247
-[e $U 326  ]
-[; ;main.c: 248: case 3:
-"248
-[e :U 343 ]
-[; ;main.c: 249: LATA = 0b0100;
-"249
-[e = _LATA -> -> 4 `i `uc ]
-[; ;main.c: 250: for (i = 0; i <= vel; i++);
-"250
-{
-[e = _i -> 0 `i ]
-[e $U 347  ]
-[e :U 344 ]
-[e ++ _i -> 1 `i ]
-[e :U 347 ]
-[e $ <= _i _vel 344  ]
-[e :U 345 ]
-}
-[; ;main.c: 251: stepcont--;
-"251
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 252: actualstep++;
-"252
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 253: break;
-"253
-[e $U 326  ]
-[; ;main.c: 254: case 4:
-"254
-[e :U 348 ]
-[; ;main.c: 255: LATA = 0b0110;
-"255
-[e = _LATA -> -> 6 `i `uc ]
-[; ;main.c: 256: for (i = 0; i <= vel; i++);
-"256
-{
-[e = _i -> 0 `i ]
-[e $U 352  ]
-[e :U 349 ]
-[e ++ _i -> 1 `i ]
-[e :U 352 ]
-[e $ <= _i _vel 349  ]
-[e :U 350 ]
-}
-[; ;main.c: 257: stepcont--;
-"257
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 258: actualstep++;
-"258
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 259: break;
-"259
-[e $U 326  ]
-[; ;main.c: 260: case 5:
-"260
-[e :U 353 ]
-[; ;main.c: 261: LATA = 0b0010;
-"261
-[e = _LATA -> -> 2 `i `uc ]
-[; ;main.c: 262: for (i = 0; i <= vel; i++);
-"262
-{
-[e = _i -> 0 `i ]
-[e $U 357  ]
-[e :U 354 ]
-[e ++ _i -> 1 `i ]
-[e :U 357 ]
-[e $ <= _i _vel 354  ]
-[e :U 355 ]
-}
-[; ;main.c: 263: stepcont--;
-"263
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 264: actualstep++;
-"264
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 265: break;
-"265
-[e $U 326  ]
-[; ;main.c: 267: case 6:
-"267
-[e :U 358 ]
-[; ;main.c: 268: LATA = 0b0011;
-"268
-[e = _LATA -> -> 3 `i `uc ]
-[; ;main.c: 269: for (i = 0; i <= vel; i++);
-"269
-{
-[e = _i -> 0 `i ]
-[e $U 362  ]
-[e :U 359 ]
-[e ++ _i -> 1 `i ]
-[e :U 362 ]
-[e $ <= _i _vel 359  ]
-[e :U 360 ]
-}
-[; ;main.c: 270: stepcont--;
-"270
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 271: actualstep++;
-"271
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 272: break;
-"272
-[e $U 326  ]
-[; ;main.c: 273: case 7:
-"273
-[e :U 363 ]
-[; ;main.c: 274: LATA = 0b0001;
-"274
-[e = _LATA -> -> 1 `i `uc ]
-[; ;main.c: 275: for (i = 0; i <= vel; i++);
-"275
-{
-[e = _i -> 0 `i ]
-[e $U 367  ]
-[e :U 364 ]
-[e ++ _i -> 1 `i ]
-[e :U 367 ]
-[e $ <= _i _vel 364  ]
-[e :U 365 ]
-}
-[; ;main.c: 276: stepcont--;
-"276
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 277: actualstep++;
-"277
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 278: break;
-"278
-[e $U 326  ]
-"279
-}
-[; ;main.c: 279: }
-[e $U 326  ]
+[; ;main.c: 227: LATA = 0b1001;
 "227
-[e :U 327 ]
-[e [\ _actualstep , $ -> 0 `i 328
- , $ -> 1 `i 333
- , $ -> 2 `i 338
- , $ -> 3 `i 343
- , $ -> 4 `i 348
- , $ -> 5 `i 353
- , $ -> 6 `i 358
- , $ -> 7 `i 363
- 326 ]
-"279
-[e :U 326 ]
-[; ;main.c: 280: apagar();
-"280
-[e ( _apagar ..  ]
-[; ;main.c: 281: stepcont = 0;
-"281
-[e = _stepcont -> 0 `i ]
-[; ;main.c: 282: steps = 0;
-"282
-[e = _steps -> 0 `i ]
-"283
+[e = _LATA -> -> 9 `i `uc ]
+[; ;main.c: 228: for (i = 0; i <= vel; i++);
+"228
+{
+[e = _i -> 0 `i ]
+[e $U 338  ]
+[e :U 335 ]
+[e ++ _i -> 1 `i ]
+[e :U 338 ]
+[e $ <= _i _vel 335  ]
+[e :U 336 ]
 }
-[e :U 322 ]
-"216
-[e $ >= _stepcont _steps 323  ]
-[e :U 324 ]
+[; ;main.c: 229: stepcont--;
+"229
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 230: actualstep++;
+"230
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 232: break;
+"232
+[e $U 332  ]
+[; ;main.c: 233: case 1:
+"233
+[e :U 339 ]
+[; ;main.c: 234: LATA = 0b1000;
+"234
+[e = _LATA -> -> 8 `i `uc ]
+[; ;main.c: 235: for (i = 0; i <= vel; i++);
+"235
+{
+[e = _i -> 0 `i ]
+[e $U 343  ]
+[e :U 340 ]
+[e ++ _i -> 1 `i ]
+[e :U 343 ]
+[e $ <= _i _vel 340  ]
+[e :U 341 ]
+}
+[; ;main.c: 236: stepcont--;
+"236
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 237: actualstep++;
+"237
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 238: break;
+"238
+[e $U 332  ]
+[; ;main.c: 239: case 2:
+"239
+[e :U 344 ]
+[; ;main.c: 240: LATA = 0b1100;
+"240
+[e = _LATA -> -> 12 `i `uc ]
+[; ;main.c: 241: for (i = 0; i <= vel; i++);
+"241
+{
+[e = _i -> 0 `i ]
+[e $U 348  ]
+[e :U 345 ]
+[e ++ _i -> 1 `i ]
+[e :U 348 ]
+[e $ <= _i _vel 345  ]
+[e :U 346 ]
+}
+[; ;main.c: 242: stepcont--;
+"242
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 243: actualstep++;
+"243
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 245: break;
+"245
+[e $U 332  ]
+[; ;main.c: 246: case 3:
+"246
+[e :U 349 ]
+[; ;main.c: 247: LATA = 0b0100;
+"247
+[e = _LATA -> -> 4 `i `uc ]
+[; ;main.c: 248: for (i = 0; i <= vel; i++);
+"248
+{
+[e = _i -> 0 `i ]
+[e $U 353  ]
+[e :U 350 ]
+[e ++ _i -> 1 `i ]
+[e :U 353 ]
+[e $ <= _i _vel 350  ]
+[e :U 351 ]
+}
+[; ;main.c: 249: stepcont--;
+"249
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 250: actualstep++;
+"250
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 251: break;
+"251
+[e $U 332  ]
+[; ;main.c: 252: case 4:
+"252
+[e :U 354 ]
+[; ;main.c: 253: LATA = 0b0110;
+"253
+[e = _LATA -> -> 6 `i `uc ]
+[; ;main.c: 254: for (i = 0; i <= vel; i++);
+"254
+{
+[e = _i -> 0 `i ]
+[e $U 358  ]
+[e :U 355 ]
+[e ++ _i -> 1 `i ]
+[e :U 358 ]
+[e $ <= _i _vel 355  ]
+[e :U 356 ]
+}
+[; ;main.c: 255: stepcont--;
+"255
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 256: actualstep++;
+"256
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 257: break;
+"257
+[e $U 332  ]
+[; ;main.c: 258: case 5:
+"258
+[e :U 359 ]
+[; ;main.c: 259: LATA = 0b0010;
+"259
+[e = _LATA -> -> 2 `i `uc ]
+[; ;main.c: 260: for (i = 0; i <= vel; i++);
+"260
+{
+[e = _i -> 0 `i ]
+[e $U 363  ]
+[e :U 360 ]
+[e ++ _i -> 1 `i ]
+[e :U 363 ]
+[e $ <= _i _vel 360  ]
+[e :U 361 ]
+}
+[; ;main.c: 261: stepcont--;
+"261
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 262: actualstep++;
+"262
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 263: break;
+"263
+[e $U 332  ]
+[; ;main.c: 265: case 6:
+"265
+[e :U 364 ]
+[; ;main.c: 266: LATA = 0b0011;
+"266
+[e = _LATA -> -> 3 `i `uc ]
+[; ;main.c: 267: for (i = 0; i <= vel; i++);
+"267
+{
+[e = _i -> 0 `i ]
+[e $U 368  ]
+[e :U 365 ]
+[e ++ _i -> 1 `i ]
+[e :U 368 ]
+[e $ <= _i _vel 365  ]
+[e :U 366 ]
+}
+[; ;main.c: 268: stepcont--;
+"268
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 269: actualstep++;
+"269
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 270: break;
+"270
+[e $U 332  ]
+[; ;main.c: 271: case 7:
+"271
+[e :U 369 ]
+[; ;main.c: 272: LATA = 0b0001;
+"272
+[e = _LATA -> -> 1 `i `uc ]
+[; ;main.c: 273: for (i = 0; i <= vel; i++);
+"273
+{
+[e = _i -> 0 `i ]
+[e $U 373  ]
+[e :U 370 ]
+[e ++ _i -> 1 `i ]
+[e :U 373 ]
+[e $ <= _i _vel 370  ]
+[e :U 371 ]
+}
+[; ;main.c: 274: stepcont--;
+"274
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 275: actualstep++;
+"275
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 276: break;
+"276
+[e $U 332  ]
+"277
+}
+[; ;main.c: 277: }
+[e $U 332  ]
+"225
+[e :U 333 ]
+[e [\ _actualstep , $ -> 0 `i 334
+ , $ -> 1 `i 339
+ , $ -> 2 `i 344
+ , $ -> 3 `i 349
+ , $ -> 4 `i 354
+ , $ -> 5 `i 359
+ , $ -> 6 `i 364
+ , $ -> 7 `i 369
+ 332 ]
+"277
+[e :U 332 ]
+"280
+}
+[e :U 328 ]
+"218
+[e $ >= _stepcont _steps 329  ]
+[e :U 330 ]
+[; ;main.c: 280: }
+[; ;main.c: 281: apagar();
+"281
+[e ( _apagar ..  ]
+[; ;main.c: 282: stepcont = 0;
+"282
+[e = _stepcont -> 0 `i ]
+[; ;main.c: 283: steps = 0;
+"283
+[e = _steps -> 0 `i ]
 "285
 }
-[e :U 321 ]
+[e :U 327 ]
 "286
-[e :U 320 ]
+[e :U 326 ]
 }
-[e :U 272 ]
+[e :U 278 ]
 "287
 }
 [e :U 256 ]
 "88
 [e $U 257  ]
 [e :U 258 ]
-[; ;main.c: 283: }
 [; ;main.c: 285: }
 [; ;main.c: 286: }
 [; ;main.c: 287: }
@@ -3400,52 +3439,52 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;main.c: 295: while (*datos != 0) {
 "295
-[e $U 369  ]
-[e :U 370 ]
+[e $U 375  ]
+[e :U 376 ]
 {
 [; ;main.c: 296: TXREG = *datos;
 "296
 [e = _TXREG *U _datos ]
 [; ;main.c: 297: while (TXSTAbits.TRMT == 0);
 "297
-[e $U 372  ]
-[e :U 373 ]
-[e :U 372 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 373  ]
-[e :U 374 ]
+[e $U 378  ]
+[e :U 379 ]
+[e :U 378 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 379  ]
+[e :U 380 ]
 [; ;main.c: 298: *datos++;
 "298
 [e *U ++ _datos * -> -> 1 `i `x -> -> # *U _datos `i `x ]
 "299
 }
-[e :U 369 ]
+[e :U 375 ]
 "295
-[e $ != -> *U _datos `i -> 0 `i 370  ]
-[e :U 371 ]
+[e $ != -> *U _datos `i -> 0 `i 376  ]
+[e :U 377 ]
 [; ;main.c: 299: }
 [; ;main.c: 301: TXREG = 0x0A;
 "301
 [e = _TXREG -> -> 10 `i `uc ]
 [; ;main.c: 302: while (TXSTAbits.TRMT == 0);
 "302
-[e $U 375  ]
-[e :U 376 ]
-[e :U 375 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 376  ]
-[e :U 377 ]
+[e $U 381  ]
+[e :U 382 ]
+[e :U 381 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 382  ]
+[e :U 383 ]
 [; ;main.c: 303: TXREG = 0x0D;
 "303
 [e = _TXREG -> -> 13 `i `uc ]
 [; ;main.c: 304: while (TXSTAbits.TRMT == 0);
 "304
-[e $U 378  ]
-[e :U 379 ]
-[e :U 378 ]
-[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 379  ]
-[e :U 380 ]
+[e $U 384  ]
+[e :U 385 ]
+[e :U 384 ]
+[e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 385  ]
+[e :U 386 ]
 [; ;main.c: 306: }
 "306
-[e :UE 368 ]
+[e :UE 374 ]
 }
 "308
 [v _ledestado `(v ~T0 @X0 1 ef1`i ]
@@ -3459,7 +3498,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _cont_led -> 1 `i ]
 [; ;main.c: 310: if (cont_led >= tiempoled) {
 "310
-[e $ ! >= _cont_led _tiempoled 382  ]
+[e $ ! >= _cont_led _tiempoled 388  ]
 {
 [; ;main.c: 311: LATBbits.LB7 = ~PORTBbits.RB7;
 "311
@@ -3469,14 +3508,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _cont_led -> 0 `i ]
 "313
 }
-[e :U 382 ]
+[e :U 388 ]
 [; ;main.c: 313: }
 [; ;main.c: 314: led = 0;
 "314
 [e = _led -> 0 `i ]
 [; ;main.c: 315: }
 "315
-[e :UE 381 ]
+[e :UE 387 ]
 }
 "317
 [v _stringtoint `(i ~T0 @X0 1 ef2`*uc`i ]
@@ -3486,9 +3525,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _string `*uc ~T0 @X0 1 r1 ]
 [v _tamanio `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 318: n = 0;
+[; ;main.c: 318: h = 0;
 "318
-[e = _n -> 0 `i ]
+[e = _h -> 0 `i ]
 [; ;main.c: 319: o = 1;
 "319
 [e = _o -> 1 `i ]
@@ -3497,8 +3536,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _p - _tamanio -> 1 `i ]
 [; ;main.c: 322: while (p >= 0) {
 "322
-[e $U 384  ]
-[e :U 385 ]
+[e $U 390  ]
+[e :U 391 ]
 {
 [; ;main.c: 323: help = string[p] - '0';
 "323
@@ -3506,9 +3545,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 324: help = help*o;
 "324
 [e = _help * _help _o ]
-[; ;main.c: 325: n = n + help;
+[; ;main.c: 325: h = h + help;
 "325
-[e = _n + _n _help ]
+[e = _h + _h _help ]
 [; ;main.c: 326: p = p - 1;
 "326
 [e = _p - _p -> 1 `i ]
@@ -3517,18 +3556,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _o * _o -> 10 `i ]
 "328
 }
-[e :U 384 ]
+[e :U 390 ]
 "322
-[e $ >= _p -> 0 `i 385  ]
-[e :U 386 ]
+[e $ >= _p -> 0 `i 391  ]
+[e :U 392 ]
 [; ;main.c: 328: }
-[; ;main.c: 329: return n;
+[; ;main.c: 329: return h;
 "329
-[e ) _n ]
-[e $UE 383  ]
+[e ) _h ]
+[e $UE 389  ]
 [; ;main.c: 330: }
 "330
-[e :UE 383 ]
+[e :UE 389 ]
 }
 "398
 [v _apagar `(v ~T0 @X0 1 ef ]
@@ -3541,10 +3580,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _LATA -> -> 0 `i `uc ]
 [; ;main.c: 400: }
 "400
-[e :UE 387 ]
+[e :UE 393 ]
 }
-[p f _sprintf 8389760 ]
-[a 2C 97 99 116 117 97 108 115 116 101 112 32 58 32 37 117 32 0 ]
+[p f _sprintf 8388736 ]
 [a 1C 115 116 101 112 99 111 117 110 116 32 58 32 37 100 32 0 ]
-[a 3C 115 116 101 112 99 111 117 110 116 32 58 32 37 100 32 0 ]
-[a 4C 97 99 116 117 97 108 115 116 101 112 32 58 32 37 100 32 0 ]
+[a 2C 115 116 101 112 99 111 117 110 116 32 58 32 37 100 32 0 ]

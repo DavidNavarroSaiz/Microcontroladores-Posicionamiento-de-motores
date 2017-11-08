@@ -3191,7 +3191,7 @@ int numSteps = 8;
 const char moverx[] = "MOVERX";
 int steps;
 int actualstep = 0;
-int n, o, p, help;
+int h, o, p, help;
 
 char tam[20];
 int led;
@@ -3233,6 +3233,8 @@ ledestado(4);
 }
 
 if (enter == 1) {
+
+__nop();
 for (r = 0; r <= 5; r++) {
 tam[r] = comando[r];
 }
@@ -3251,6 +3253,8 @@ lleg = 0;
 tama1 = tama - 7;
 steps = stringtoint(entrada, tama1);
 steps = (-1) * steps;
+enter = 0;
+tama = 0;
 
 } else {
 while (*ptr_llegada != 0) {
@@ -3261,13 +3265,18 @@ lleg++;
 lleg = 0;
 tama2 = tama - 6;
 steps = stringtoint(entrada, tama2);
-enviarTrama(entrada);
 
-}
-
-# 133
 enter = 0;
 tama = 0;
+__nop();
+}
+for (i = 0; i < 25; i++) {
+comando[i] = '\0';
+}
+for (i = 0; i < 25; i++) {
+entrada[i] = '\0';
+}
+
 }
 
 
@@ -3283,8 +3292,6 @@ actualstep = 0;
 }
 sprintf(salida, "stepcount : %d ", stepcont);
 enviarTrama(salida);
-sprintf(salida, "actualstep : %u ", steps);
-enviarTrama(salida);
 
 switch (actualstep) {
 case 0:
@@ -3344,9 +3351,9 @@ break;
 apagar();
 stepcont = 0;
 steps = 0;
+}
 
-
-} else if (steps < 0) {
+else if (steps < 0) {
 
 
 while (stepcont >= steps) {
@@ -3355,10 +3362,6 @@ actualstep = 0;
 }
 sprintf(salida, "stepcount : %d ", stepcont);
 enviarTrama(salida);
-sprintf(salida, "actualstep : %d ", actualstep);
-enviarTrama(salida);
-
-
 
 switch (actualstep) {
 case 0:
@@ -3413,10 +3416,12 @@ stepcont--;
 actualstep++;
 break;
 }
+
+
+}
 apagar();
 stepcont = 0;
 steps = 0;
-}
 
 }
 }
@@ -3451,18 +3456,18 @@ led = 0;
 }
 
 int stringtoint(char string[], int tamanio) {
-n = 0;
+h = 0;
 o = 1;
 p = tamanio - 1;
 
 while (p >= 0) {
 help = string[p] - '0';
 help = help*o;
-n = n + help;
+h = h + help;
 p = p - 1;
 o = o * 10;
 }
-return n;
+return h;
 }
 
 # 398

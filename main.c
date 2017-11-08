@@ -46,7 +46,7 @@ int numSteps = 8; //secuencia half step tiene 8 pasos
 const char moverx[] = "MOVERX";
 int steps; // numero entre cero y 4076
 int actualstep = 0;
-int n, o, p, help;
+int h, o, p, help;
 //char charstep;
 char tam[20];
 int led;
@@ -92,6 +92,8 @@ void main(void) {
         }
 
         if (enter == 1) {
+
+            NOP();
             for (r = 0; r <= 5; r++) {
                 tam[r] = comando[r];
             }
@@ -110,6 +112,8 @@ void main(void) {
                 tama1 = tama - 7;
                 steps = stringtoint(entrada, tama1);
                 steps = (-1) * steps;
+                enter = 0;
+                tama = 0;
 
             } else {
                 while (*ptr_llegada != 0) {
@@ -120,18 +124,18 @@ void main(void) {
                 lleg = 0;
                 tama2 = tama - 6;
                 steps = stringtoint(entrada, tama2);
-                enviarTrama(entrada);
-
+               
+                enter = 0;
+                tama = 0;
+                NOP();
             }
-//            for (i = 0; i < 25; i++) { //limpio comando
-//                comando[i] = '\0';
-//            }
-//            for (i = 0; i < 25; i++) { //limpio comando
-//                entrada[i] = '\0';
-//            }
+                        for (i = 0; i < 25; i++) { //limpio comando
+                            comando[i] = '\0';
+                        }
+                        for (i = 0; i < 25; i++) { //limpio comando
+                            entrada[i] = '\0';
+                        }
 
-            enter = 0;
-            tama = 0;
         }
         //        if(xtrue == 0) && (ytrue == 0){
         //            
@@ -146,9 +150,7 @@ void main(void) {
                         actualstep = 0;
                     }
                     sprintf(salida, "stepcount : %d ", stepcont);
-                    enviarTrama(salida);
-                    sprintf(salida, "actualstep : %u ", steps);
-                    enviarTrama(salida);
+                    enviarTrama(salida);                    
 
                     switch (actualstep) {
                         case 0:
@@ -208,9 +210,9 @@ void main(void) {
                 apagar();
                 stepcont = 0;
                 steps = 0;
-
-
-            } else if (steps < 0) {
+            }
+            
+            else if (steps < 0) {
 
 
                 while (stepcont >= steps) {
@@ -218,12 +220,8 @@ void main(void) {
                         actualstep = 0;
                     }
                     sprintf(salida, "stepcount : %d ", stepcont);
-                    enviarTrama(salida);
-                    sprintf(salida, "actualstep : %d ", actualstep);
-                    enviarTrama(salida);
-
-
-
+                    enviarTrama(salida);     
+                    
                     switch (actualstep) {
                         case 0:
                             LATA = 0b1001;
@@ -277,10 +275,12 @@ void main(void) {
                             actualstep++;
                             break;
                     }
-                    apagar();
-                    stepcont = 0;
-                    steps = 0;
+                    
+                    
                 }
+                apagar();
+                stepcont = 0;
+                steps = 0;
 
             }
         }
@@ -315,18 +315,18 @@ void ledestado(int tiempoled) {
 }
 
 int stringtoint(char string[], int tamanio) {
-    n = 0;
+    h = 0;
     o = 1;
     p = tamanio - 1; //sizeof (string) - 1; //2
 
     while (p >= 0) {
         help = string[p] - '0';
         help = help*o;
-        n = n + help;
+        h = h + help;
         p = p - 1;
         o = o * 10;
     }
-    return n;
+    return h;
 }
 
 
