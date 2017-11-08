@@ -3181,7 +3181,7 @@ int stepsPerRev = 4076;
 
 # 38
 char comando [25];
-int vel = 1000;
+int vel = 1500;
 
 # 42
 const char saludo[] = "bienvenido";
@@ -3200,15 +3200,20 @@ int xtrue = 1;
 char digitos [3];
 int enter;
 int tama;
+int tama1;
+int tama2;
 char salida [25];
-
+char entrada[25];
+int i;
+int lleg;
+char *ptr_llegada;
 
 void ledestado(int tiempoled);
 void enviarTrama(char *datos);
 void paso_Der();
-int stringtoint(char string[20]);
+int stringtoint(char string[], int tamanio);
 
-# 71
+# 76
 void main(void) {
 
 ConfigureOscillator();
@@ -3227,20 +3232,42 @@ ledestado(4);
 }
 
 if (enter == 1) {
-if (tama == 9) {
-__nop();
+
+
 for (r = 0; r <= 5; r++) {
 tam[r] = comando[r];
 }
 xtrue = strcmp(tam, moverx);
-digitos[0] = comando[6];
-digitos[1] = comando[7];
-digitos[2] = comando[8];
-steps = stringtoint(digitos);
+
+ptr_llegada = &comando[6];
+
+
+
+
+if (*ptr_llegada == '-') {
+ptr_llegada = &comando[7];
+
+
+while (*ptr_llegada != 0) {
+entrada[lleg] = *ptr_llegada;
+ptr_llegada++;
+lleg++;
+}
+
+tama1 = tama - 7;
+steps = stringtoint(entrada, tama1);
+steps = (-1) * steps;
 
 } else {
-enviarTrama(comandonoreconocido);
+while (*ptr_llegada != 0) {
+entrada[lleg] = *ptr_llegada;
+ptr_llegada++;
+lleg++;
 }
+tama2 = tama - 6;
+steps = stringtoint(entrada, tama2);
+}
+
 enter = 0;
 tama = 0;
 }
@@ -3253,14 +3280,15 @@ while (stepcont <= steps) {
 if (actualstep > 7) {
 actualstep = 0;
 }
-sprintf(salida, "actualstep %d ", actualstep);
+sprintf(salida, "stepcount : %d ", stepcont);
 enviarTrama(salida);
-sprintf(salida, "stepcont %d ", stepcont);
+sprintf(salida, "actualstep : %u ", actualstep);
 enviarTrama(salida);
+
 switch (actualstep) {
 case 0:
 LATA = 0b0001;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 __nop();
 stepcont++;
 __nop();
@@ -3268,44 +3296,44 @@ actualstep++;
 break;
 case 1:
 LATA = 0b0011;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont++;
 actualstep++;
 break;
 case 2:
 LATA = 0b0010;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont++;
 actualstep++;
 break;
 case 3:
 LATA = 0b0110;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont++;
 actualstep++;
 break;
 case 4:
 LATA = 0b0100;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont++;
 actualstep++;
 break;
 case 5:
 LATA = 0b1100;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont++;
 actualstep++;
 break;
 
 case 6:
 LATA = 0b1000;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont++;
 actualstep++;
 break;
 case 7:
 LATA = 0b1001;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont++;
 actualstep++;
 break;
@@ -3313,65 +3341,69 @@ break;
 
 }
 
-
 } else if (steps < 0) {
+
 
 while (stepcont >= steps) {
 if (actualstep < 0) {
 actualstep = 7;
 }
+sprintf(salida, "stepcount : %d ", stepcont);
+enviarTrama(salida);
+sprintf(salida, "actualstep : %u ", actualstep);
+enviarTrama(salida);
 switch (actualstep) {
 case 0:
 LATA = 0b1001;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont--;
 actualstep--;
 break;
 case 1:
 LATA = 0b1000;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont--;
 actualstep--;
 break;
 case 2:
 LATA = 0b1100;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont--;
 actualstep--;
 break;
 case 3:
 LATA = 0b0100;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont--;
 actualstep--;
 break;
 case 4:
 LATA = 0b0110;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont--;
 actualstep--;
 break;
 case 5:
 LATA = 0b0010;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont--;
 break;
 actualstep--;
 case 6:
 LATA = 0b0011;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont--;
 actualstep--;
 break;
 case 7:
 LATA = 0b0001;
-for (int i = 0; i <= vel; i++);
+for (i = 0; i <= vel; i++);
 stepcont--;
 actualstep--;
 break;
 }
 }
-stepcont = 0;
+
 }
 }
 }
@@ -3404,13 +3436,13 @@ cont_led = 0;
 led = 0;
 }
 
-int stringtoint(char string[20]) {
+int stringtoint(char string[], int tamanio) {
 n = 0;
 o = 1;
-p = 2;
+p = tamanio - 1;
 
 while (p >= 0) {
-help = string [p] - '0';
+help = string[p] - '0';
 help = help*o;
 n = n + help;
 p = p - 1;

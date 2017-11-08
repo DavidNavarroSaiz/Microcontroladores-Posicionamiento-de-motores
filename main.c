@@ -36,7 +36,7 @@ int stepsPerRev = 4076; /*El 28BYJ-48 tiene un paso de 5.625 grados (64 pasos po
                         *  Combinados, la precisión total es de 4096 pasos por vuelta, equivalente a un paso de 0.088º , pere la relcion del reductor nos da 4076 pasos por vuelta*/
 
 char comando [25];
-int vel = 1000; /*velocidad del motor El 28BYJ-48 tiene un par máximo tras el reductor de 3N?cm (0.3Kgf?cm).
+int vel = 1500; /*velocidad del motor El 28BYJ-48 tiene un par máximo tras el reductor de 3N?cm (0.3Kgf?cm).
 La frecuencia máxima es de 100Hz, lo que supone unos 40 segundos por vuelta, o equivalentemente una velocidad de giro máxima en torno a 1.5 rpm.*/
 
 const char saludo[] = "bienvenido";
@@ -66,7 +66,7 @@ char *ptr_llegada;
 void ledestado(int tiempoled);
 void enviarTrama(char *datos);
 void paso_Der();
-int stringtoint(char string[20], int tamanio);
+int stringtoint(char string[], int tamanio);
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -99,17 +99,24 @@ void main(void) {
             xtrue = strcmp(tam, moverx);
 
             ptr_llegada = &comando[6];
+          
+            
+                    
+            
             if (*ptr_llegada == '-') {
                 ptr_llegada = &comando[7];
+             
 
                 while (*ptr_llegada != 0) {
                     entrada[lleg] = *ptr_llegada;
                     ptr_llegada++;
                     lleg++;
                 }
+//                enviarTrama(entrada);
                 tama1 = tama - 7;
                 steps = stringtoint(entrada, tama1);
                 steps = (-1) * steps;
+                    
             } else {
                 while (*ptr_llegada != 0) {
                     entrada[lleg] = *ptr_llegada;
@@ -132,10 +139,11 @@ void main(void) {
                     if (actualstep > 7) {
                         actualstep = 0;
                     }
-                    sprintf(salida, "actualstep %d ", actualstep);
+                    sprintf(salida, "stepcount : %d ", stepcont);
                     enviarTrama(salida);
-                    sprintf(salida, "stepcont %d ", stepcont);
+                     sprintf(salida, "actualstep : %u ", actualstep);
                     enviarTrama(salida);
+                   
                     switch (actualstep) {
                         case 0:
                             LATA = 0b0001;
@@ -193,11 +201,16 @@ void main(void) {
                 }
 
             } else if (steps < 0) {
+                
 
                 while (stepcont >= steps) {
                     if (actualstep < 0) {
                         actualstep = 7;
                     }
+                    sprintf(salida, "stepcount : %d ", stepcont);
+                    enviarTrama(salida);
+                     sprintf(salida, "actualstep : %u ", actualstep);
+                    enviarTrama(salida);
                     switch (actualstep) {
                         case 0:
                             LATA = 0b1001;
@@ -249,7 +262,7 @@ void main(void) {
                             break;
                     }
                 }
-                stepcont = 0;
+                
             }
         }
     }
@@ -282,13 +295,13 @@ void ledestado(int tiempoled) {
     led = 0;
 }
 
-int stringtoint(char string, int tamanio) {
+int stringtoint(char string[], int tamanio) {
     n = 0;
     o = 1;
     p = tamanio - 1; //sizeof (string) - 1; //2
 
     while (p >= 0) {
-        help = string [p] - '0';
+        help = string[p] - '0';
         help = help*o;
         n = n + help;
         p = p - 1;
