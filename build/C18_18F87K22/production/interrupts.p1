@@ -26,6 +26,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _led `i ~T0 @X0 0 e ]
 "3798 /opt/microchip/xc8/v1.38/include/pic18f252.h
 [v _TMR1 `Vus ~T0 @X0 0 e@4046 ]
+"34 interrupts.c
+[v _movimiento `i ~T0 @X0 0 e ]
+"609 /opt/microchip/xc8/v1.38/include/pic18f252.h
+[s S28 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S28 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
+"619
+[s S29 :1 `uc 1 ]
+[n S29 . LB0 ]
+"622
+[s S30 :1 `uc 1 :1 `uc 1 ]
+[n S30 . . LB1 ]
+"626
+[s S31 :2 `uc 1 :1 `uc 1 ]
+[n S31 . . LB2 ]
+"630
+[s S32 :3 `uc 1 :1 `uc 1 ]
+[n S32 . . LB3 ]
+"634
+[s S33 :4 `uc 1 :1 `uc 1 ]
+[n S33 . . LB4 ]
+"638
+[s S34 :5 `uc 1 :1 `uc 1 ]
+[n S34 . . LB5 ]
+"642
+[s S35 :6 `uc 1 :1 `uc 1 ]
+[n S35 . . LB6 ]
+"646
+[s S36 :7 `uc 1 :1 `uc 1 ]
+[n S36 . . LB7 ]
+"608
+[u S27 `S28 1 `S29 1 `S30 1 `S31 1 `S32 1 `S33 1 `S34 1 `S35 1 `S36 1 ]
+[n S27 . . . . . . . . . . ]
+"651
+[v _LATBbits `VS27 ~T0 @X0 0 e@3978 ]
+"199
+[s S8 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S8 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"209
+[s S9 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S9 . INT0 INT1 INT2 CCP2 . PGM PGC PGD ]
+"219
+[s S10 :3 `uc 1 :1 `uc 1 ]
+[n S10 . . CCP2A ]
+"223
+[s S11 :3 `uc 1 :1 `uc 1 ]
+[n S11 . . CCP2_PA2 ]
+"198
+[u S7 `S8 1 `S9 1 `S10 1 `S11 1 ]
+[n S7 . . . . . ]
+"228
+[v _PORTBbits `VS7 ~T0 @X0 0 e@3969 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2261,94 +2312,129 @@ Version 3.2 HI-TECH Software Intermediate Code
 "33
 [v _visualizacion `i ~T0 @X0 1 e ]
 [; ;interrupts.c: 33: int visualizacion;
-[v F2303 `(v ~T0 @X0 1 tf ]
-"37
-[v _high_isr `IF2303 ~T0 @X0 1 e ]
-"46
+[; ;interrupts.c: 34: extern int movimiento;
+"35
+[v _contadorled `i ~T0 @X0 1 e ]
+[; ;interrupts.c: 35: int contadorled;
+[v F2305 `(v ~T0 @X0 1 tf ]
+"39
+[v _high_isr `IF2305 ~T0 @X0 1 e ]
+"47
 {
-[; ;interrupts.c: 37: void interrupt high_isr(void)
-[; ;interrupts.c: 46: {
+[; ;interrupts.c: 39: void interrupt high_isr(void)
+[; ;interrupts.c: 47: {
 [e :U _high_isr ]
 [f ]
-[; ;interrupts.c: 48: if (PIR1bits.RCIF == 1) {
-"48
+[; ;interrupts.c: 49: if (PIR1bits.RCIF == 1) {
+"49
 [e $ ! == -> . . _PIR1bits 0 5 `i -> 1 `i 251  ]
 {
-[; ;interrupts.c: 49: dato = RCREG;
-"49
-[e = _dato _RCREG ]
-[; ;interrupts.c: 50: if (dato != '\r') {
+[; ;interrupts.c: 50: dato = RCREG;
 "50
+[e = _dato _RCREG ]
+[; ;interrupts.c: 51: if (dato != '\r') {
+"51
 [e $ ! != -> _dato `ui -> 13 `ui 252  ]
 {
-[; ;interrupts.c: 51: comando[n] = dato;
-"51
-[e = *U + &U _comando * -> -> _n `ui `ux -> -> # *U &U _comando `ui `ux _dato ]
-[; ;interrupts.c: 52: n++;
+[; ;interrupts.c: 52: comando[n] = dato;
 "52
-[e ++ _n -> 1 `i ]
-[; ;interrupts.c: 53: tama++;
+[e = *U + &U _comando * -> -> _n `ui `ux -> -> # *U &U _comando `ui `ux _dato ]
+[; ;interrupts.c: 53: n++;
 "53
-[e ++ _tama -> 1 `i ]
+[e ++ _n -> 1 `i ]
+[; ;interrupts.c: 54: tama++;
 "54
+[e ++ _tama -> 1 `i ]
+"55
 }
-[; ;interrupts.c: 54: } else if (dato == '\r') {
+[; ;interrupts.c: 55: } else if (dato == '\r') {
 [e $U 253  ]
 [e :U 252 ]
 [e $ ! == -> _dato `ui -> 13 `ui 254  ]
 {
-[; ;interrupts.c: 55: n = 0;
-"55
-[e = _n -> 0 `i ]
-[; ;interrupts.c: 56: enter = 1;
+[; ;interrupts.c: 56: n = 0;
 "56
-[e = _enter -> 1 `i ]
+[e = _n -> 0 `i ]
+[; ;interrupts.c: 57: enter = 1;
 "57
+[e = _enter -> 1 `i ]
+"58
 }
 [e :U 254 ]
-"60
-[e :U 253 ]
-[; ;interrupts.c: 57: }
-[; ;interrupts.c: 60: PIR1bits.RCIF = 0;
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
 "61
+[e :U 253 ]
+[; ;interrupts.c: 58: }
+[; ;interrupts.c: 61: PIR1bits.RCIF = 0;
+[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
+"62
 }
 [e :U 251 ]
-[; ;interrupts.c: 61: }
-[; ;interrupts.c: 63: if (PIR1bits.TMR1IF == 1) {
-"63
+[; ;interrupts.c: 62: }
+[; ;interrupts.c: 64: if (PIR1bits.TMR1IF == 1) {
+"64
 [e $ ! == -> . . _PIR1bits 0 0 `i -> 1 `i 255  ]
 {
-[; ;interrupts.c: 64: PIR1bits.TMR1IF = 0;
-"64
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;interrupts.c: 65: __nop();
+[; ;interrupts.c: 65: PIR1bits.TMR1IF = 0;
 "65
-[e ( ___nop ..  ]
-[; ;interrupts.c: 66: led = 1;
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+[; ;interrupts.c: 66: __nop();
 "66
-[e = _led -> 1 `i ]
-[; ;interrupts.c: 67: TMR1 = 3036;
+[e ( ___nop ..  ]
+[; ;interrupts.c: 67: led = 1;
 "67
+[e = _led -> 1 `i ]
+[; ;interrupts.c: 68: TMR1 = 3036;
+"68
 [e = _TMR1 -> -> 3036 `i `us ]
+[; ;interrupts.c: 69: if (led == 1 && movimiento == 1) {
 "69
+[e $ ! && == _led -> 1 `i == _movimiento -> 1 `i 256  ]
+{
+[; ;interrupts.c: 70: __nop();
+"70
+[e ( ___nop ..  ]
+[; ;interrupts.c: 71: contadorled++;
+"71
+[e ++ _contadorled -> 1 `i ]
+[; ;interrupts.c: 72: if (contadorled >= 2) {
+"72
+[e $ ! >= _contadorled -> 2 `i 257  ]
+{
+[; ;interrupts.c: 73: LATBbits.LB7 = ~PORTBbits.RB7;
+"73
+[e = . . _LATBbits 8 1 -> ~ -> . . _PORTBbits 0 7 `i `uc ]
+[; ;interrupts.c: 74: contadorled = 0;
+"74
+[e = _contadorled -> 0 `i ]
+"75
+}
+[e :U 257 ]
+[; ;interrupts.c: 75: }
+[; ;interrupts.c: 76: led = 0;
+"76
+[e = _led -> 0 `i ]
+"77
+}
+[e :U 256 ]
+"78
 }
 [e :U 255 ]
-[; ;interrupts.c: 69: }
-[; ;interrupts.c: 76: }
-"76
+[; ;interrupts.c: 77: }
+[; ;interrupts.c: 78: }
+[; ;interrupts.c: 85: }
+"85
 [e :UE 250 ]
 }
-[v F2306 `(v ~T0 @X0 1 tf ]
-"80
-[v _low_isr `ILF2306 ~T0 @X0 1 e ]
-"88
+[v F2308 `(v ~T0 @X0 1 tf ]
+"89
+[v _low_isr `ILF2308 ~T0 @X0 1 e ]
+"97
 {
-[; ;interrupts.c: 80: void low_priority interrupt low_isr(void)
-[; ;interrupts.c: 88: {
+[; ;interrupts.c: 89: void low_priority interrupt low_isr(void)
+[; ;interrupts.c: 97: {
 [e :U _low_isr ]
 [f ]
-[; ;interrupts.c: 115: }
-"115
-[e :UE 256 ]
+[; ;interrupts.c: 119: }
+"119
+[e :UE 258 ]
 }

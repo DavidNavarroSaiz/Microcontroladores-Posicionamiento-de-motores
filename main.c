@@ -63,6 +63,7 @@ char salida [25];
 char entrada[25];
 int i;
 int lleg;
+int movimiento ;
 char *ptr_llegada;
 //const char prueba[] = "PUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 void ledestado(int tiempoled);
@@ -71,6 +72,7 @@ void paso_Der();
 int stringtoint(char string[], int tamanio);
 void apagarM1();
 void apagarM2();
+
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -89,10 +91,11 @@ void main(void) {
     enviarTrama(saludo);
 
     while (1) {
-        if (led == 1) {
+        if (led == 1 && movimiento == 0) {
             NOP();
-            ledestado(4);
+            ledestado(6);
         }
+       
 
         if (enter == 1) {
 
@@ -152,7 +155,7 @@ void main(void) {
                 if (steps > 0) {
                     NOP();
                     while (stepcont <= steps) {
-
+                        movimiento = 1 ;
                         if (actualstep > 7) {
                             actualstep = 0;
                         }
@@ -217,11 +220,13 @@ void main(void) {
                     apagarM1();
                     stepcont = 0;
                     steps = 0;
+                    movimiento = 0 ;
                 }//            D
                 else if (steps < 0) {
 
 
                     while (stepcont >= steps) {
+                        movimiento = 1 ;
                         if (actualstep > 7) {
                             actualstep = 0;
                         }
@@ -287,6 +292,7 @@ void main(void) {
                     apagarM1();
                     stepcont = 0;
                     steps = 0;
+                    movimiento = 0;
                 }
             }
             if (ytrue == 0) {
@@ -294,7 +300,7 @@ void main(void) {
                 if (steps > 0) {
                     NOP();
                     while (stepcont <= steps) {
-
+                        movimiento = 1 ;
                         if (actualstep > 7) {
                             actualstep = 0;
                         }
@@ -359,11 +365,13 @@ void main(void) {
                     apagarM2();
                     stepcont = 0;
                     steps = 0;
+                    movimiento = 0;
                 }//            D
                 else if (steps < 0) {
 
 
                     while (stepcont >= steps) {
+                        movimiento = 1 ;
                         if (actualstep > 7) {
                             actualstep = 0;
                         }
@@ -429,7 +437,7 @@ void main(void) {
                     apagarM2();
                     stepcont = 0;
                     steps = 0;
-
+                    movimiento = 0;
                 }
             }
 

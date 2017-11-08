@@ -4,26 +4,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ConfigureOscillator `(v ~T0 @X0 0 ef ]
 "13 user.h
 [v _InitApp `(v ~T0 @X0 0 ef ]
-"69 main.c
+"70 main.c
 [v _enviarTrama `(v ~T0 @X0 0 ef1`*uc ]
 "43 /opt/microchip/xc8/v1.38/include/pic18.h
 [v ___nop `(v ~T0 @X0 0 ef ]
 [p i ___nop ]
-"68 main.c
+"69 main.c
 [v _ledestado `(v ~T0 @X0 0 ef1`i ]
 "43 /opt/microchip/xc8/v1.38/include/string.h
 [v _strcmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
-"71 main.c
+"72 main.c
 [v _stringtoint `(i ~T0 @X0 0 ef2`*uc`i ]
 "194 /opt/microchip/xc8/v1.38/include/stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "486 /opt/microchip/xc8/v1.38/include/pic18f252.h
 [v _LATA `Vuc ~T0 @X0 0 e@3977 ]
-"72 main.c
+"73 main.c
 [v _apagarM1 `(v ~T0 @X0 0 ef ]
 "603 /opt/microchip/xc8/v1.38/include/pic18f252.h
 [v _LATB `Vuc ~T0 @X0 0 e@3978 ]
-"73 main.c
+"74 main.c
 [v _apagarM2 `(v ~T0 @X0 0 ef ]
 "2497 /opt/microchip/xc8/v1.38/include/pic18f252.h
 [v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
@@ -2605,281 +2605,287 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _lleg `i ~T0 @X0 1 e ]
 [; ;main.c: 65: int lleg;
 "66
+[v _movimiento `i ~T0 @X0 1 e ]
+[; ;main.c: 66: int movimiento ;
+"67
 [v _ptr_llegada `*uc ~T0 @X0 1 e ]
-[; ;main.c: 66: char *ptr_llegada;
-[; ;main.c: 68: void ledestado(int tiempoled);
-[; ;main.c: 69: void enviarTrama(char *datos);
-[; ;main.c: 70: void paso_Der();
-[; ;main.c: 71: int stringtoint(char string[], int tamanio);
-[; ;main.c: 72: void apagarM1();
-[; ;main.c: 73: void apagarM2();
-"80
+[; ;main.c: 67: char *ptr_llegada;
+[; ;main.c: 69: void ledestado(int tiempoled);
+[; ;main.c: 70: void enviarTrama(char *datos);
+[; ;main.c: 71: void paso_Der();
+[; ;main.c: 72: int stringtoint(char string[], int tamanio);
+[; ;main.c: 73: void apagarM1();
+[; ;main.c: 74: void apagarM2();
+"82
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 80: void main(void) {
+[; ;main.c: 82: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 82: ConfigureOscillator();
-"82
+[; ;main.c: 84: ConfigureOscillator();
+"84
 [e ( _ConfigureOscillator ..  ]
-[; ;main.c: 85: InitApp();
-"85
+[; ;main.c: 87: InitApp();
+"87
 [e ( _InitApp ..  ]
-[; ;main.c: 89: enviarTrama(saludo);
-"89
-[e ( _enviarTrama (1 -> &U _saludo `*uc ]
-[; ;main.c: 91: while (1) {
+[; ;main.c: 91: enviarTrama(saludo);
 "91
+[e ( _enviarTrama (1 -> &U _saludo `*uc ]
+[; ;main.c: 93: while (1) {
+"93
 [e :U 257 ]
 {
-[; ;main.c: 92: if (led == 1) {
-"92
-[e $ ! == _led -> 1 `i 259  ]
-{
-[; ;main.c: 93: __nop();
-"93
-[e ( ___nop ..  ]
-[; ;main.c: 94: ledestado(4);
+[; ;main.c: 94: if (led == 1 && movimiento == 0) {
 "94
-[e ( _ledestado (1 -> 4 `i ]
+[e $ ! && == _led -> 1 `i == _movimiento -> 0 `i 259  ]
+{
+[; ;main.c: 95: __nop();
 "95
+[e ( ___nop ..  ]
+[; ;main.c: 96: ledestado(6);
+"96
+[e ( _ledestado (1 -> 6 `i ]
+"97
 }
 [e :U 259 ]
-[; ;main.c: 95: }
-[; ;main.c: 97: if (enter == 1) {
-"97
+[; ;main.c: 97: }
+[; ;main.c: 100: if (enter == 1) {
+"100
 [e $ ! == _enter -> 1 `i 260  ]
 {
-[; ;main.c: 99: __nop();
-"99
+[; ;main.c: 102: __nop();
+"102
 [e ( ___nop ..  ]
-[; ;main.c: 100: for (r = 0; r <= 5; r++) {
-"100
+[; ;main.c: 103: for (r = 0; r <= 5; r++) {
+"103
 {
 [e = _r -> 0 `i ]
 [e $ <= _r -> 5 `i 261  ]
 [e $U 262  ]
 [e :U 261 ]
 {
-[; ;main.c: 101: tam[r] = comando[r];
-"101
+[; ;main.c: 104: tam[r] = comando[r];
+"104
 [e = *U + &U _tam * -> -> _r `ui `ux -> -> # *U &U _tam `ui `ux *U + &U _comando * -> -> _r `ui `ux -> -> # *U &U _comando `ui `ux ]
-"102
+"105
 }
-"100
+"103
 [e ++ _r -> 1 `i ]
 [e $ <= _r -> 5 `i 261  ]
 [e :U 262 ]
-"102
-}
-[; ;main.c: 102: }
-[; ;main.c: 103: xtrue = strcmp(tam, moverx);
-"103
-[e = _xtrue ( _strcmp (2 , -> &U _tam `*Cuc &U _moverx ]
-[; ;main.c: 104: ytrue = strcmp(tam, movery);
-"104
-[e = _ytrue ( _strcmp (2 , -> &U _tam `*Cuc &U _movery ]
-[; ;main.c: 105: enviarTrama(comando);
 "105
-[e ( _enviarTrama (1 &U _comando ]
-[; ;main.c: 106: ptr_llegada = &comando[6];
+}
+[; ;main.c: 105: }
+[; ;main.c: 106: xtrue = strcmp(tam, moverx);
 "106
-[e = _ptr_llegada &U *U + &U _comando * -> -> -> 6 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
-[; ;main.c: 107: if (*ptr_llegada == '-') {
+[e = _xtrue ( _strcmp (2 , -> &U _tam `*Cuc &U _moverx ]
+[; ;main.c: 107: ytrue = strcmp(tam, movery);
 "107
+[e = _ytrue ( _strcmp (2 , -> &U _tam `*Cuc &U _movery ]
+[; ;main.c: 108: enviarTrama(comando);
+"108
+[e ( _enviarTrama (1 &U _comando ]
+[; ;main.c: 109: ptr_llegada = &comando[6];
+"109
+[e = _ptr_llegada &U *U + &U _comando * -> -> -> 6 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
+[; ;main.c: 110: if (*ptr_llegada == '-') {
+"110
 [e $ ! == -> *U _ptr_llegada `ui -> 45 `ui 264  ]
 {
-[; ;main.c: 108: ptr_llegada = &comando[7];
-"108
+[; ;main.c: 111: ptr_llegada = &comando[7];
+"111
 [e = _ptr_llegada &U *U + &U _comando * -> -> -> 7 `i `ui `ux -> -> # *U &U _comando `ui `ux ]
-[; ;main.c: 109: while (*ptr_llegada != 0) {
-"109
+[; ;main.c: 112: while (*ptr_llegada != 0) {
+"112
 [e $U 265  ]
 [e :U 266 ]
 {
-[; ;main.c: 110: entrada[lleg] = *ptr_llegada;
-"110
-[e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
-[; ;main.c: 111: ptr_llegada++;
-"111
-[e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
-[; ;main.c: 112: lleg++;
-"112
-[e ++ _lleg -> 1 `i ]
+[; ;main.c: 113: entrada[lleg] = *ptr_llegada;
 "113
+[e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
+[; ;main.c: 114: ptr_llegada++;
+"114
+[e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
+[; ;main.c: 115: lleg++;
+"115
+[e ++ _lleg -> 1 `i ]
+"116
 }
 [e :U 265 ]
-"109
+"112
 [e $ != -> *U _ptr_llegada `i -> 0 `i 266  ]
 [e :U 267 ]
-[; ;main.c: 113: }
-[; ;main.c: 114: lleg = 0;
-"114
-[e = _lleg -> 0 `i ]
-[; ;main.c: 116: tama1 = tama - 7;
-"116
-[e = _tama1 - _tama -> 7 `i ]
-[; ;main.c: 117: steps = stringtoint(entrada, tama1);
+[; ;main.c: 116: }
+[; ;main.c: 117: lleg = 0;
 "117
-[e = _steps ( _stringtoint (2 , &U _entrada _tama1 ]
-[; ;main.c: 118: steps = (-1) * steps;
-"118
-[e = _steps * -U -> 1 `i _steps ]
-[; ;main.c: 119: enter = 0;
+[e = _lleg -> 0 `i ]
+[; ;main.c: 119: tama1 = tama - 7;
 "119
-[e = _enter -> 0 `i ]
-[; ;main.c: 120: tama = 0;
+[e = _tama1 - _tama -> 7 `i ]
+[; ;main.c: 120: steps = stringtoint(entrada, tama1);
 "120
-[e = _tama -> 0 `i ]
+[e = _steps ( _stringtoint (2 , &U _entrada _tama1 ]
+[; ;main.c: 121: steps = (-1) * steps;
+"121
+[e = _steps * -U -> 1 `i _steps ]
+[; ;main.c: 122: enter = 0;
 "122
+[e = _enter -> 0 `i ]
+[; ;main.c: 123: tama = 0;
+"123
+[e = _tama -> 0 `i ]
+"125
 }
-[; ;main.c: 122: } else {
+[; ;main.c: 125: } else {
 [e $U 268  ]
 [e :U 264 ]
 {
-[; ;main.c: 123: while (*ptr_llegada != 0) {
-"123
+[; ;main.c: 126: while (*ptr_llegada != 0) {
+"126
 [e $U 269  ]
 [e :U 270 ]
 {
-[; ;main.c: 124: entrada[lleg] = *ptr_llegada;
-"124
-[e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
-[; ;main.c: 125: ptr_llegada++;
-"125
-[e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
-[; ;main.c: 126: lleg++;
-"126
-[e ++ _lleg -> 1 `i ]
+[; ;main.c: 127: entrada[lleg] = *ptr_llegada;
 "127
+[e = *U + &U _entrada * -> -> _lleg `ui `ux -> -> # *U &U _entrada `ui `ux *U _ptr_llegada ]
+[; ;main.c: 128: ptr_llegada++;
+"128
+[e ++ _ptr_llegada * -> -> 1 `i `x -> -> # *U _ptr_llegada `i `x ]
+[; ;main.c: 129: lleg++;
+"129
+[e ++ _lleg -> 1 `i ]
+"130
 }
 [e :U 269 ]
-"123
+"126
 [e $ != -> *U _ptr_llegada `i -> 0 `i 270  ]
 [e :U 271 ]
-[; ;main.c: 127: }
-[; ;main.c: 128: lleg = 0;
-"128
+[; ;main.c: 130: }
+[; ;main.c: 131: lleg = 0;
+"131
 [e = _lleg -> 0 `i ]
-[; ;main.c: 129: tama2 = tama - 6;
-"129
-[e = _tama2 - _tama -> 6 `i ]
-[; ;main.c: 130: steps = stringtoint(entrada, tama2);
-"130
-[e = _steps ( _stringtoint (2 , &U _entrada _tama2 ]
-[; ;main.c: 132: enter = 0;
+[; ;main.c: 132: tama2 = tama - 6;
 "132
-[e = _enter -> 0 `i ]
-[; ;main.c: 133: tama = 0;
+[e = _tama2 - _tama -> 6 `i ]
+[; ;main.c: 133: steps = stringtoint(entrada, tama2);
 "133
-[e = _tama -> 0 `i ]
-[; ;main.c: 134: __nop();
-"134
-[e ( ___nop ..  ]
+[e = _steps ( _stringtoint (2 , &U _entrada _tama2 ]
+[; ;main.c: 135: enter = 0;
 "135
+[e = _enter -> 0 `i ]
+[; ;main.c: 136: tama = 0;
+"136
+[e = _tama -> 0 `i ]
+[; ;main.c: 137: __nop();
+"137
+[e ( ___nop ..  ]
+"138
 }
 [e :U 268 ]
-[; ;main.c: 135: }
-[; ;main.c: 136: for (i = 0; i < 25; i++) {
-"136
+[; ;main.c: 138: }
+[; ;main.c: 139: for (i = 0; i < 25; i++) {
+"139
 {
 [e = _i -> 0 `i ]
 [e $ < _i -> 25 `i 272  ]
 [e $U 273  ]
 [e :U 272 ]
 {
-[; ;main.c: 137: comando[i] = '\0';
-"137
+[; ;main.c: 140: comando[i] = '\0';
+"140
 [e = *U + &U _comando * -> -> _i `ui `ux -> -> # *U &U _comando `ui `ux -> -> 0 `ui `uc ]
-"138
+"141
 }
-"136
+"139
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 25 `i 272  ]
 [e :U 273 ]
-"138
+"141
 }
-[; ;main.c: 138: }
-[; ;main.c: 139: for (i = 0; i < 25; i++) {
-"139
+[; ;main.c: 141: }
+[; ;main.c: 142: for (i = 0; i < 25; i++) {
+"142
 {
 [e = _i -> 0 `i ]
 [e $ < _i -> 25 `i 275  ]
 [e $U 276  ]
 [e :U 275 ]
 {
-[; ;main.c: 140: entrada[i] = '\0';
-"140
+[; ;main.c: 143: entrada[i] = '\0';
+"143
 [e = *U + &U _entrada * -> -> _i `ui `ux -> -> # *U &U _entrada `ui `ux -> -> 0 `ui `uc ]
-"141
+"144
 }
-"139
+"142
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 25 `i 275  ]
 [e :U 276 ]
-"141
-}
-[; ;main.c: 141: }
-[; ;main.c: 142: if (xtrue != 0 && ytrue != 0) {
-"142
-[e $ ! && != _xtrue -> 0 `i != _ytrue -> 0 `i 278  ]
-{
-[; ;main.c: 143: enviarTrama(comandonoreconocido);
-"143
-[e ( _enviarTrama (1 -> &U _comandonoreconocido `*uc ]
 "144
 }
-[e :U 278 ]
+[; ;main.c: 144: }
+[; ;main.c: 145: if (xtrue != 0 && ytrue != 0) {
+"145
+[e $ ! && != _xtrue -> 0 `i != _ytrue -> 0 `i 278  ]
+{
+[; ;main.c: 146: enviarTrama(comandonoreconocido);
 "146
+[e ( _enviarTrama (1 -> &U _comandonoreconocido `*uc ]
+"147
+}
+[e :U 278 ]
+"149
 }
 [e :U 260 ]
-[; ;main.c: 144: }
-[; ;main.c: 146: }
-[; ;main.c: 150: if (xtrue == 0) {
-"150
+[; ;main.c: 147: }
+[; ;main.c: 149: }
+[; ;main.c: 153: if (xtrue == 0) {
+"153
 [e $ ! == _xtrue -> 0 `i 279  ]
 {
-[; ;main.c: 152: if (steps > 0) {
-"152
+[; ;main.c: 155: if (steps > 0) {
+"155
 [e $ ! > _steps -> 0 `i 280  ]
 {
-[; ;main.c: 153: __nop();
-"153
+[; ;main.c: 156: __nop();
+"156
 [e ( ___nop ..  ]
-[; ;main.c: 154: while (stepcont <= steps) {
-"154
+[; ;main.c: 157: while (stepcont <= steps) {
+"157
 [e $U 281  ]
 [e :U 282 ]
 {
-[; ;main.c: 156: if (actualstep > 7) {
-"156
+[; ;main.c: 158: movimiento = 1 ;
+"158
+[e = _movimiento -> 1 `i ]
+[; ;main.c: 159: if (actualstep > 7) {
+"159
 [e $ ! > _actualstep -> 7 `i 284  ]
 {
-[; ;main.c: 157: actualstep = 0;
-"157
+[; ;main.c: 160: actualstep = 0;
+"160
 [e = _actualstep -> 0 `i ]
-"158
+"161
 }
 [e :U 284 ]
-[; ;main.c: 158: }
-[; ;main.c: 159: sprintf(salida, "stepcount : %d ", stepcont);
-"159
-[e ( _sprintf (1 , (. , &U _salida :s 1C _stepcont ]
-[; ;main.c: 160: enviarTrama(salida);
-"160
-[e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 162: switch (actualstep) {
+[; ;main.c: 161: }
+[; ;main.c: 162: sprintf(salida, "stepcount : %d ", stepcont);
 "162
+[e ( _sprintf (1 , (. , &U _salida :s 1C _stepcont ]
+[; ;main.c: 163: enviarTrama(salida);
+"163
+[e ( _enviarTrama (1 &U _salida ]
+[; ;main.c: 165: switch (actualstep) {
+"165
 [e $U 286  ]
 {
-[; ;main.c: 163: case 0:
-"163
+[; ;main.c: 166: case 0:
+"166
 [e :U 287 ]
-[; ;main.c: 164: LATA = 0b0001;
-"164
+[; ;main.c: 167: LATA = 0b0001;
+"167
 [e = _LATA -> -> 1 `i `uc ]
-[; ;main.c: 165: for (i = 0; i <= vel; i++);
-"165
+[; ;main.c: 168: for (i = 0; i <= vel; i++);
+"168
 {
 [e = _i -> 0 `i ]
 [e $U 291  ]
@@ -2889,29 +2895,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 288  ]
 [e :U 289 ]
 }
-[; ;main.c: 166: __nop();
-"166
-[e ( ___nop ..  ]
-[; ;main.c: 167: stepcont++;
-"167
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 168: __nop();
-"168
-[e ( ___nop ..  ]
-[; ;main.c: 169: actualstep++;
+[; ;main.c: 169: __nop();
 "169
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 170: break;
+[e ( ___nop ..  ]
+[; ;main.c: 170: stepcont++;
 "170
-[e $U 285  ]
-[; ;main.c: 171: case 1:
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 171: __nop();
 "171
-[e :U 292 ]
-[; ;main.c: 172: LATA = 0b0011;
+[e ( ___nop ..  ]
+[; ;main.c: 172: actualstep++;
 "172
-[e = _LATA -> -> 3 `i `uc ]
-[; ;main.c: 173: for (i = 0; i <= vel; i++);
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 173: break;
 "173
+[e $U 285  ]
+[; ;main.c: 174: case 1:
+"174
+[e :U 292 ]
+[; ;main.c: 175: LATA = 0b0011;
+"175
+[e = _LATA -> -> 3 `i `uc ]
+[; ;main.c: 176: for (i = 0; i <= vel; i++);
+"176
 {
 [e = _i -> 0 `i ]
 [e $U 296  ]
@@ -2921,23 +2927,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 293  ]
 [e :U 294 ]
 }
-[; ;main.c: 174: stepcont++;
-"174
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 175: actualstep++;
-"175
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 176: break;
-"176
-[e $U 285  ]
-[; ;main.c: 177: case 2:
+[; ;main.c: 177: stepcont++;
 "177
-[e :U 297 ]
-[; ;main.c: 178: LATA = 0b0010;
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 178: actualstep++;
 "178
-[e = _LATA -> -> 2 `i `uc ]
-[; ;main.c: 179: for (i = 0; i <= vel; i++);
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 179: break;
 "179
+[e $U 285  ]
+[; ;main.c: 180: case 2:
+"180
+[e :U 297 ]
+[; ;main.c: 181: LATA = 0b0010;
+"181
+[e = _LATA -> -> 2 `i `uc ]
+[; ;main.c: 182: for (i = 0; i <= vel; i++);
+"182
 {
 [e = _i -> 0 `i ]
 [e $U 301  ]
@@ -2947,23 +2953,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 298  ]
 [e :U 299 ]
 }
-[; ;main.c: 180: stepcont++;
-"180
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 181: actualstep++;
-"181
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 182: break;
-"182
-[e $U 285  ]
-[; ;main.c: 183: case 3:
+[; ;main.c: 183: stepcont++;
 "183
-[e :U 302 ]
-[; ;main.c: 184: LATA = 0b0110;
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 184: actualstep++;
 "184
-[e = _LATA -> -> 6 `i `uc ]
-[; ;main.c: 185: for (i = 0; i <= vel; i++);
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 185: break;
 "185
+[e $U 285  ]
+[; ;main.c: 186: case 3:
+"186
+[e :U 302 ]
+[; ;main.c: 187: LATA = 0b0110;
+"187
+[e = _LATA -> -> 6 `i `uc ]
+[; ;main.c: 188: for (i = 0; i <= vel; i++);
+"188
 {
 [e = _i -> 0 `i ]
 [e $U 306  ]
@@ -2973,23 +2979,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 303  ]
 [e :U 304 ]
 }
-[; ;main.c: 186: stepcont++;
-"186
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 187: actualstep++;
-"187
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 188: break;
-"188
-[e $U 285  ]
-[; ;main.c: 189: case 4:
+[; ;main.c: 189: stepcont++;
 "189
-[e :U 307 ]
-[; ;main.c: 190: LATA = 0b0100;
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 190: actualstep++;
 "190
-[e = _LATA -> -> 4 `i `uc ]
-[; ;main.c: 191: for (i = 0; i <= vel; i++);
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 191: break;
 "191
+[e $U 285  ]
+[; ;main.c: 192: case 4:
+"192
+[e :U 307 ]
+[; ;main.c: 193: LATA = 0b0100;
+"193
+[e = _LATA -> -> 4 `i `uc ]
+[; ;main.c: 194: for (i = 0; i <= vel; i++);
+"194
 {
 [e = _i -> 0 `i ]
 [e $U 311  ]
@@ -2999,23 +3005,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 308  ]
 [e :U 309 ]
 }
-[; ;main.c: 192: stepcont++;
-"192
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 193: actualstep++;
-"193
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 194: break;
-"194
-[e $U 285  ]
-[; ;main.c: 195: case 5:
+[; ;main.c: 195: stepcont++;
 "195
-[e :U 312 ]
-[; ;main.c: 196: LATA = 0b1100;
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 196: actualstep++;
 "196
-[e = _LATA -> -> 12 `i `uc ]
-[; ;main.c: 197: for (i = 0; i <= vel; i++);
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 197: break;
 "197
+[e $U 285  ]
+[; ;main.c: 198: case 5:
+"198
+[e :U 312 ]
+[; ;main.c: 199: LATA = 0b1100;
+"199
+[e = _LATA -> -> 12 `i `uc ]
+[; ;main.c: 200: for (i = 0; i <= vel; i++);
+"200
 {
 [e = _i -> 0 `i ]
 [e $U 316  ]
@@ -3025,23 +3031,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 313  ]
 [e :U 314 ]
 }
-[; ;main.c: 198: stepcont++;
-"198
+[; ;main.c: 201: stepcont++;
+"201
 [e ++ _stepcont -> 1 `i ]
-[; ;main.c: 199: actualstep++;
-"199
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 200: break;
-"200
-[e $U 285  ]
-[; ;main.c: 202: case 6:
+[; ;main.c: 202: actualstep++;
 "202
-[e :U 317 ]
-[; ;main.c: 203: LATA = 0b1000;
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 203: break;
 "203
+[e $U 285  ]
+[; ;main.c: 205: case 6:
+"205
+[e :U 317 ]
+[; ;main.c: 206: LATA = 0b1000;
+"206
 [e = _LATA -> -> 8 `i `uc ]
-[; ;main.c: 204: for (i = 0; i <= vel; i++);
-"204
+[; ;main.c: 207: for (i = 0; i <= vel; i++);
+"207
 {
 [e = _i -> 0 `i ]
 [e $U 321  ]
@@ -3051,23 +3057,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 318  ]
 [e :U 319 ]
 }
-[; ;main.c: 205: stepcont++;
-"205
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 206: actualstep++;
-"206
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 207: break;
-"207
-[e $U 285  ]
-[; ;main.c: 208: case 7:
+[; ;main.c: 208: stepcont++;
 "208
-[e :U 322 ]
-[; ;main.c: 209: LATA = 0b1001;
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 209: actualstep++;
 "209
-[e = _LATA -> -> 9 `i `uc ]
-[; ;main.c: 210: for (i = 0; i <= vel; i++);
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 210: break;
 "210
+[e $U 285  ]
+[; ;main.c: 211: case 7:
+"211
+[e :U 322 ]
+[; ;main.c: 212: LATA = 0b1001;
+"212
+[e = _LATA -> -> 9 `i `uc ]
+[; ;main.c: 213: for (i = 0; i <= vel; i++);
+"213
 {
 [e = _i -> 0 `i ]
 [e $U 326  ]
@@ -3077,20 +3083,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 323  ]
 [e :U 324 ]
 }
-[; ;main.c: 211: stepcont++;
-"211
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 212: actualstep++;
-"212
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 213: break;
-"213
-[e $U 285  ]
+[; ;main.c: 214: stepcont++;
 "214
-}
-[; ;main.c: 214: }
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 215: actualstep++;
+"215
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 216: break;
+"216
 [e $U 285  ]
-"162
+"217
+}
+[; ;main.c: 217: }
+[e $U 285  ]
+"165
 [e :U 286 ]
 [e [\ _actualstep , $ -> 0 `i 287
  , $ -> 1 `i 292
@@ -3101,67 +3107,73 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> 6 `i 317
  , $ -> 7 `i 322
  285 ]
-"214
+"217
 [e :U 285 ]
-"216
+"219
 }
 [e :U 281 ]
-"154
+"157
 [e $ <= _stepcont _steps 282  ]
 [e :U 283 ]
-[; ;main.c: 216: }
-[; ;main.c: 217: apagarM1();
-"217
-[e ( _apagarM1 ..  ]
-[; ;main.c: 218: stepcont = 0;
-"218
-[e = _stepcont -> 0 `i ]
-[; ;main.c: 219: steps = 0;
-"219
-[e = _steps -> 0 `i ]
+[; ;main.c: 219: }
+[; ;main.c: 220: apagarM1();
 "220
-}
-[; ;main.c: 220: }
-[e $U 327  ]
+[e ( _apagarM1 ..  ]
+[; ;main.c: 221: stepcont = 0;
 "221
+[e = _stepcont -> 0 `i ]
+[; ;main.c: 222: steps = 0;
+"222
+[e = _steps -> 0 `i ]
+[; ;main.c: 223: movimiento = 0 ;
+"223
+[e = _movimiento -> 0 `i ]
+"224
+}
+[; ;main.c: 224: }
+[e $U 327  ]
+"225
 [e :U 280 ]
-[; ;main.c: 221: else if (steps < 0) {
+[; ;main.c: 225: else if (steps < 0) {
 [e $ ! < _steps -> 0 `i 328  ]
 {
-[; ;main.c: 224: while (stepcont >= steps) {
-"224
+[; ;main.c: 228: while (stepcont >= steps) {
+"228
 [e $U 329  ]
 [e :U 330 ]
 {
-[; ;main.c: 225: if (actualstep > 7) {
-"225
+[; ;main.c: 229: movimiento = 1 ;
+"229
+[e = _movimiento -> 1 `i ]
+[; ;main.c: 230: if (actualstep > 7) {
+"230
 [e $ ! > _actualstep -> 7 `i 332  ]
 {
-[; ;main.c: 226: actualstep = 0;
-"226
+[; ;main.c: 231: actualstep = 0;
+"231
 [e = _actualstep -> 0 `i ]
-"227
+"232
 }
 [e :U 332 ]
-[; ;main.c: 227: }
-[; ;main.c: 228: sprintf(salida, "stepcount : %d ", stepcont);
-"228
+[; ;main.c: 232: }
+[; ;main.c: 233: sprintf(salida, "stepcount : %d ", stepcont);
+"233
 [e ( _sprintf (1 , (. , &U _salida :s 2C _stepcont ]
-[; ;main.c: 229: enviarTrama(salida);
-"229
+[; ;main.c: 234: enviarTrama(salida);
+"234
 [e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 231: switch (actualstep) {
-"231
+[; ;main.c: 236: switch (actualstep) {
+"236
 [e $U 334  ]
 {
-[; ;main.c: 232: case 0:
-"232
+[; ;main.c: 237: case 0:
+"237
 [e :U 335 ]
-[; ;main.c: 233: LATA = 0b1001;
-"233
+[; ;main.c: 238: LATA = 0b1001;
+"238
 [e = _LATA -> -> 9 `i `uc ]
-[; ;main.c: 234: for (i = 0; i <= vel; i++);
-"234
+[; ;main.c: 239: for (i = 0; i <= vel; i++);
+"239
 {
 [e = _i -> 0 `i ]
 [e $U 339  ]
@@ -3171,23 +3183,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 336  ]
 [e :U 337 ]
 }
-[; ;main.c: 235: stepcont--;
-"235
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 236: actualstep++;
-"236
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 238: break;
-"238
-[e $U 333  ]
-[; ;main.c: 239: case 1:
-"239
-[e :U 340 ]
-[; ;main.c: 240: LATA = 0b1000;
+[; ;main.c: 240: stepcont--;
 "240
-[e = _LATA -> -> 8 `i `uc ]
-[; ;main.c: 241: for (i = 0; i <= vel; i++);
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 241: actualstep++;
 "241
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 243: break;
+"243
+[e $U 333  ]
+[; ;main.c: 244: case 1:
+"244
+[e :U 340 ]
+[; ;main.c: 245: LATA = 0b1000;
+"245
+[e = _LATA -> -> 8 `i `uc ]
+[; ;main.c: 246: for (i = 0; i <= vel; i++);
+"246
 {
 [e = _i -> 0 `i ]
 [e $U 344  ]
@@ -3197,23 +3209,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 341  ]
 [e :U 342 ]
 }
-[; ;main.c: 242: stepcont--;
-"242
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 243: actualstep++;
-"243
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 244: break;
-"244
-[e $U 333  ]
-[; ;main.c: 245: case 2:
-"245
-[e :U 345 ]
-[; ;main.c: 246: LATA = 0b1100;
-"246
-[e = _LATA -> -> 12 `i `uc ]
-[; ;main.c: 247: for (i = 0; i <= vel; i++);
+[; ;main.c: 247: stepcont--;
 "247
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 248: actualstep++;
+"248
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 249: break;
+"249
+[e $U 333  ]
+[; ;main.c: 250: case 2:
+"250
+[e :U 345 ]
+[; ;main.c: 251: LATA = 0b1100;
+"251
+[e = _LATA -> -> 12 `i `uc ]
+[; ;main.c: 252: for (i = 0; i <= vel; i++);
+"252
 {
 [e = _i -> 0 `i ]
 [e $U 349  ]
@@ -3223,23 +3235,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 346  ]
 [e :U 347 ]
 }
-[; ;main.c: 248: stepcont--;
-"248
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 249: actualstep++;
-"249
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 251: break;
-"251
-[e $U 333  ]
-[; ;main.c: 252: case 3:
-"252
-[e :U 350 ]
-[; ;main.c: 253: LATA = 0b0100;
+[; ;main.c: 253: stepcont--;
 "253
-[e = _LATA -> -> 4 `i `uc ]
-[; ;main.c: 254: for (i = 0; i <= vel; i++);
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 254: actualstep++;
 "254
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 256: break;
+"256
+[e $U 333  ]
+[; ;main.c: 257: case 3:
+"257
+[e :U 350 ]
+[; ;main.c: 258: LATA = 0b0100;
+"258
+[e = _LATA -> -> 4 `i `uc ]
+[; ;main.c: 259: for (i = 0; i <= vel; i++);
+"259
 {
 [e = _i -> 0 `i ]
 [e $U 354  ]
@@ -3249,23 +3261,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 351  ]
 [e :U 352 ]
 }
-[; ;main.c: 255: stepcont--;
-"255
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 256: actualstep++;
-"256
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 257: break;
-"257
-[e $U 333  ]
-[; ;main.c: 258: case 4:
-"258
-[e :U 355 ]
-[; ;main.c: 259: LATA = 0b0110;
-"259
-[e = _LATA -> -> 6 `i `uc ]
-[; ;main.c: 260: for (i = 0; i <= vel; i++);
+[; ;main.c: 260: stepcont--;
 "260
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 261: actualstep++;
+"261
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 262: break;
+"262
+[e $U 333  ]
+[; ;main.c: 263: case 4:
+"263
+[e :U 355 ]
+[; ;main.c: 264: LATA = 0b0110;
+"264
+[e = _LATA -> -> 6 `i `uc ]
+[; ;main.c: 265: for (i = 0; i <= vel; i++);
+"265
 {
 [e = _i -> 0 `i ]
 [e $U 359  ]
@@ -3275,23 +3287,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 356  ]
 [e :U 357 ]
 }
-[; ;main.c: 261: stepcont--;
-"261
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 262: actualstep++;
-"262
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 263: break;
-"263
-[e $U 333  ]
-[; ;main.c: 264: case 5:
-"264
-[e :U 360 ]
-[; ;main.c: 265: LATA = 0b0010;
-"265
-[e = _LATA -> -> 2 `i `uc ]
-[; ;main.c: 266: for (i = 0; i <= vel; i++);
+[; ;main.c: 266: stepcont--;
 "266
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 267: actualstep++;
+"267
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 268: break;
+"268
+[e $U 333  ]
+[; ;main.c: 269: case 5:
+"269
+[e :U 360 ]
+[; ;main.c: 270: LATA = 0b0010;
+"270
+[e = _LATA -> -> 2 `i `uc ]
+[; ;main.c: 271: for (i = 0; i <= vel; i++);
+"271
 {
 [e = _i -> 0 `i ]
 [e $U 364  ]
@@ -3301,23 +3313,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 361  ]
 [e :U 362 ]
 }
-[; ;main.c: 267: stepcont--;
-"267
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 268: actualstep++;
-"268
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 269: break;
-"269
-[e $U 333  ]
-[; ;main.c: 271: case 6:
-"271
-[e :U 365 ]
-[; ;main.c: 272: LATA = 0b0011;
+[; ;main.c: 272: stepcont--;
 "272
-[e = _LATA -> -> 3 `i `uc ]
-[; ;main.c: 273: for (i = 0; i <= vel; i++);
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 273: actualstep++;
 "273
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 274: break;
+"274
+[e $U 333  ]
+[; ;main.c: 276: case 6:
+"276
+[e :U 365 ]
+[; ;main.c: 277: LATA = 0b0011;
+"277
+[e = _LATA -> -> 3 `i `uc ]
+[; ;main.c: 278: for (i = 0; i <= vel; i++);
+"278
 {
 [e = _i -> 0 `i ]
 [e $U 369  ]
@@ -3327,23 +3339,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 366  ]
 [e :U 367 ]
 }
-[; ;main.c: 274: stepcont--;
-"274
-[e -- _stepcont -> 1 `i ]
-[; ;main.c: 275: actualstep++;
-"275
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 276: break;
-"276
-[e $U 333  ]
-[; ;main.c: 277: case 7:
-"277
-[e :U 370 ]
-[; ;main.c: 278: LATA = 0b0001;
-"278
-[e = _LATA -> -> 1 `i `uc ]
-[; ;main.c: 279: for (i = 0; i <= vel; i++);
+[; ;main.c: 279: stepcont--;
 "279
+[e -- _stepcont -> 1 `i ]
+[; ;main.c: 280: actualstep++;
+"280
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 281: break;
+"281
+[e $U 333  ]
+[; ;main.c: 282: case 7:
+"282
+[e :U 370 ]
+[; ;main.c: 283: LATA = 0b0001;
+"283
+[e = _LATA -> -> 1 `i `uc ]
+[; ;main.c: 284: for (i = 0; i <= vel; i++);
+"284
 {
 [e = _i -> 0 `i ]
 [e $U 374  ]
@@ -3353,20 +3365,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 371  ]
 [e :U 372 ]
 }
-[; ;main.c: 280: stepcont--;
-"280
+[; ;main.c: 285: stepcont--;
+"285
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 281: actualstep++;
-"281
+[; ;main.c: 286: actualstep++;
+"286
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 282: break;
-"282
+[; ;main.c: 287: break;
+"287
 [e $U 333  ]
-"283
+"288
 }
-[; ;main.c: 283: }
+[; ;main.c: 288: }
 [e $U 333  ]
-"231
+"236
 [e :U 334 ]
 [e [\ _actualstep , $ -> 0 `i 335
  , $ -> 1 `i 340
@@ -3377,78 +3389,84 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> 6 `i 365
  , $ -> 7 `i 370
  333 ]
-"283
+"288
 [e :U 333 ]
-"286
+"291
 }
 [e :U 329 ]
-"224
+"228
 [e $ >= _stepcont _steps 330  ]
 [e :U 331 ]
-[; ;main.c: 286: }
-[; ;main.c: 287: apagarM1();
-"287
+[; ;main.c: 291: }
+[; ;main.c: 292: apagarM1();
+"292
 [e ( _apagarM1 ..  ]
-[; ;main.c: 288: stepcont = 0;
-"288
+[; ;main.c: 293: stepcont = 0;
+"293
 [e = _stepcont -> 0 `i ]
-[; ;main.c: 289: steps = 0;
-"289
+[; ;main.c: 294: steps = 0;
+"294
 [e = _steps -> 0 `i ]
-"290
+[; ;main.c: 295: movimiento = 0;
+"295
+[e = _movimiento -> 0 `i ]
+"296
 }
 [e :U 328 ]
-"291
+"297
 [e :U 327 ]
 }
 [e :U 279 ]
-[; ;main.c: 290: }
-[; ;main.c: 291: }
-[; ;main.c: 292: if (ytrue == 0) {
-"292
+[; ;main.c: 296: }
+[; ;main.c: 297: }
+[; ;main.c: 298: if (ytrue == 0) {
+"298
 [e $ ! == _ytrue -> 0 `i 375  ]
 {
-[; ;main.c: 294: if (steps > 0) {
-"294
+[; ;main.c: 300: if (steps > 0) {
+"300
 [e $ ! > _steps -> 0 `i 376  ]
 {
-[; ;main.c: 295: __nop();
-"295
+[; ;main.c: 301: __nop();
+"301
 [e ( ___nop ..  ]
-[; ;main.c: 296: while (stepcont <= steps) {
-"296
+[; ;main.c: 302: while (stepcont <= steps) {
+"302
 [e $U 377  ]
 [e :U 378 ]
 {
-[; ;main.c: 298: if (actualstep > 7) {
-"298
+[; ;main.c: 303: movimiento = 1 ;
+"303
+[e = _movimiento -> 1 `i ]
+[; ;main.c: 304: if (actualstep > 7) {
+"304
 [e $ ! > _actualstep -> 7 `i 380  ]
 {
-[; ;main.c: 299: actualstep = 0;
-"299
+[; ;main.c: 305: actualstep = 0;
+"305
 [e = _actualstep -> 0 `i ]
-"300
+"306
 }
 [e :U 380 ]
-[; ;main.c: 300: }
-[; ;main.c: 301: sprintf(salida, "stepcount : %d ", stepcont);
-"301
+[; ;main.c: 306: }
+[; ;main.c: 307: sprintf(salida, "stepcount : %d ", stepcont);
+"307
 [e ( _sprintf (1 , (. , &U _salida :s 3C _stepcont ]
-[; ;main.c: 302: enviarTrama(salida);
-"302
+[; ;main.c: 308: enviarTrama(salida);
+"308
 [e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 304: switch (actualstep) {
-"304
+[; ;main.c: 310: switch (actualstep) {
+"310
 [e $U 382  ]
 {
-[; ;main.c: 305: case 0:
-"305
+[; ;main.c: 311: case 0:
+"311
 [e :U 383 ]
-[; ;main.c: 306: LATB = 0b0001;
-"306
+[; ;main.c: 312: LATB = 0b0001;
+"312
 [e = _LATB -> -> 1 `i `uc ]
-[; ;main.c: 307: for (i = 0; i <= vel; i++);
-"307
+[; ;main.c: 313: for (i = 0; i <= vel; i++);
+"313
 {
 [e = _i -> 0 `i ]
 [e $U 387  ]
@@ -3458,29 +3476,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 384  ]
 [e :U 385 ]
 }
-[; ;main.c: 308: __nop();
-"308
-[e ( ___nop ..  ]
-[; ;main.c: 309: stepcont++;
-"309
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 310: __nop();
-"310
-[e ( ___nop ..  ]
-[; ;main.c: 311: actualstep++;
-"311
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 312: break;
-"312
-[e $U 381  ]
-[; ;main.c: 313: case 1:
-"313
-[e :U 388 ]
-[; ;main.c: 314: LATB = 0b0011;
+[; ;main.c: 314: __nop();
 "314
-[e = _LATB -> -> 3 `i `uc ]
-[; ;main.c: 315: for (i = 0; i <= vel; i++);
+[e ( ___nop ..  ]
+[; ;main.c: 315: stepcont++;
 "315
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 316: __nop();
+"316
+[e ( ___nop ..  ]
+[; ;main.c: 317: actualstep++;
+"317
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 318: break;
+"318
+[e $U 381  ]
+[; ;main.c: 319: case 1:
+"319
+[e :U 388 ]
+[; ;main.c: 320: LATB = 0b0011;
+"320
+[e = _LATB -> -> 3 `i `uc ]
+[; ;main.c: 321: for (i = 0; i <= vel; i++);
+"321
 {
 [e = _i -> 0 `i ]
 [e $U 392  ]
@@ -3489,32 +3507,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 392 ]
 [e $ <= _i _vel 389  ]
 [e :U 390 ]
-}
-[; ;main.c: 316: stepcont++;
-"316
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 317: actualstep++;
-"317
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 318: break;
-"318
-[e $U 381  ]
-[; ;main.c: 319: case 2:
-"319
-[e :U 393 ]
-[; ;main.c: 320: LATB = 0b0010;
-"320
-[e = _LATB -> -> 2 `i `uc ]
-[; ;main.c: 321: for (i = 0; i <= vel; i++);
-"321
-{
-[e = _i -> 0 `i ]
-[e $U 397  ]
-[e :U 394 ]
-[e ++ _i -> 1 `i ]
-[e :U 397 ]
-[e $ <= _i _vel 394  ]
-[e :U 395 ]
 }
 [; ;main.c: 322: stepcont++;
 "322
@@ -3525,22 +3517,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 324: break;
 "324
 [e $U 381  ]
-[; ;main.c: 325: case 3:
+[; ;main.c: 325: case 2:
 "325
-[e :U 398 ]
-[; ;main.c: 326: LATB = 0b0110;
+[e :U 393 ]
+[; ;main.c: 326: LATB = 0b0010;
 "326
-[e = _LATB -> -> 6 `i `uc ]
+[e = _LATB -> -> 2 `i `uc ]
 [; ;main.c: 327: for (i = 0; i <= vel; i++);
 "327
 {
 [e = _i -> 0 `i ]
-[e $U 402  ]
-[e :U 399 ]
+[e $U 397  ]
+[e :U 394 ]
 [e ++ _i -> 1 `i ]
-[e :U 402 ]
-[e $ <= _i _vel 399  ]
-[e :U 400 ]
+[e :U 397 ]
+[e $ <= _i _vel 394  ]
+[e :U 395 ]
 }
 [; ;main.c: 328: stepcont++;
 "328
@@ -3551,22 +3543,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 330: break;
 "330
 [e $U 381  ]
-[; ;main.c: 331: case 4:
+[; ;main.c: 331: case 3:
 "331
-[e :U 403 ]
-[; ;main.c: 332: LATB = 0b0100;
+[e :U 398 ]
+[; ;main.c: 332: LATB = 0b0110;
 "332
-[e = _LATB -> -> 4 `i `uc ]
+[e = _LATB -> -> 6 `i `uc ]
 [; ;main.c: 333: for (i = 0; i <= vel; i++);
 "333
 {
 [e = _i -> 0 `i ]
-[e $U 407  ]
-[e :U 404 ]
+[e $U 402  ]
+[e :U 399 ]
 [e ++ _i -> 1 `i ]
-[e :U 407 ]
-[e $ <= _i _vel 404  ]
-[e :U 405 ]
+[e :U 402 ]
+[e $ <= _i _vel 399  ]
+[e :U 400 ]
 }
 [; ;main.c: 334: stepcont++;
 "334
@@ -3577,22 +3569,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 336: break;
 "336
 [e $U 381  ]
-[; ;main.c: 337: case 5:
+[; ;main.c: 337: case 4:
 "337
-[e :U 408 ]
-[; ;main.c: 338: LATB = 0b1100;
+[e :U 403 ]
+[; ;main.c: 338: LATB = 0b0100;
 "338
-[e = _LATB -> -> 12 `i `uc ]
+[e = _LATB -> -> 4 `i `uc ]
 [; ;main.c: 339: for (i = 0; i <= vel; i++);
 "339
 {
 [e = _i -> 0 `i ]
-[e $U 412  ]
-[e :U 409 ]
+[e $U 407  ]
+[e :U 404 ]
 [e ++ _i -> 1 `i ]
-[e :U 412 ]
-[e $ <= _i _vel 409  ]
-[e :U 410 ]
+[e :U 407 ]
+[e $ <= _i _vel 404  ]
+[e :U 405 ]
 }
 [; ;main.c: 340: stepcont++;
 "340
@@ -3603,14 +3595,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 342: break;
 "342
 [e $U 381  ]
-[; ;main.c: 344: case 6:
+[; ;main.c: 343: case 5:
+"343
+[e :U 408 ]
+[; ;main.c: 344: LATB = 0b1100;
 "344
-[e :U 413 ]
-[; ;main.c: 345: LATB = 0b1000;
+[e = _LATB -> -> 12 `i `uc ]
+[; ;main.c: 345: for (i = 0; i <= vel; i++);
 "345
-[e = _LATB -> -> 8 `i `uc ]
-[; ;main.c: 346: for (i = 0; i <= vel; i++);
+{
+[e = _i -> 0 `i ]
+[e $U 412  ]
+[e :U 409 ]
+[e ++ _i -> 1 `i ]
+[e :U 412 ]
+[e $ <= _i _vel 409  ]
+[e :U 410 ]
+}
+[; ;main.c: 346: stepcont++;
 "346
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 347: actualstep++;
+"347
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 348: break;
+"348
+[e $U 381  ]
+[; ;main.c: 350: case 6:
+"350
+[e :U 413 ]
+[; ;main.c: 351: LATB = 0b1000;
+"351
+[e = _LATB -> -> 8 `i `uc ]
+[; ;main.c: 352: for (i = 0; i <= vel; i++);
+"352
 {
 [e = _i -> 0 `i ]
 [e $U 417  ]
@@ -3619,32 +3637,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 417 ]
 [e $ <= _i _vel 414  ]
 [e :U 415 ]
-}
-[; ;main.c: 347: stepcont++;
-"347
-[e ++ _stepcont -> 1 `i ]
-[; ;main.c: 348: actualstep++;
-"348
-[e ++ _actualstep -> 1 `i ]
-[; ;main.c: 349: break;
-"349
-[e $U 381  ]
-[; ;main.c: 350: case 7:
-"350
-[e :U 418 ]
-[; ;main.c: 351: LATB = 0b1001;
-"351
-[e = _LATB -> -> 9 `i `uc ]
-[; ;main.c: 352: for (i = 0; i <= vel; i++);
-"352
-{
-[e = _i -> 0 `i ]
-[e $U 422  ]
-[e :U 419 ]
-[e ++ _i -> 1 `i ]
-[e :U 422 ]
-[e $ <= _i _vel 419  ]
-[e :U 420 ]
 }
 [; ;main.c: 353: stepcont++;
 "353
@@ -3655,11 +3647,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 355: break;
 "355
 [e $U 381  ]
+[; ;main.c: 356: case 7:
 "356
+[e :U 418 ]
+[; ;main.c: 357: LATB = 0b1001;
+"357
+[e = _LATB -> -> 9 `i `uc ]
+[; ;main.c: 358: for (i = 0; i <= vel; i++);
+"358
+{
+[e = _i -> 0 `i ]
+[e $U 422  ]
+[e :U 419 ]
+[e ++ _i -> 1 `i ]
+[e :U 422 ]
+[e $ <= _i _vel 419  ]
+[e :U 420 ]
 }
-[; ;main.c: 356: }
+[; ;main.c: 359: stepcont++;
+"359
+[e ++ _stepcont -> 1 `i ]
+[; ;main.c: 360: actualstep++;
+"360
+[e ++ _actualstep -> 1 `i ]
+[; ;main.c: 361: break;
+"361
 [e $U 381  ]
-"304
+"362
+}
+[; ;main.c: 362: }
+[e $U 381  ]
+"310
 [e :U 382 ]
 [e [\ _actualstep , $ -> 0 `i 383
  , $ -> 1 `i 388
@@ -3670,67 +3688,73 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> 6 `i 413
  , $ -> 7 `i 418
  381 ]
-"356
+"362
 [e :U 381 ]
-"358
+"364
 }
 [e :U 377 ]
-"296
+"302
 [e $ <= _stepcont _steps 378  ]
 [e :U 379 ]
-[; ;main.c: 358: }
-[; ;main.c: 359: apagarM2();
-"359
+[; ;main.c: 364: }
+[; ;main.c: 365: apagarM2();
+"365
 [e ( _apagarM2 ..  ]
-[; ;main.c: 360: stepcont = 0;
-"360
+[; ;main.c: 366: stepcont = 0;
+"366
 [e = _stepcont -> 0 `i ]
-[; ;main.c: 361: steps = 0;
-"361
+[; ;main.c: 367: steps = 0;
+"367
 [e = _steps -> 0 `i ]
-"362
+[; ;main.c: 368: movimiento = 0;
+"368
+[e = _movimiento -> 0 `i ]
+"369
 }
-[; ;main.c: 362: }
+[; ;main.c: 369: }
 [e $U 423  ]
-"363
+"370
 [e :U 376 ]
-[; ;main.c: 363: else if (steps < 0) {
+[; ;main.c: 370: else if (steps < 0) {
 [e $ ! < _steps -> 0 `i 424  ]
 {
-[; ;main.c: 366: while (stepcont >= steps) {
-"366
+[; ;main.c: 373: while (stepcont >= steps) {
+"373
 [e $U 425  ]
 [e :U 426 ]
 {
-[; ;main.c: 367: if (actualstep > 7) {
-"367
+[; ;main.c: 374: movimiento = 1 ;
+"374
+[e = _movimiento -> 1 `i ]
+[; ;main.c: 375: if (actualstep > 7) {
+"375
 [e $ ! > _actualstep -> 7 `i 428  ]
 {
-[; ;main.c: 368: actualstep = 0;
-"368
+[; ;main.c: 376: actualstep = 0;
+"376
 [e = _actualstep -> 0 `i ]
-"369
+"377
 }
 [e :U 428 ]
-[; ;main.c: 369: }
-[; ;main.c: 370: sprintf(salida, "stepcount : %d ", stepcont);
-"370
+[; ;main.c: 377: }
+[; ;main.c: 378: sprintf(salida, "stepcount : %d ", stepcont);
+"378
 [e ( _sprintf (1 , (. , &U _salida :s 4C _stepcont ]
-[; ;main.c: 371: enviarTrama(salida);
-"371
+[; ;main.c: 379: enviarTrama(salida);
+"379
 [e ( _enviarTrama (1 &U _salida ]
-[; ;main.c: 373: switch (actualstep) {
-"373
+[; ;main.c: 381: switch (actualstep) {
+"381
 [e $U 430  ]
 {
-[; ;main.c: 374: case 0:
-"374
+[; ;main.c: 382: case 0:
+"382
 [e :U 431 ]
-[; ;main.c: 375: LATB = 0b1001;
-"375
+[; ;main.c: 383: LATB = 0b1001;
+"383
 [e = _LATB -> -> 9 `i `uc ]
-[; ;main.c: 376: for (i = 0; i <= vel; i++);
-"376
+[; ;main.c: 384: for (i = 0; i <= vel; i++);
+"384
 {
 [e = _i -> 0 `i ]
 [e $U 435  ]
@@ -3740,23 +3764,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 432  ]
 [e :U 433 ]
 }
-[; ;main.c: 377: stepcont--;
-"377
+[; ;main.c: 385: stepcont--;
+"385
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 378: actualstep++;
-"378
+[; ;main.c: 386: actualstep++;
+"386
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 380: break;
-"380
+[; ;main.c: 388: break;
+"388
 [e $U 429  ]
-[; ;main.c: 381: case 1:
-"381
+[; ;main.c: 389: case 1:
+"389
 [e :U 436 ]
-[; ;main.c: 382: LATB = 0b1000;
-"382
+[; ;main.c: 390: LATB = 0b1000;
+"390
 [e = _LATB -> -> 8 `i `uc ]
-[; ;main.c: 383: for (i = 0; i <= vel; i++);
-"383
+[; ;main.c: 391: for (i = 0; i <= vel; i++);
+"391
 {
 [e = _i -> 0 `i ]
 [e $U 440  ]
@@ -3766,23 +3790,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 437  ]
 [e :U 438 ]
 }
-[; ;main.c: 384: stepcont--;
-"384
+[; ;main.c: 392: stepcont--;
+"392
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 385: actualstep++;
-"385
+[; ;main.c: 393: actualstep++;
+"393
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 386: break;
-"386
+[; ;main.c: 394: break;
+"394
 [e $U 429  ]
-[; ;main.c: 387: case 2:
-"387
+[; ;main.c: 395: case 2:
+"395
 [e :U 441 ]
-[; ;main.c: 388: LATB = 0b1100;
-"388
+[; ;main.c: 396: LATB = 0b1100;
+"396
 [e = _LATB -> -> 12 `i `uc ]
-[; ;main.c: 389: for (i = 0; i <= vel; i++);
-"389
+[; ;main.c: 397: for (i = 0; i <= vel; i++);
+"397
 {
 [e = _i -> 0 `i ]
 [e $U 445  ]
@@ -3792,23 +3816,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 442  ]
 [e :U 443 ]
 }
-[; ;main.c: 390: stepcont--;
-"390
+[; ;main.c: 398: stepcont--;
+"398
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 391: actualstep++;
-"391
+[; ;main.c: 399: actualstep++;
+"399
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 393: break;
-"393
+[; ;main.c: 401: break;
+"401
 [e $U 429  ]
-[; ;main.c: 394: case 3:
-"394
+[; ;main.c: 402: case 3:
+"402
 [e :U 446 ]
-[; ;main.c: 395: LATB = 0b0100;
-"395
+[; ;main.c: 403: LATB = 0b0100;
+"403
 [e = _LATB -> -> 4 `i `uc ]
-[; ;main.c: 396: for (i = 0; i <= vel; i++);
-"396
+[; ;main.c: 404: for (i = 0; i <= vel; i++);
+"404
 {
 [e = _i -> 0 `i ]
 [e $U 450  ]
@@ -3818,23 +3842,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 447  ]
 [e :U 448 ]
 }
-[; ;main.c: 397: stepcont--;
-"397
+[; ;main.c: 405: stepcont--;
+"405
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 398: actualstep++;
-"398
+[; ;main.c: 406: actualstep++;
+"406
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 399: break;
-"399
+[; ;main.c: 407: break;
+"407
 [e $U 429  ]
-[; ;main.c: 400: case 4:
-"400
+[; ;main.c: 408: case 4:
+"408
 [e :U 451 ]
-[; ;main.c: 401: LATB = 0b0110;
-"401
+[; ;main.c: 409: LATB = 0b0110;
+"409
 [e = _LATB -> -> 6 `i `uc ]
-[; ;main.c: 402: for (i = 0; i <= vel; i++);
-"402
+[; ;main.c: 410: for (i = 0; i <= vel; i++);
+"410
 {
 [e = _i -> 0 `i ]
 [e $U 455  ]
@@ -3844,23 +3868,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 452  ]
 [e :U 453 ]
 }
-[; ;main.c: 403: stepcont--;
-"403
+[; ;main.c: 411: stepcont--;
+"411
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 404: actualstep++;
-"404
+[; ;main.c: 412: actualstep++;
+"412
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 405: break;
-"405
+[; ;main.c: 413: break;
+"413
 [e $U 429  ]
-[; ;main.c: 406: case 5:
-"406
+[; ;main.c: 414: case 5:
+"414
 [e :U 456 ]
-[; ;main.c: 407: LATB = 0b0010;
-"407
+[; ;main.c: 415: LATB = 0b0010;
+"415
 [e = _LATB -> -> 2 `i `uc ]
-[; ;main.c: 408: for (i = 0; i <= vel; i++);
-"408
+[; ;main.c: 416: for (i = 0; i <= vel; i++);
+"416
 {
 [e = _i -> 0 `i ]
 [e $U 460  ]
@@ -3870,23 +3894,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 457  ]
 [e :U 458 ]
 }
-[; ;main.c: 409: stepcont--;
-"409
+[; ;main.c: 417: stepcont--;
+"417
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 410: actualstep++;
-"410
+[; ;main.c: 418: actualstep++;
+"418
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 411: break;
-"411
+[; ;main.c: 419: break;
+"419
 [e $U 429  ]
-[; ;main.c: 413: case 6:
-"413
+[; ;main.c: 421: case 6:
+"421
 [e :U 461 ]
-[; ;main.c: 414: LATB = 0b0011;
-"414
+[; ;main.c: 422: LATB = 0b0011;
+"422
 [e = _LATB -> -> 3 `i `uc ]
-[; ;main.c: 415: for (i = 0; i <= vel; i++);
-"415
+[; ;main.c: 423: for (i = 0; i <= vel; i++);
+"423
 {
 [e = _i -> 0 `i ]
 [e $U 465  ]
@@ -3896,23 +3920,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 462  ]
 [e :U 463 ]
 }
-[; ;main.c: 416: stepcont--;
-"416
+[; ;main.c: 424: stepcont--;
+"424
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 417: actualstep++;
-"417
+[; ;main.c: 425: actualstep++;
+"425
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 418: break;
-"418
+[; ;main.c: 426: break;
+"426
 [e $U 429  ]
-[; ;main.c: 419: case 7:
-"419
+[; ;main.c: 427: case 7:
+"427
 [e :U 466 ]
-[; ;main.c: 420: LATB = 0b0001;
-"420
+[; ;main.c: 428: LATB = 0b0001;
+"428
 [e = _LATB -> -> 1 `i `uc ]
-[; ;main.c: 421: for (i = 0; i <= vel; i++);
-"421
+[; ;main.c: 429: for (i = 0; i <= vel; i++);
+"429
 {
 [e = _i -> 0 `i ]
 [e $U 470  ]
@@ -3922,20 +3946,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ <= _i _vel 467  ]
 [e :U 468 ]
 }
-[; ;main.c: 422: stepcont--;
-"422
+[; ;main.c: 430: stepcont--;
+"430
 [e -- _stepcont -> 1 `i ]
-[; ;main.c: 423: actualstep++;
-"423
+[; ;main.c: 431: actualstep++;
+"431
 [e ++ _actualstep -> 1 `i ]
-[; ;main.c: 424: break;
-"424
+[; ;main.c: 432: break;
+"432
 [e $U 429  ]
-"425
+"433
 }
-[; ;main.c: 425: }
+[; ;main.c: 433: }
 [e $U 429  ]
-"373
+"381
 [e :U 430 ]
 [e [\ _actualstep , $ -> 0 `i 431
  , $ -> 1 `i 436
@@ -3946,216 +3970,219 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> 6 `i 461
  , $ -> 7 `i 466
  429 ]
-"425
+"433
 [e :U 429 ]
-"428
+"436
 }
 [e :U 425 ]
-"366
+"373
 [e $ >= _stepcont _steps 426  ]
 [e :U 427 ]
-[; ;main.c: 428: }
-[; ;main.c: 429: apagarM2();
-"429
+[; ;main.c: 436: }
+[; ;main.c: 437: apagarM2();
+"437
 [e ( _apagarM2 ..  ]
-[; ;main.c: 430: stepcont = 0;
-"430
+[; ;main.c: 438: stepcont = 0;
+"438
 [e = _stepcont -> 0 `i ]
-[; ;main.c: 431: steps = 0;
-"431
+[; ;main.c: 439: steps = 0;
+"439
 [e = _steps -> 0 `i ]
-"433
+[; ;main.c: 440: movimiento = 0;
+"440
+[e = _movimiento -> 0 `i ]
+"441
 }
 [e :U 424 ]
-"434
+"442
 [e :U 423 ]
 }
 [e :U 375 ]
-"437
+"445
 }
 [e :U 256 ]
-"91
+"93
 [e $U 257  ]
 [e :U 258 ]
-[; ;main.c: 433: }
-[; ;main.c: 434: }
-[; ;main.c: 437: }
-[; ;main.c: 438: }
-"438
+[; ;main.c: 441: }
+[; ;main.c: 442: }
+[; ;main.c: 445: }
+[; ;main.c: 446: }
+"446
 [e :UE 255 ]
 }
-"440
+"448
 [v _enviarTrama `(v ~T0 @X0 1 ef1`*uc ]
 {
-[; ;main.c: 440: void enviarTrama(char *datos) {
+[; ;main.c: 448: void enviarTrama(char *datos) {
 [e :U _enviarTrama ]
 [v _datos `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 444: while (*datos != 0) {
-"444
+[; ;main.c: 452: while (*datos != 0) {
+"452
 [e $U 472  ]
 [e :U 473 ]
 {
-[; ;main.c: 445: TXREG = *datos;
-"445
+[; ;main.c: 453: TXREG = *datos;
+"453
 [e = _TXREG *U _datos ]
-[; ;main.c: 446: while (TXSTAbits.TRMT == 0);
-"446
+[; ;main.c: 454: while (TXSTAbits.TRMT == 0);
+"454
 [e $U 475  ]
 [e :U 476 ]
 [e :U 475 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 476  ]
 [e :U 477 ]
-[; ;main.c: 447: *datos++;
-"447
+[; ;main.c: 455: *datos++;
+"455
 [e *U ++ _datos * -> -> 1 `i `x -> -> # *U _datos `i `x ]
-"448
+"456
 }
 [e :U 472 ]
-"444
+"452
 [e $ != -> *U _datos `i -> 0 `i 473  ]
 [e :U 474 ]
-[; ;main.c: 448: }
-[; ;main.c: 450: TXREG = 0x0A;
-"450
+[; ;main.c: 456: }
+[; ;main.c: 458: TXREG = 0x0A;
+"458
 [e = _TXREG -> -> 10 `i `uc ]
-[; ;main.c: 451: while (TXSTAbits.TRMT == 0);
-"451
+[; ;main.c: 459: while (TXSTAbits.TRMT == 0);
+"459
 [e $U 478  ]
 [e :U 479 ]
 [e :U 478 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 479  ]
 [e :U 480 ]
-[; ;main.c: 452: TXREG = 0x0D;
-"452
+[; ;main.c: 460: TXREG = 0x0D;
+"460
 [e = _TXREG -> -> 13 `i `uc ]
-[; ;main.c: 453: while (TXSTAbits.TRMT == 0);
-"453
+[; ;main.c: 461: while (TXSTAbits.TRMT == 0);
+"461
 [e $U 481  ]
 [e :U 482 ]
 [e :U 481 ]
 [e $ == -> . . _TXSTAbits 0 1 `i -> 0 `i 482  ]
 [e :U 483 ]
-[; ;main.c: 455: }
-"455
+[; ;main.c: 463: }
+"463
 [e :UE 471 ]
 }
-"457
+"465
 [v _ledestado `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 457: void ledestado(int tiempoled) {
+[; ;main.c: 465: void ledestado(int tiempoled) {
 [e :U _ledestado ]
 [v _tiempoled `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 458: cont_led++;
-"458
+[; ;main.c: 466: cont_led++;
+"466
 [e ++ _cont_led -> 1 `i ]
-[; ;main.c: 459: if (cont_led >= tiempoled) {
-"459
+[; ;main.c: 467: if (cont_led >= tiempoled) {
+"467
 [e $ ! >= _cont_led _tiempoled 485  ]
 {
-[; ;main.c: 460: LATBbits.LB7 = ~PORTBbits.RB7;
-"460
+[; ;main.c: 468: LATBbits.LB7 = ~PORTBbits.RB7;
+"468
 [e = . . _LATBbits 8 1 -> ~ -> . . _PORTBbits 0 7 `i `uc ]
-[; ;main.c: 461: cont_led = 0;
-"461
+[; ;main.c: 469: cont_led = 0;
+"469
 [e = _cont_led -> 0 `i ]
-"462
+"470
 }
 [e :U 485 ]
-[; ;main.c: 462: }
-[; ;main.c: 463: led = 0;
-"463
+[; ;main.c: 470: }
+[; ;main.c: 471: led = 0;
+"471
 [e = _led -> 0 `i ]
-[; ;main.c: 464: }
-"464
+[; ;main.c: 472: }
+"472
 [e :UE 484 ]
 }
-"466
+"474
 [v _stringtoint `(i ~T0 @X0 1 ef2`*uc`i ]
 {
-[; ;main.c: 466: int stringtoint(char string[], int tamanio) {
+[; ;main.c: 474: int stringtoint(char string[], int tamanio) {
 [e :U _stringtoint ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [v _tamanio `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 467: h = 0;
-"467
+[; ;main.c: 475: h = 0;
+"475
 [e = _h -> 0 `i ]
-[; ;main.c: 468: o = 1;
-"468
+[; ;main.c: 476: o = 1;
+"476
 [e = _o -> 1 `i ]
-[; ;main.c: 469: p = tamanio - 1;
-"469
+[; ;main.c: 477: p = tamanio - 1;
+"477
 [e = _p - _tamanio -> 1 `i ]
-[; ;main.c: 471: while (p >= 0) {
-"471
+[; ;main.c: 479: while (p >= 0) {
+"479
 [e $U 487  ]
 [e :U 488 ]
 {
-[; ;main.c: 472: help = string[p] - '0';
-"472
+[; ;main.c: 480: help = string[p] - '0';
+"480
 [e = _help -> - -> *U + _string * -> _p `x -> -> # *U _string `i `x `ui -> 48 `ui `i ]
-[; ;main.c: 473: help = help*o;
-"473
+[; ;main.c: 481: help = help*o;
+"481
 [e = _help * _help _o ]
-[; ;main.c: 474: h = h + help;
-"474
+[; ;main.c: 482: h = h + help;
+"482
 [e = _h + _h _help ]
-[; ;main.c: 475: p = p - 1;
-"475
+[; ;main.c: 483: p = p - 1;
+"483
 [e = _p - _p -> 1 `i ]
-[; ;main.c: 476: o = o * 10;
-"476
+[; ;main.c: 484: o = o * 10;
+"484
 [e = _o * _o -> 10 `i ]
-"477
+"485
 }
 [e :U 487 ]
-"471
+"479
 [e $ >= _p -> 0 `i 488  ]
 [e :U 489 ]
-[; ;main.c: 477: }
-[; ;main.c: 478: return h;
-"478
+[; ;main.c: 485: }
+[; ;main.c: 486: return h;
+"486
 [e ) _h ]
 [e $UE 486  ]
-[; ;main.c: 479: }
-"479
+[; ;main.c: 487: }
+"487
 [e :UE 486 ]
 }
-"481
+"489
 [v _apagarM1 `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 481: void apagarM1() {
+[; ;main.c: 489: void apagarM1() {
 [e :U _apagarM1 ]
 [f ]
-[; ;main.c: 482: LATA = 0;
-"482
+[; ;main.c: 490: LATA = 0;
+"490
 [e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 483: }
-"483
+[; ;main.c: 491: }
+"491
 [e :UE 490 ]
 }
-"484
+"492
 [v _apagarM2 `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 484: void apagarM2() {
+[; ;main.c: 492: void apagarM2() {
 [e :U _apagarM2 ]
 [f ]
-[; ;main.c: 485: LATBbits.LB0 = 0;
-"485
+[; ;main.c: 493: LATBbits.LB0 = 0;
+"493
 [e = . . _LATBbits 1 0 -> -> 0 `i `uc ]
-[; ;main.c: 486: LATBbits.LB1 = 0;
-"486
+[; ;main.c: 494: LATBbits.LB1 = 0;
+"494
 [e = . . _LATBbits 2 1 -> -> 0 `i `uc ]
-[; ;main.c: 487: LATBbits.LB2 = 0;
-"487
+[; ;main.c: 495: LATBbits.LB2 = 0;
+"495
 [e = . . _LATBbits 3 1 -> -> 0 `i `uc ]
-[; ;main.c: 488: LATBbits.LB3 = 0;
-"488
+[; ;main.c: 496: LATBbits.LB3 = 0;
+"496
 [e = . . _LATBbits 4 1 -> -> 0 `i `uc ]
-[; ;main.c: 489: }
-"489
+[; ;main.c: 497: }
+"497
 [e :UE 491 ]
 }
 [p f _sprintf 8388736 ]

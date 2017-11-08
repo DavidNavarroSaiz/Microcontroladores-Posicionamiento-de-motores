@@ -3014,12 +3014,14 @@ char dato;
 extern int led;
 int muestreo;
 int visualizacion;
+extern int movimiento;
+int contadorled;
 
 
 
 void interrupt high_isr(void)
 
-# 46
+# 47
 {
 
 if (PIR1bits.RCIF == 1) {
@@ -3042,18 +3044,26 @@ PIR1bits.TMR1IF = 0;
 __nop();
 led = 1;
 TMR1 = 3036;
-
+if (led == 1 && movimiento == 1) {
+__nop();
+contadorled++;
+if (contadorled >= 2) {
+LATBbits.LB7 = ~PORTBbits.RB7;
+contadorled = 0;
+}
+led = 0;
+}
 }
 
-# 76
+# 85
 }
 
 
 
 void low_priority interrupt low_isr(void)
 
-# 88
+# 97
 {
 
-# 115
+# 119
 }

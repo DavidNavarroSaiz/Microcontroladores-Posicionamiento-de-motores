@@ -3208,6 +3208,7 @@ char salida [25];
 char entrada[25];
 int i;
 int lleg;
+int movimiento ;
 char *ptr_llegada;
 
 void ledestado(int tiempoled);
@@ -3217,7 +3218,7 @@ int stringtoint(char string[], int tamanio);
 void apagarM1();
 void apagarM2();
 
-# 80
+# 82
 void main(void) {
 
 ConfigureOscillator();
@@ -3230,10 +3231,11 @@ InitApp();
 enviarTrama(saludo);
 
 while (1) {
-if (led == 1) {
+if (led == 1 && movimiento == 0) {
 __nop();
-ledestado(4);
+ledestado(6);
 }
+
 
 if (enter == 1) {
 
@@ -3293,7 +3295,7 @@ if (xtrue == 0) {
 if (steps > 0) {
 __nop();
 while (stepcont <= steps) {
-
+movimiento = 1 ;
 if (actualstep > 7) {
 actualstep = 0;
 }
@@ -3358,11 +3360,13 @@ break;
 apagarM1();
 stepcont = 0;
 steps = 0;
+movimiento = 0 ;
 }
 else if (steps < 0) {
 
 
 while (stepcont >= steps) {
+movimiento = 1 ;
 if (actualstep > 7) {
 actualstep = 0;
 }
@@ -3428,6 +3432,7 @@ break;
 apagarM1();
 stepcont = 0;
 steps = 0;
+movimiento = 0;
 }
 }
 if (ytrue == 0) {
@@ -3435,7 +3440,7 @@ if (ytrue == 0) {
 if (steps > 0) {
 __nop();
 while (stepcont <= steps) {
-
+movimiento = 1 ;
 if (actualstep > 7) {
 actualstep = 0;
 }
@@ -3500,11 +3505,13 @@ break;
 apagarM2();
 stepcont = 0;
 steps = 0;
+movimiento = 0;
 }
 else if (steps < 0) {
 
 
 while (stepcont >= steps) {
+movimiento = 1 ;
 if (actualstep > 7) {
 actualstep = 0;
 }
@@ -3570,7 +3577,7 @@ break;
 apagarM2();
 stepcont = 0;
 steps = 0;
-
+movimiento = 0;
 }
 }
 
