@@ -62,11 +62,12 @@ char entrada[25];
 int i;
 int lleg;
 char *ptr_llegada;
-
+const char prueba[] = "PUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 void ledestado(int tiempoled);
 void enviarTrama(char *datos);
 void paso_Der();
 int stringtoint(char string[], int tamanio);
+void apagar();
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -91,45 +92,50 @@ void main(void) {
         }
 
         if (enter == 1) {
-            //            if (tama == 9) {
-            //                NOP();
             for (r = 0; r <= 5; r++) {
                 tam[r] = comando[r];
             }
             xtrue = strcmp(tam, moverx);
-
+            enviarTrama(comando);
             ptr_llegada = &comando[6];
-          
-            
-                    
-            
             if (*ptr_llegada == '-') {
                 ptr_llegada = &comando[7];
-             
-
                 while (*ptr_llegada != 0) {
                     entrada[lleg] = *ptr_llegada;
                     ptr_llegada++;
                     lleg++;
                 }
-//                enviarTrama(entrada);
+                lleg = 0;
+
                 tama1 = tama - 7;
                 steps = stringtoint(entrada, tama1);
                 steps = (-1) * steps;
-                    
+
             } else {
                 while (*ptr_llegada != 0) {
                     entrada[lleg] = *ptr_llegada;
                     ptr_llegada++;
                     lleg++;
                 }
+                lleg = 0;
                 tama2 = tama - 6;
                 steps = stringtoint(entrada, tama2);
+                enviarTrama(entrada);
+
             }
+//            for (i = 0; i < 25; i++) { //limpio comando
+//                comando[i] = '\0';
+//            }
+//            for (i = 0; i < 25; i++) { //limpio comando
+//                entrada[i] = '\0';
+//            }
 
             enter = 0;
             tama = 0;
         }
+        //        if(xtrue == 0) && (ytrue == 0){
+        //            
+        //        }
         if (xtrue == 0) {
 
             if (steps > 0) {
@@ -141,9 +147,9 @@ void main(void) {
                     }
                     sprintf(salida, "stepcount : %d ", stepcont);
                     enviarTrama(salida);
-                     sprintf(salida, "actualstep : %u ", actualstep);
+                    sprintf(salida, "actualstep : %u ", steps);
                     enviarTrama(salida);
-                   
+
                     switch (actualstep) {
                         case 0:
                             LATA = 0b0001;
@@ -199,70 +205,83 @@ void main(void) {
                     }
 
                 }
+                apagar();
+                stepcont = 0;
+                steps = 0;
+
 
             } else if (steps < 0) {
-                
+
 
                 while (stepcont >= steps) {
-                    if (actualstep < 0) {
-                        actualstep = 7;
+                    if (actualstep > 7) {
+                        actualstep = 0;
                     }
                     sprintf(salida, "stepcount : %d ", stepcont);
                     enviarTrama(salida);
-                     sprintf(salida, "actualstep : %u ", actualstep);
+                    sprintf(salida, "actualstep : %d ", actualstep);
                     enviarTrama(salida);
+
+
+
                     switch (actualstep) {
                         case 0:
                             LATA = 0b1001;
                             for (i = 0; i <= vel; i++);
                             stepcont--;
-                            actualstep--;
+                            actualstep++;
+
                             break;
                         case 1:
                             LATA = 0b1000;
                             for (i = 0; i <= vel; i++);
                             stepcont--;
-                            actualstep--;
+                            actualstep++;
                             break;
                         case 2:
                             LATA = 0b1100;
                             for (i = 0; i <= vel; i++);
                             stepcont--;
-                            actualstep--;
+                            actualstep++;
+
                             break;
                         case 3:
                             LATA = 0b0100;
                             for (i = 0; i <= vel; i++);
                             stepcont--;
-                            actualstep--;
+                            actualstep++;
                             break;
                         case 4:
                             LATA = 0b0110;
                             for (i = 0; i <= vel; i++);
                             stepcont--;
-                            actualstep--;
+                            actualstep++;
                             break;
                         case 5:
                             LATA = 0b0010;
                             for (i = 0; i <= vel; i++);
                             stepcont--;
+                            actualstep++;
                             break;
-                            actualstep--;
+
                         case 6:
                             LATA = 0b0011;
                             for (i = 0; i <= vel; i++);
                             stepcont--;
-                            actualstep--;
+                            actualstep++;
                             break;
                         case 7:
                             LATA = 0b0001;
                             for (i = 0; i <= vel; i++);
                             stepcont--;
-                            actualstep--;
+                            actualstep++;
                             break;
                     }
+                    apagar();
+                    stepcont = 0;
+                    steps = 0;
                 }
-                
+
             }
         }
     }
@@ -376,6 +395,6 @@ int stringtoint(char string[], int tamanio) {
 
 //}
 
-//void apagar() {
-//    LATA = 0;
-//}
+void apagar() {
+    LATA = 0;
+}
