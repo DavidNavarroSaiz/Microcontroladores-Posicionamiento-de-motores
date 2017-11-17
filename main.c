@@ -136,7 +136,7 @@ void main(void) {
                 lleg = 0;
                 tama2 = tama - 6;
                 steps = stringtoint(entrada, tama2);
-                sprintf(salida, "stepcountfffffffffffffff : %l ", steps);
+                sprintf(salida, "stepcountfffffffffffffff : %u ", steps);
                 enviarTrama(salida);
                 enter = 0;
                 tama = 0;
@@ -260,7 +260,7 @@ void ejexpositivo (long paso){
                         if (currentstep > 7) {
                             currentstep = 0;
                         }
-                        sprintf(salida, "stepcount : %d ", stepcount);
+                        sprintf(salida, "stepcount : %ld ", stepcount);
                         enviarTrama(salida);
 
                         switch (currentstep) {
@@ -326,7 +326,7 @@ void ejexnegativo (long paso2){
                         if (currentstep > 7) {
                             currentstep = 0;
                         }
-                        sprintf(salida, "stepcount : %d ", stepcount);
+                        sprintf(salida, "stepcount : %ld ", stepcount);
                         enviarTrama(salida);
 
                         switch (currentstep) {
@@ -393,7 +393,7 @@ void ejeypositivo(long paso3){
                         if (currentstep > 7) {
                             currentstep = 0;
                         }
-                        sprintf(salida, "stepcount : %d ", stepcount);
+                        sprintf(salida, "stepcount : %ld ", stepcount);
                         enviarTrama(salida);
 
                         switch (currentstep) {
@@ -459,7 +459,7 @@ void ejeynegativo (long paso4){
                         if (currentstep > 7) {
                             currentstep = 0;
                         }
-                        sprintf(salida, "stepcount : %d ", stepcount);
+                        sprintf(salida, "stepcount : %ld ", stepcount);
                         enviarTrama(salida);
 
                         switch (currentstep) {
