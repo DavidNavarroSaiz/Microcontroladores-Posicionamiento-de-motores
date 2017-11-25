@@ -77,8 +77,8 @@ int movimientoy;
 int movimientox;
 int posiciony;
 int posicionx; //numero que introduce el usuario , esta en unidades de mm
-float relacionx = 10548.52321; //100000 / 9,48mm --- 100000 pasos avanza 9,48 mm
-unsigned int relaciony = 11160.714; //100000/8,96mm
+float relacionx = 11518.75; //100000 / 9,48mm --- 100000 pasos avanza 9,48 mm
+float relaciony = 10560.714; //100000/8,96mm
 //const char prueba[] = "PUEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 void ledestado(int tiempoled);
 void enviarTrama(char *datos);
