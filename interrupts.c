@@ -52,7 +52,7 @@ void high_isr(void)
             comando[n] = dato;
             n++;
             tama++;
-        } else if (dato == '\r') {
+        } else if (dato == '\r') { //se recibe enter
             n = 0;
             enter = 1;
         }
@@ -61,12 +61,12 @@ void high_isr(void)
         PIR1bits.RCIF = 0;
     }
 
-    if (PIR1bits.TMR1IF == 1) {
+    if (PIR1bits.TMR1IF == 1) { //interrupcion timer 1 : led de estado
         PIR1bits.TMR1IF = 0;
         NOP();
         led = 1;
         TMR1 = 3036; //100 ms
-        if (led == 1 && movimiento == 1) {
+        if (led == 1 && movimiento == 1) { //cuando algun motor esta en movimiento
             NOP();
             contadorled++;
             if (contadorled >= 2) {

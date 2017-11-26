@@ -64,6 +64,7 @@ void InitApp(void) {
     IPR1bits.RCIP = 1; //ALTA PRIORIDAD//
 
 
-
+    PIE2bits.EEIE = 1; //EEPROM write operation bit 
+    
 }
 
