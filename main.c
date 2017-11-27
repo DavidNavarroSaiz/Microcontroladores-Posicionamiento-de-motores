@@ -94,7 +94,7 @@ void ejeypositivo(long paso3);
 void ejeynegativo(long paso4);
 void writeRegister(int direccionW, int datoW);
 int readRegister(int direccionR);
-
+int k,z;
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -113,8 +113,17 @@ void main(void) {
     enviarTrama(saludo);
     enviarTrama(rangox);
     enviarTrama(rangoy);
-    posicionx = readRegister(0);
-    posiciony = readRegister(1);
+    k = readRegister(0) ;
+        if( k != 255){
+             posicionx = readRegister(0);
+             NOP();
+        }
+        z = readRegister(1);
+        if(z != 255){
+             posiciony = readRegister(1);
+        }
+    
+    
     while (1) {
         if (led == 1 && movimiento == 0) { //led de estado modo de funcionamiento normal
             NOP();
@@ -130,6 +139,7 @@ void main(void) {
             infotrue = strcmp(comando, posicion_info); // se compara el comando que introdujeron con posicion_info
             devolvertrue = strcmp(comando, devolver); // se compara el comando que introdujeron con devolver
             enviarTrama(comando); // eco de la palabra que introducimos
+          
             if (xtrue != 0 && ytrue != 0 && infotrue != 0 && devolvertrue != 0) { //si ninguna de las comparaciones dio positiva , entonces es un comando no reconocido
                 enviarTrama(comandonoreconocido);
                 enter = 0;
@@ -155,6 +165,7 @@ void main(void) {
                     stepsx = (-1) * stepsx; //numero de pasos debe ser negativo debido a que introdujimos un (-) en la posicion 6)
                     enter = 0;
                     tama = 0;
+                    
 
                 } else { //el numero es positivo y se hace el mismo procedimiento anterior sin multiplicar por (-1))
                     while (*ptr_llegada != 0) {
@@ -164,6 +175,7 @@ void main(void) {
                     }
                     lleg = 0;
                     tama2 = tama - 6;
+                    enviarTrama(entrada);
                     movimientox = stringtolong(entrada, tama2);
                     posicionx = movimientox + posicionx;
                     writeRegister(0, posicionx);
@@ -171,6 +183,10 @@ void main(void) {
 
                     enter = 0;
                     tama = 0;
+                      sprintf(salida, "movimientox x : %d ", movimientox); //se imprime cual es el valor de la posicion
+                enviarTrama(salida);
+                sprintf(salida, "steps x : %d ", stepsx); //se imprime cual es el valor de la posicion
+                enviarTrama(salida);
                 }
             } else if (ytrue == 0) {//escribieron MOVERY, se hace lo mismo que el caso anterior
                 ptr_llegada = &comando[6];
@@ -214,6 +230,10 @@ void main(void) {
                 sprintf(salida, "posicion en eje x : %d ", posicionactualx); //se imprime cual es el valor de la posicion
                 enviarTrama(salida);
                 sprintf(salida, "posicion en eje y : %d ", posicionactualy);
+                enviarTrama(salida);
+                sprintf(salida, "posicion en eje x : %d ", posicionx);
+                enviarTrama(salida);
+                sprintf(salida, "posicion en eje y : %d ", posiciony);
                 enviarTrama(salida);
                 enter = 0;
             } else if (devolvertrue == 0) {//introdujeron el comando DEVOLVER, por lo cual quremos llevar los ejes a la posicion inicial
@@ -292,6 +312,7 @@ void main(void) {
                 posicionx = posicionx - movimientox;
                 movimientox = 0;
                 enviarTrama(rangox);
+                 writeRegister(0, posicionx);
             }
             xtrue = 1;
         }
@@ -326,6 +347,7 @@ void main(void) {
                 enviarTrama(rangoy);
                 posiciony = posiciony - movimientoy;
                 movimientoy = 0;
+                writeRegister(1, posiciony);
             }
             ytrue = 1;
 
@@ -647,7 +669,7 @@ int readRegister(int direccionR) { //leer un registro de la EEPROM
     int datoR;
     EEADR = direccionR;
     EECON1bits.EEPGD = 0;
-    //    EECON1bits.CFGS = 0;
+        EECON1bits.CFGS = 0;
     EECON1bits.RD = 1;
     datoR = EEDATA; //EL VALOR SE ALMACENA EEDAT 
     return datoR;
@@ -657,7 +679,7 @@ void writeRegister(int direccionW, int datoW) { //escribir un registro en la EEP
     EEDATA = datoW; // guardamos la localizacion de memoria 
     EEADR = direccionW; //                   
     EECON1bits.EEPGD = 0; //Acceder a los datos de memoria
-    //    EECON1bits.CFGS = 0;
+        EECON1bits.CFGS = 0;
     EECON1bits.WREN = 1; //HABILITAR ESCRITURA 
     INTCONbits.GIE = 0; //DESACTIVAR INTERRUPCIONES GLOBALES//
     EECON2 = 0x55;
