@@ -48,6 +48,7 @@ const char movery[] = "MOVERY";
 const char posicion_info[] = "POSICION";
 const char devolver[] = "DEVOLVER";
 const char norango[] = "el movimiento solicitado se encuentra fuera del rango de trabajo";
+const char cero[] = "CERO";
 int infotrue = 1;
 long stepsx; // pasos en el eje x , el eje con engranaje delgado
 long stepsy; //pasos en el eje y , el eje con engranaje grueso
@@ -61,7 +62,8 @@ int led;
 int r; //para escribir la palabra
 int xtrue = 1;
 int ytrue = 1;
-int devolvertrue;
+int devolvertrue = 1;
+int cerotrue = 1;
 char digitos [3];
 int enter;
 int tama;
@@ -138,11 +140,13 @@ void main(void) {
             ytrue = strcmp(tam, movery);
             infotrue = strcmp(comando, posicion_info); // se compara el comando que introdujeron con posicion_info
             devolvertrue = strcmp(comando, devolver); // se compara el comando que introdujeron con devolver
+            cerotrue = strcmp(comando, cero);
             enviarTrama(comando); // eco de la palabra que introducimos
 
-            if (xtrue != 0 && ytrue != 0 && infotrue != 0 && devolvertrue != 0) { //si ninguna de las comparaciones dio positiva , entonces es un comando no reconocido
+            if (xtrue != 0 && ytrue != 0 && infotrue != 0 && devolvertrue != 0 && cerotrue !=0 ) { //si ninguna de las comparaciones dio positiva , entonces es un comando no reconocido
                 enviarTrama(comandonoreconocido);
                 enter = 0;
+                tama = 0;
             }
 
             if (xtrue == 0) {//si introdujeron el comando moverx
@@ -176,6 +180,7 @@ void main(void) {
                     lleg = 0;
                     tama2 = tama - 6;
                     enviarTrama(entrada);
+                    NOP();
                     movimientox = stringtolong(entrada, tama2);
                     posicionx = movimientox + posicionx;
                     writeRegister(0, posicionx);
@@ -183,10 +188,13 @@ void main(void) {
 
                     enter = 0;
                     tama = 0;
-                    sprintf(salida, "movimientox x : %d ", posicionx); //se imprime cual es el valor de la posicion
-                    enviarTrama(salida);
-                    sprintf(salida, "steps x : %d ", stepsx); //se imprime cual es el valor de la posicion
-                    enviarTrama(salida);
+
+//                    sprintf(salida, "movimientox x : %d ", movimientox); //se imprime cual es el valor de la posicion
+//                    enviarTrama(salida);
+//                    sprintf(salida, "posicionx  : %d ", posicionx); //se imprime cual es el valor de la posicion
+//                    enviarTrama(salida);
+                    //                    sprintf(salida, "steps x : %d ", stepsx); //se imprime cual es el valor de la posicion
+                    //                    enviarTrama(salida);
                 }
             } else if (ytrue == 0) {//escribieron MOVERY, se hace lo mismo que el caso anterior
                 ptr_llegada = &comando[6];
@@ -231,10 +239,11 @@ void main(void) {
                 enviarTrama(salida);
                 sprintf(salida, "posicion en eje y : %d ", posicionactualy);
                 enviarTrama(salida);
-                sprintf(salida, "posicion en eje x : %d ", posicionx);
-                enviarTrama(salida);
-                sprintf(salida, "posicion en eje y : %d ", posiciony);
-                enviarTrama(salida);
+                tama = 0;
+                //                sprintf(salida, "posicion en eje x : %d ", posicionx);
+                //                enviarTrama(salida);
+                //                sprintf(salida, "posicion en eje y : %d ", posiciony);
+                //                enviarTrama(salida);
                 enter = 0;
             } else if (devolvertrue == 0) {//introdujeron el comando DEVOLVER, por lo cual quremos llevar los ejes a la posicion inicial
                 stepsy_auxiliar = posiciony*relaciony; //llevar el eje y a cero
@@ -243,8 +252,7 @@ void main(void) {
                 apagarM2();
                 stepcount = 0;
                 stepsy_auxiliar = 0;
-                posicionx = 0;
-                writeRegister(0, posicionx);
+               
                 stepsx_auxiliar = posicionx*relacionx; //llevar el eje y a cero
                 stepsx_auxiliar = stepsx_auxiliar * (-1);
                 ejexnegativo(stepsx_auxiliar);
@@ -254,6 +262,22 @@ void main(void) {
                 enter = 0;
                 posiciony = 0;
                 writeRegister(1, posiciony);
+                 posicionx = 0;
+                writeRegister(0, posicionx);
+                sprintf(salida, "posicion en eje x : %d ", posicionx);
+                enviarTrama(salida);
+                sprintf(salida, "posicion en eje y : %d ", posiciony);
+                enviarTrama(salida);
+                devolvertrue = 1;
+                tama = 0;
+            } else if (cerotrue == 0) {
+                posicionx = 0;
+                posiciony = 0;
+                writeRegister(1, posiciony);
+                writeRegister(0, posicionx);
+                cerotrue = 1;
+                tama = 0;
+                enter = 0;
                 sprintf(salida, "posicion en eje x : %d ", posicionx);
                 enviarTrama(salida);
                 sprintf(salida, "posicion en eje y : %d ", posiciony);
@@ -268,8 +292,8 @@ void main(void) {
         }
 
         if (xtrue == 0) {
-            sprintf(salida, "movimientox x : %d ", posicionx); //se imprime cual es el valor de la posicion
-            enviarTrama(salida);
+            //            sprintf(salida, "movimientox x : %d ", posicionx); //se imprime cual es el valor de la posicion
+            //            enviarTrama(salida);
             if (posicionx >= 0 && posicionx <= 18) { //limites de movimiento mecanico
                 stepsy_auxiliar = posiciony*relaciony; //llevar el eje y a cero debido a problema mecanico
                 stepsy_auxiliar = stepsy_auxiliar * (-1);
@@ -398,6 +422,7 @@ long stringtolong(char string[], int tamanio) { //conversion de una cadena de ca
         o = o * 10;
     }
     return h;
+    help = 0;
 }
 
 void apagarM1() { //apagar el motor 1
