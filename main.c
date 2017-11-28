@@ -166,7 +166,7 @@ void main(void) {
                     enter = 0;
                     tama = 0;
                     
-
+                    
                 } else { //el numero es positivo y se hace el mismo procedimiento anterior sin multiplicar por (-1))
                     while (*ptr_llegada != 0) {
                         entrada[lleg] = *ptr_llegada;
