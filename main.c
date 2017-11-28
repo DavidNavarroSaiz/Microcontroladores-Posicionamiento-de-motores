@@ -94,7 +94,7 @@ void ejeypositivo(long paso3);
 void ejeynegativo(long paso4);
 void writeRegister(int direccionW, int datoW);
 int readRegister(int direccionR);
-int k,z;
+int k, z;
 
 /******************************************************************************/
 /* Main Program                                                               */
@@ -113,17 +113,17 @@ void main(void) {
     enviarTrama(saludo);
     enviarTrama(rangox);
     enviarTrama(rangoy);
-    k = readRegister(0) ;
-        if( k != 255){
-             posicionx = readRegister(0);
-             NOP();
-        }
-        z = readRegister(1);
-        if(z != 255){
-             posiciony = readRegister(1);
-        }
-    
-    
+    k = readRegister(0);
+    if (k != 255) {
+        posicionx = readRegister(0);
+        NOP();
+    }
+    z = readRegister(1);
+    if (z != 255) {
+        posiciony = readRegister(1);
+    }
+
+
     while (1) {
         if (led == 1 && movimiento == 0) { //led de estado modo de funcionamiento normal
             NOP();
@@ -139,7 +139,7 @@ void main(void) {
             infotrue = strcmp(comando, posicion_info); // se compara el comando que introdujeron con posicion_info
             devolvertrue = strcmp(comando, devolver); // se compara el comando que introdujeron con devolver
             enviarTrama(comando); // eco de la palabra que introducimos
-          
+
             if (xtrue != 0 && ytrue != 0 && infotrue != 0 && devolvertrue != 0) { //si ninguna de las comparaciones dio positiva , entonces es un comando no reconocido
                 enviarTrama(comandonoreconocido);
                 enter = 0;
@@ -165,8 +165,8 @@ void main(void) {
                     stepsx = (-1) * stepsx; //numero de pasos debe ser negativo debido a que introdujimos un (-) en la posicion 6)
                     enter = 0;
                     tama = 0;
-                    
-                    
+
+
                 } else { //el numero es positivo y se hace el mismo procedimiento anterior sin multiplicar por (-1))
                     while (*ptr_llegada != 0) {
                         entrada[lleg] = *ptr_llegada;
@@ -183,10 +183,10 @@ void main(void) {
 
                     enter = 0;
                     tama = 0;
-                      sprintf(salida, "movimientox x : %d ", movimientox); //se imprime cual es el valor de la posicion
-                enviarTrama(salida);
-                sprintf(salida, "steps x : %d ", stepsx); //se imprime cual es el valor de la posicion
-                enviarTrama(salida);
+                    sprintf(salida, "movimientox x : %d ", posicionx); //se imprime cual es el valor de la posicion
+                    enviarTrama(salida);
+                    sprintf(salida, "steps x : %d ", stepsx); //se imprime cual es el valor de la posicion
+                    enviarTrama(salida);
                 }
             } else if (ytrue == 0) {//escribieron MOVERY, se hace lo mismo que el caso anterior
                 ptr_llegada = &comando[6];
@@ -243,7 +243,8 @@ void main(void) {
                 apagarM2();
                 stepcount = 0;
                 stepsy_auxiliar = 0;
-                posiciony = 0;
+                posicionx = 0;
+                writeRegister(0, posicionx);
                 stepsx_auxiliar = posicionx*relacionx; //llevar el eje y a cero
                 stepsx_auxiliar = stepsx_auxiliar * (-1);
                 ejexnegativo(stepsx_auxiliar);
@@ -252,6 +253,7 @@ void main(void) {
                 stepsx_auxiliar = 0;
                 enter = 0;
                 posiciony = 0;
+                writeRegister(1, posiciony);
                 sprintf(salida, "posicion en eje x : %d ", posicionx);
                 enviarTrama(salida);
                 sprintf(salida, "posicion en eje y : %d ", posiciony);
@@ -266,6 +268,8 @@ void main(void) {
         }
 
         if (xtrue == 0) {
+            sprintf(salida, "movimientox x : %d ", posicionx); //se imprime cual es el valor de la posicion
+            enviarTrama(salida);
             if (posicionx >= 0 && posicionx <= 18) { //limites de movimiento mecanico
                 stepsy_auxiliar = posiciony*relaciony; //llevar el eje y a cero debido a problema mecanico
                 stepsy_auxiliar = stepsy_auxiliar * (-1);
@@ -312,7 +316,7 @@ void main(void) {
                 posicionx = posicionx - movimientox;
                 movimientox = 0;
                 enviarTrama(rangox);
-                 writeRegister(0, posicionx);
+                writeRegister(0, posicionx);
             }
             xtrue = 1;
         }
@@ -478,7 +482,7 @@ void ejexnegativo(long paso2) {
         if (currentstep > 7) {
             currentstep = 0;
         }
-  
+
         switch (currentstep) {
             case 0:
                 LATA = 0b1001;
@@ -669,7 +673,7 @@ int readRegister(int direccionR) { //leer un registro de la EEPROM
     int datoR;
     EEADR = direccionR;
     EECON1bits.EEPGD = 0;
-        EECON1bits.CFGS = 0;
+    EECON1bits.CFGS = 0;
     EECON1bits.RD = 1;
     datoR = EEDATA; //EL VALOR SE ALMACENA EEDAT 
     return datoR;
@@ -679,7 +683,7 @@ void writeRegister(int direccionW, int datoW) { //escribir un registro en la EEP
     EEDATA = datoW; // guardamos la localizacion de memoria 
     EEADR = direccionW; //                   
     EECON1bits.EEPGD = 0; //Acceder a los datos de memoria
-        EECON1bits.CFGS = 0;
+    EECON1bits.CFGS = 0;
     EECON1bits.WREN = 1; //HABILITAR ESCRITURA 
     INTCONbits.GIE = 0; //DESACTIVAR INTERRUPCIONES GLOBALES//
     EECON2 = 0x55;
