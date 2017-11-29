@@ -39,7 +39,7 @@ char comando [25];
 int vel = 500; /*velocidad del motor El 28BYJ-48 tiene un par máximo tras el reductor de 3N?cm (0.3Kgf?cm).
 La frecuencia máxima es de 100Hz, lo que supone unos 40 segundos por vuelta, o equivalentemente una velocidad de giro máxima en torno a 1.5 rpm.*/
 
-const char saludo[] = "Bienvenido,";
+const char saludo[] = "Bienvenido, ya puede controlar el desplazador XY ";
 const char rangox[] = " El rango de trabajo en el eje x : [0,18]mm"; //rango de movimiento mecanico eje x
 const char rangoy[] = " El rango de trabajo en el eje y : [0,23]mm"; //rango de movimiento mecanico eje y
 const char comandonoreconocido[] = "Comando no Reconocido";
@@ -82,7 +82,7 @@ int posicionx; //numero que introduce el usuario , esta en unidades de mm
 int posicionactualx;
 int posicionactualy;
 float relacionx = 11518.75; //75000pasos /6,4mm --- 75000 pasos avanza 6,4 mm
-float relaciony = 10560.714; //100000/9,7 mm
+float relaciony = 10960.714; //100000/9,7 mm
 ///funciones
 void ledestado(int tiempoled);
 void enviarTrama(char *datos);
@@ -179,7 +179,7 @@ void main(void) {
                     }
                     lleg = 0;
                     tama2 = tama - 6;
-                    enviarTrama(entrada);
+                   
                     NOP();
                     movimientox = stringtolong(entrada, tama2);
                     posicionx = movimientox + posicionx;
@@ -189,12 +189,7 @@ void main(void) {
                     enter = 0;
                     tama = 0;
 
-//                    sprintf(salida, "movimientox x : %d ", movimientox); //se imprime cual es el valor de la posicion
-//                    enviarTrama(salida);
-//                    sprintf(salida, "posicionx  : %d ", posicionx); //se imprime cual es el valor de la posicion
-//                    enviarTrama(salida);
-                    //                    sprintf(salida, "steps x : %d ", stepsx); //se imprime cual es el valor de la posicion
-                    //                    enviarTrama(salida);
+//                  
                 }
             } else if (ytrue == 0) {//escribieron MOVERY, se hace lo mismo que el caso anterior
                 ptr_llegada = &comando[6];
@@ -240,16 +235,13 @@ void main(void) {
                 sprintf(salida, "posicion en eje y : %d ", posicionactualy);
                 enviarTrama(salida);
                 tama = 0;
-                //                sprintf(salida, "posicion en eje x : %d ", posicionx);
-                //                enviarTrama(salida);
-                //                sprintf(salida, "posicion en eje y : %d ", posiciony);
-                //                enviarTrama(salida);
+               
                 enter = 0;
             } else if (devolvertrue == 0) {//introdujeron el comando DEVOLVER, por lo cual quremos llevar los ejes a la posicion inicial
                 stepsy_auxiliar = posiciony*relaciony; //llevar el eje y a cero
                 stepsy_auxiliar = stepsy_auxiliar * (-1); //mover el carro justo la posicion contraria en la que se encuentra
                 ejeynegativo(stepsy_auxiliar);
-                apagarM2();
+                
                 stepcount = 0;
                 stepsy_auxiliar = 0;
                
@@ -257,6 +249,7 @@ void main(void) {
                 stepsx_auxiliar = stepsx_auxiliar * (-1);
                 ejexnegativo(stepsx_auxiliar);
                 apagarM2();
+                apagarM1();
                 stepcount = 0;
                 stepsx_auxiliar = 0;
                 enter = 0;
@@ -270,6 +263,7 @@ void main(void) {
                 enviarTrama(salida);
                 devolvertrue = 1;
                 tama = 0;
+                movimiento = 0 ;
             } else if (cerotrue == 0) {
                 posicionx = 0;
                 posiciony = 0;
@@ -292,8 +286,7 @@ void main(void) {
         }
 
         if (xtrue == 0) {
-            //            sprintf(salida, "movimientox x : %d ", posicionx); //se imprime cual es el valor de la posicion
-            //            enviarTrama(salida);
+         
             if (posicionx >= 0 && posicionx <= 18) { //limites de movimiento mecanico
                 stepsy_auxiliar = posiciony*relaciony; //llevar el eje y a cero debido a problema mecanico
                 stepsy_auxiliar = stepsy_auxiliar * (-1);
